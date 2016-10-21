@@ -1,0 +1,208 @@
+@import "styleTemplate";
+
+header {
+  .brand-logo {
+    font-family: 'Patua One';
+  }
+}
+
+#main {
+  padding: 0 !important;
+
+  .hellow{
+    background: url(../assets/img/slider_1.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+    color: @color-text;
+
+    height: 100vh;
+    width: 100vw;
+
+    .inner {
+      text-align: center;
+      padding-top: 35vh;
+
+      h1 {
+        font-size: 5vw;
+      }
+
+      a.btn-large{
+        background-color: @color-main;
+        min-width: 10vw;
+        margin: 10px;
+      }
+    }
+  }
+}
+
+.vs-menu {
+  margin: 5px 0;
+  height: 100vh;
+  width: 100vw;
+
+  .shape-outside-polygon(@x1,@y1,@x2,@y2,@x3,@y3) {
+    -webkit-shape-outside: polygon(@x1 @y1, @x2 @y2, @x3 @y3);
+    shape-outside: polygon(@x1 @y1, @x2 @y2, @x3 @y3);
+
+    -webkit-clip-path: polygon(@x1 @y1, @x2 @y2, @x3 @y3);
+    clip-path: polygon(@x1 @y1, @x2 @y2, @x3 @y3);
+  }
+
+  .left {
+    .shape-outside-polygon(0, 0, 0, 100%, 100%, 0);
+    float: left;
+
+    h2 {
+      text-align: left;
+      margin-left: 20vw;
+      padding-top: 35vh;
+    }
+  }
+
+  .right {
+    .shape-outside-polygon(0, 100%, 100%, 100%, 100%, 0);
+    float: right;
+
+    h2 {
+      text-align: right;
+      margin-right: 20vw;
+      padding-top: 70vh;
+    }
+  }
+
+  .simple {
+    width: 50vw !important;
+    position: relative !important;
+
+    h2 {
+      text-align: center;
+      padding-top: 50vh;
+      margin: 0;
+    }
+  }
+
+  .vs(@img) {
+    background: url('../assets/img/@{img}');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+    position: absolute;
+
+    width: 100vw;
+    height: inherit;
+    padding: 0;
+
+    .inner {
+      background-color: @background;
+      height: inherit;
+      opacity: 0;
+
+      h2 {
+        color: @color-text;
+        margin-top: 0;
+        opacity: 0;
+      }
+
+      &:hover {
+        opacity: 0.6;
+        cursor: pointer;
+        z-index: 1;
+
+        h2 {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .human {
+    .vs('human.jpg');
+  }
+
+  .comp {
+    .vs('ai.jpg');
+  }
+
+}
+
+.video-container {
+  max-height: 300px;
+  width: auto;
+
+  .iframe {
+    max-height: 300px;
+    width: auto;
+  }
+}
+
+.game {
+  color: white;
+  box-shadow: inset 0px 0px 8px #590934;
+  border-radius: 60px;
+
+  background-color: #880e4f;
+
+  align-content: center;
+
+  width: auto;
+
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+.kalax {
+  min-height: 120px;
+  width: 50px;
+
+  background-color: #37474f;
+
+  text-align: center;
+  line-height: 110px;
+  white-space: nowrap;
+
+  margin: 0 auto;
+  margin-bottom: 20px;
+
+  border: 2px solid #37474f;
+  box-shadow: inset 0px 0px 8px #212b30;
+  border-radius: 20px;
+}
+
+.kalax:hover {
+  background-color: white;
+  color: #37474f;
+  cursor: pointer;
+}
+
+.lunka {
+  min-width: 80px;
+
+  height: auto;
+  text-align: center;
+  line-height: 40px;
+  white-space: nowrap;
+
+  margin: 0px 10px;
+
+  background-color: #37474f;
+  color: white;
+
+  border-radius: 50px;
+  border: 2px solid #37474f;
+  box-shadow: inset 0px 0px 8px #212b30;
+}
+
+.lunka:hover {
+  background-color: white;
+  color: #37474f;
+
+  cursor: pointer;
+}
+
+#lunka {
+  margin-top: 5px;
+}

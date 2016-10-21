@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <title>Kalah | Главная</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--FONTS-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&amp;subset=cyrillic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--My styles-->
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mb.browser.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script>
+      $(function(){
+          if (jQuery.browser.mozilla == true) {
+      
+              $("#play .comp").addClass("simple");
+              $("#play .human").addClass("simple")
+          }
+      });
+      
+      $(document).ready(function () {
+          $("#hellow").on("click", "a", function (event) {
+              //отменяем стандартную обработку нажатия по ссылке
+              event.preventDefault();
+      
+              //забираем идентификатор бока с атрибута href
+              var id = $(this).attr('href'),
+      
+                      //узнаем высоту от начала страницы до блока на который ссылается якорь
+                      top = $(id).offset().top;
+      
+              //анимируем переход на расстояние - top за 350 мс
+              $('body,html').animate({scrollTop: top}, 350);
+          });
+      
+      });
+      
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="navbar">
+        <ul id="headerMenu" class="dropdown-content">
+          <li><a href="#" target="_blank">Правила</a></li>
+          <li><a href="#" target="_blank">Играть с человеком</a></li>
+          <li><a href="#" target="_blank">Играть с компьютером</a></li>
+          <li><a href="#" target="_blank">Профиль</a></li>
+        </ul>
+        <nav>
+          <div class="nav-wrapper container">
+            <div class="large-nav-bar"><a href="#" class="brand-logo">Kalah</a>
+              <ul class="right">
+                <li><a href="#" target="_blank" class="grey-text text-lighten-3">Правила</a></li>
+                <li><a href="#" target="_blank" class="grey-text text-lighten-3">Играть с человеком</a></li>
+                <li><a href="#" target="_blank" class="grey-text text-lighten-3">Играть с компьютером</a></li>
+                <li><a href="#" target="_blank" class="grey-text text-lighten-3">Профиль</a></li>
+              </ul>
+            </div>
+            <div class="mini-nav-bar"><a href="#" data-activates="headerMenu" class="brand-logo dropdown-button">Kalah</a></div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <div id="main">
+      <div class="hellow z-depth-3">
+        <div class="inner">
+          <h1>Добро пожаловать в игру Калах</h1>
+          <div id="hellow" class="row container"><a href="#rules" class="waves-effect waves-light btn-large">Правила</a><a href="#play" class="waves-effect waves-light btn-large">Играть</a></div>
+        </div>
+      </div>
+      <div id="play" class="vs-menu z-depth-3">
+        <div class="comp right">
+          <div class="inner">
+            <h2>VS AI</h2>
+          </div>
+        </div>
+        <div class="human left">
+          <div class="inner">
+            <h2>VS Human</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div id="more-footer" class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Kalah</h5>
+            <p class="grey-text text-lighten-4">Онлайн игра Калах</p>
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="white-text">Ссылки</h5>
+            <ul>
+              <li><a href="http://ssau.ru/" target="_blank" class="grey-text text-lighten-3">СГАУ</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container row">
+          <div class="col s12 m6 l6">&copy; 2016 Design by Ilya Konstantinov</div>
+          <div class="col s12 m6 l6"><a href="mailto:ilyakonst95@gmail.com" class="grey-text text-lighten-4 right">Web-master: admin@kalah.com</a></div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

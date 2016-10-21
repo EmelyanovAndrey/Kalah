@@ -1,0 +1,93 @@
+html {
+  color: #f5f5f5;
+  background: #37474f;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+nav {
+  background-color: #afffff;
+}
+nav #headerMenu {
+  min-width: 200px;
+}
+nav #headerMenu a {
+  color: #afffff;
+}
+@media all and (min-width: 993px) {
+  nav .mini-nav-bar {
+    display: none;
+  }
+}
+@media all and (max-width: 993px) {
+  nav .large-nav-bar {
+    display: none;
+  }
+}
+footer {
+  background-color: #afffff;
+  color: #f5f5f5;
+  margin-top: 20px;
+}
+footer #more-footer {
+  padding-top: 20px;
+}
+@media all and (max-width: 993px) {
+  footer #more-footer {
+    display: none;
+  }
+}
+footer .footer-copyright {
+  font-weight: 300;
+  line-height: 50px;
+  background-color: #a0f0f0;
+}
+footer .footer-copyright .row {
+  margin-bottom: 0;
+}
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+body #main {
+  flex: 1 0 auto;
+  padding: 20px;
+  color: black;
+}
+.longTable {
+  max-width: 100vw;
+  overflow: scroll;
+}
+.longTable table th {
+  text-align: center;
+}
+.input-field label {
+  color: black;
+}
+.input-field input {
+  color: #afffff;
+}
+.input-field input[type="text"]:focus {
+  color: black;
+  border-bottom: 1px solid #afffff;
+  box-shadow: 0 1px 0 0 #afffff;
+}
+.input-field input[type="text"]:focus + label {
+  color: #afffff;
+}
+.input-field input[type="checkbox"]:checked {
+  color: black;
+  border-bottom: 1px solid #afffff;
+  box-shadow: 0 1px 0 0 #afffff;
+}
+.input-field input[type="checkbox"]:checked + label {
+  color: #afffff;
+}
+.input-field .select-dropdown {
+  color: black;
+}

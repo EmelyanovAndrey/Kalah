@@ -1,0 +1,48 @@
+extends includes/layout
+
+block title
+    title #{title} | Главная
+
+block scripts
+    script.
+
+        $(function(){
+            if (jQuery.browser.mozilla == true) {
+
+                $("#play .comp").addClass("simple");
+                $("#play .human").addClass("simple")
+            }
+        });
+
+        $(document).ready(function () {
+            $("#hellow").on("click", "a", function (event) {
+                //отменяем стандартную обработку нажатия по ссылке
+                event.preventDefault();
+
+                //забираем идентификатор бока с атрибута href
+                var id = $(this).attr('href'),
+
+                        //узнаем высоту от начала страницы до блока на который ссылается якорь
+                        top = $(id).offset().top;
+
+                //анимируем переход на расстояние - top за 350 мс
+                $('body,html').animate({scrollTop: top}, 350);
+            });
+
+        });
+
+block content
+    .hellow.z-depth-3
+        .inner
+            h1 Добро пожаловать в игру Калах
+            #hellow.row.container
+                a.waves-effect.waves-light.btn-large(href="#rules") Правила
+                a.waves-effect.waves-light.btn-large(href="#play") Играть
+
+    #play.vs-menu.z-depth-3
+        .comp.right
+            .inner
+                h2 VS AI
+        .human.left
+            .inner
+                h2 VS Human
