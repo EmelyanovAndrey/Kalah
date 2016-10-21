@@ -171,10 +171,10 @@ header .brand-logo {
 .vs-menu .human .inner {
   background-color: #37474f;
   height: inherit;
-  opacity: 0.8;
+  opacity: 0;
 }
 .vs-menu .human .inner.hover {
-  opacity: 0;
+  opacity: 0.8;
   cursor: pointer;
 }
 .vs-menu .human h2 {
@@ -195,10 +195,10 @@ header .brand-logo {
 .vs-menu .comp .inner {
   background-color: #37474f;
   height: inherit;
-  opacity: 0.8;
+  opacity: 0;
 }
 .vs-menu .comp .inner.hover {
-  opacity: 0;
+  opacity: 0.8;
   cursor: pointer;
 }
 .vs-menu .comp h2 {
@@ -209,9 +209,11 @@ header .brand-logo {
 .video {
   margin-top: 10px;
   margin-bottom: 0;
+  height: auto;
+  width: 75vw;
 }
 .video .video-container {
-  height: 100vh;
+  height: inherit;
   width: auto;
 }
 .video .video-container .iframe {

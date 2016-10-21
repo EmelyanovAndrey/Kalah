@@ -100,10 +100,10 @@ header {
     .inner {
       background-color: @color-background;
       height: inherit;
-      opacity: 0.8;
+      opacity: 0;
 
       &.hover {
-        opacity: 0;
+        opacity: 0.8;
         cursor: pointer;
       }
     }
@@ -129,9 +129,11 @@ header {
 
   margin-top: 10px;
   margin-bottom: 0;
+  height: auto;
+  width: 75vw;
 
   .video-container {
-    height: 100vh;
+    height: inherit;
     width: auto;
 
     .iframe {
