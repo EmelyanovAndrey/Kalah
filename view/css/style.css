@@ -125,10 +125,10 @@ header .brand-logo {
   width: 100vw;
 }
 .vs-menu .left {
-  -webkit-shape-outside: polygon(0 0, 0 100%, 100% 0);
-  shape-outside: polygon(0 0, 0 100%, 100% 0);
-  -webkit-clip-path: polygon(0 0, 0 100%, 100% 0);
-  clip-path: polygon(0 0, 0 100%, 100% 0);
+  -webkit-shape-outside: polygon(0 0, 0 100%, 25% 100%, 75% 0);
+  shape-outside: polygon(0 0, 0 100%, 25% 100%, 75% 0);
+  -webkit-clip-path: polygon(0 0, 0 100%, 25% 100%, 75% 0);
+  clip-path: polygon(0 0, 0 100%, 25% 100%, 75% 0);
   float: left;
 }
 .vs-menu .left h2 {
@@ -137,10 +137,10 @@ header .brand-logo {
   padding-top: 35vh;
 }
 .vs-menu .right {
-  -webkit-shape-outside: polygon(0 100%, 100% 100%, 100% 0);
-  shape-outside: polygon(0 100%, 100% 100%, 100% 0);
-  -webkit-clip-path: polygon(0 100%, 100% 100%, 100% 0);
-  clip-path: polygon(0 100%, 100% 100%, 100% 0);
+  -webkit-shape-outside: polygon(25% 100%, 75% 0, 100% 0, 100% 100%);
+  shape-outside: polygon(25% 100%, 75% 0, 100% 0, 100% 100%);
+  -webkit-clip-path: polygon(25% 100%, 75% 0, 100% 0, 100% 100%);
+  clip-path: polygon(25% 100%, 75% 0, 100% 0, 100% 100%);
   float: right;
 }
 .vs-menu .right h2 {
