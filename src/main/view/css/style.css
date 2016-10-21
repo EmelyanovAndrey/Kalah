@@ -133,7 +133,7 @@ header .brand-logo {
 }
 .vs-menu .left h2 {
   text-align: left;
-  margin-left: 20vw;
+  margin-left: 10vw;
   padding-top: 35vh;
 }
 .vs-menu .right {
@@ -145,7 +145,7 @@ header .brand-logo {
 }
 .vs-menu .right h2 {
   text-align: right;
-  margin-right: 20vw;
+  margin-right: 10vw;
   padding-top: 70vh;
 }
 .vs-menu .simple {
@@ -171,7 +171,7 @@ header .brand-logo {
 .vs-menu .human .inner {
   background-color: #37474f;
   height: inherit;
-  opacity: 0.4;
+  opacity: 0.8;
 }
 .vs-menu .human .inner.hover {
   opacity: 0;
@@ -195,7 +195,7 @@ header .brand-logo {
 .vs-menu .comp .inner {
   background-color: #37474f;
   height: inherit;
-  opacity: 0.4;
+  opacity: 0.8;
 }
 .vs-menu .comp .inner.hover {
   opacity: 0;
@@ -206,12 +206,16 @@ header .brand-logo {
   margin-top: 0;
   font-family: 'Orbitron', sans-serif;
 }
-.video-container {
-  max-height: 300px;
+.video {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+.video .video-container {
+  height: 100vh;
   width: auto;
 }
-.video-container .iframe {
-  max-height: 300px;
+.video .video-container .iframe {
+  height: inherit;
   width: auto;
 }
 .game {

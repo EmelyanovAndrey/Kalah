@@ -57,7 +57,7 @@ header {
 
     h2 {
       text-align: left;
-      margin-left: 20vw;
+      margin-left: 10vw;
       padding-top: 35vh;
     }
   }
@@ -68,7 +68,7 @@ header {
 
     h2 {
       text-align: right;
-      margin-right: 20vw;
+      margin-right: 10vw;
       padding-top: 70vh;
     }
   }
@@ -100,7 +100,7 @@ header {
     .inner {
       background-color: @color-background;
       height: inherit;
-      opacity: 0.4;
+      opacity: 0.8;
 
       &.hover {
         opacity: 0;
@@ -125,13 +125,19 @@ header {
 
 }
 
-.video-container {
-  max-height: 300px;
-  width: auto;
+.video {
 
-  .iframe {
-    max-height: 300px;
+  margin-top: 10px;
+  margin-bottom: 0;
+
+  .video-container {
+    height: 100vh;
     width: auto;
+
+    .iframe {
+      height: inherit;
+      width: auto;
+    }
   }
 }
 
