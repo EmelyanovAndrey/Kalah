@@ -206,17 +206,17 @@ header .brand-logo {
   margin-top: 0;
   font-family: 'Orbitron', sans-serif;
 }
-.video {
-  margin-top: 10px;
+#rules.video {
+  margin-top: 30px;
   margin-bottom: 0;
   height: auto;
   width: 75vw;
 }
-.video .video-container {
+#rules.video .video-container {
   height: inherit;
   width: auto;
 }
-.video .video-container .iframe {
+#rules.video .video-container .iframe {
   height: inherit;
   width: auto;
 }
