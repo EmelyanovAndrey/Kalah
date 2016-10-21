@@ -18,6 +18,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/jquery.mb.browser.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Orbitron:500,700" rel="stylesheet">
     <script>
       $(function(){
           if (jQuery.browser.mozilla == true) {
@@ -25,9 +26,14 @@
               $("#play .comp").addClass("simple");
               $("#play .human").addClass("simple")
           }
+      
+      
       });
       
       $(document).ready(function () {
+      
+          $("#play .human .inner").addClass("hover");
+      
           $("#hellow").on("click", "a", function (event) {
               //отменяем стандартную обработку нажатия по ссылке
               event.preventDefault();
@@ -40,6 +46,16 @@
       
               //анимируем переход на расстояние - top за 350 мс
               $('body,html').animate({scrollTop: top}, 350);
+          });
+      
+          $("#play .comp").mouseenter(function () {
+             $(this).find(".inner").addClass("hover");
+              $("#play .human .inner").removeClass("hover");
+          });
+      
+          $("#play .human").mouseenter(function () {
+              $(this).find(".inner").addClass("hover");
+              $("#play .comp .inner").removeClass("hover");
           });
       
       });

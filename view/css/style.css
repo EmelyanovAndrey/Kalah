@@ -151,6 +151,7 @@ header .brand-logo {
 .vs-menu .simple {
   width: 50vw !important;
   position: relative !important;
+  background-position: center;
 }
 .vs-menu .simple h2 {
   text-align: center;
@@ -160,8 +161,8 @@ header .brand-logo {
 .vs-menu .human {
   background: url('../assets/img/human.jpg');
   background-repeat: no-repeat;
-  background-position: center center;
   background-size: cover;
+  background-position: center;
   position: absolute;
   width: 100vw;
   height: inherit;
@@ -170,26 +171,22 @@ header .brand-logo {
 .vs-menu .human .inner {
   background-color: #37474f;
   height: inherit;
-  opacity: 0;
+  opacity: 0.4;
 }
-.vs-menu .human .inner h2 {
+.vs-menu .human .inner.hover {
+  opacity: 0;
+  cursor: pointer;
+}
+.vs-menu .human h2 {
   color: #f5f5f5;
   margin-top: 0;
-  opacity: 0;
-}
-.vs-menu .human .inner:hover {
-  opacity: 0.6;
-  cursor: pointer;
-  z-index: 1;
-}
-.vs-menu .human .inner:hover h2 {
-  opacity: 1;
+  font-family: 'Orbitron', sans-serif;
 }
 .vs-menu .comp {
   background: url('../assets/img/ai.jpg');
   background-repeat: no-repeat;
-  background-position: center center;
   background-size: cover;
+  background-position: center;
   position: absolute;
   width: 100vw;
   height: inherit;
@@ -198,20 +195,16 @@ header .brand-logo {
 .vs-menu .comp .inner {
   background-color: #37474f;
   height: inherit;
-  opacity: 0;
+  opacity: 0.4;
 }
-.vs-menu .comp .inner h2 {
+.vs-menu .comp .inner.hover {
+  opacity: 0;
+  cursor: pointer;
+}
+.vs-menu .comp h2 {
   color: #f5f5f5;
   margin-top: 0;
-  opacity: 0;
-}
-.vs-menu .comp .inner:hover {
-  opacity: 0.6;
-  cursor: pointer;
-  z-index: 1;
-}
-.vs-menu .comp .inner:hover h2 {
-  opacity: 1;
+  font-family: 'Orbitron', sans-serif;
 }
 .video-container {
   max-height: 300px;

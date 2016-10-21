@@ -76,6 +76,7 @@ header {
   .simple {
     width: 50vw !important;
     position: relative !important;
+    background-position: center;
 
     h2 {
       text-align: center;
@@ -87,8 +88,8 @@ header {
   .vs(@img) {
     background: url('../assets/img/@{img}');
     background-repeat: no-repeat;
-    background-position: center center;
     background-size: cover;
+    background-position: center;
 
     position: absolute;
 
@@ -97,25 +98,20 @@ header {
     padding: 0;
 
     .inner {
-      background-color: @background;
+      background-color: @color-background;
       height: inherit;
-      opacity: 0;
+      opacity: 0.4;
 
-      h2 {
-        color: @color-text;
-        margin-top: 0;
+      &.hover {
         opacity: 0;
-      }
-
-      &:hover {
-        opacity: 0.6;
         cursor: pointer;
-        z-index: 1;
-
-        h2 {
-          opacity: 1;
-        }
       }
+    }
+
+    h2 {
+      color: @color-text;
+      margin-top: 0;
+      font-family: 'Orbitron', sans-serif;
     }
   }
 

@@ -3,6 +3,9 @@ extends includes/layout
 block title
     title #{title} | Главная
 
+block head
+    link(href="https://fonts.googleapis.com/css?family=Orbitron:500,700", rel="stylesheet")
+
 block scripts
     script.
 
@@ -12,9 +15,14 @@ block scripts
                 $("#play .comp").addClass("simple");
                 $("#play .human").addClass("simple")
             }
+
+
         });
 
         $(document).ready(function () {
+
+            $("#play .human .inner").addClass("hover");
+
             $("#hellow").on("click", "a", function (event) {
                 //отменяем стандартную обработку нажатия по ссылке
                 event.preventDefault();
@@ -27,6 +35,16 @@ block scripts
 
                 //анимируем переход на расстояние - top за 350 мс
                 $('body,html').animate({scrollTop: top}, 350);
+            });
+
+            $("#play .comp").mouseenter(function () {
+               $(this).find(".inner").addClass("hover");
+                $("#play .human .inner").removeClass("hover");
+            });
+
+            $("#play .human").mouseenter(function () {
+                $(this).find(".inner").addClass("hover");
+                $("#play .comp .inner").removeClass("hover");
             });
 
         });
@@ -43,6 +61,7 @@ block content
         .comp.right
             .inner
                 h2 VS AI
+
         .human.left
             .inner
                 h2 VS Human
