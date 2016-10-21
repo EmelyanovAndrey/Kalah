@@ -13,54 +13,13 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--My styles-->
-    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <link type="text/css" rel="stylesheet" href="css/style.min.css">
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/jquery.mb.browser.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Orbitron:500,700" rel="stylesheet">
-    <script>
-      $(function(){
-          if (jQuery.browser.mozilla == true) {
-      
-              $("#play .comp").addClass("simple");
-              $("#play .human").addClass("simple")
-          }
-      
-      
-      });
-      
-      $(document).ready(function () {
-      
-          $("#play .human .inner").addClass("hover");
-      
-          $("#hellow").on("click", "a", function (event) {
-              //отменяем стандартную обработку нажатия по ссылке
-              event.preventDefault();
-      
-              //забираем идентификатор бока с атрибута href
-              var id = $(this).attr('href'),
-      
-                      //узнаем высоту от начала страницы до блока на который ссылается якорь
-                      top = $(id).offset().top;
-      
-              //анимируем переход на расстояние - top за 350 мс
-              $('body,html').animate({scrollTop: top}, 350);
-          });
-      
-          $("#play .comp").mouseenter(function () {
-             $(this).find(".inner").addClass("hover");
-              $("#play .human .inner").removeClass("hover");
-          });
-      
-          $("#play .human").mouseenter(function () {
-              $(this).find(".inner").addClass("hover");
-              $("#play .comp .inner").removeClass("hover");
-          });
-      
-      });
-      
-    </script>
+    <script type="text/javascript" src="js/scripts.min.js"></script>
   </head>
   <body>
     <header>
