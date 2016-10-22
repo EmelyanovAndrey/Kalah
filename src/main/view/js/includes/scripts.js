@@ -26,12 +26,13 @@ $(document).ready(function () {
 
     var comp = $("#play .comp");
     var human = $("#play .human");
-    var speed = 1000;
+    var speed = 800;
+    var opacity = 0.6;
 
     $(comp).mouseenter(function () {
         //$(comp).find(".inner").addClass("hover");
         //$(human).find(".inner").removeClass("hover");
-        $(this).find(".inner").fadeTo(speed , 0.5, function() {});
+        $(this).find(".inner").fadeTo(speed , opacity, function() {});
         $(this).css({'cursor': 'pointer'});
     });
 
@@ -42,7 +43,7 @@ $(document).ready(function () {
    $(human).mouseenter(function () {
       // $(human).find(".inner").addClass("hover");
       // $(comp).find(".inner").removeClass("hover");
-       $(this).find(".inner").fadeTo(speed , 0.5, function() {});
+       $(this).find(".inner").fadeTo(speed , opacity, function() {});
        $(this).css({'cursor': 'pointer'});
     });
 
