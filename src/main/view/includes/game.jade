@@ -1,0 +1,27 @@
+extends layout
+
+mixin lunka()
+    .row
+        - for(var i = 0; i < 7; i++)
+            .col.s1
+                .lunka
+                    span 6
+
+block title
+    title #{title} | Игра
+
+block content
+    .row#apponent
+
+    .row.container
+            .board
+                .kalah
+                    span 0
+                +lunka()
+                +lunka()
+                .kalah
+                    span 0
+
+    .row#player
+
+    .row#save-game

@@ -6,13 +6,9 @@ $(function(){
         $("#play .comp").addClass("simple");
         $("#play .human").addClass("simple")
     }
-
-
 });
 
 $(document).ready(function () {
-
-    $("#play .human .inner").addClass("hover");
 
     $("#hellow").on("click", "a", function (event) {
         //отменяем стандартную обработку нажатия по ссылке
@@ -28,14 +24,30 @@ $(document).ready(function () {
         $('body,html').animate({scrollTop: top}, 350);
     });
 
-    $("#play .comp").mouseenter(function () {
-        $(this).find(".inner").addClass("hover");
-        $("#play .human .inner").removeClass("hover");
+    var comp = $("#play .comp");
+    var human = $("#play .human");
+    var speed = 1000;
+
+    $(comp).mouseenter(function () {
+        //$(comp).find(".inner").addClass("hover");
+        //$(human).find(".inner").removeClass("hover");
+        $(this).find(".inner").fadeTo(speed , 0.5, function() {});
+        $(this).css({'cursor': 'pointer'});
     });
 
-    $("#play .human").mouseenter(function () {
-        $(this).find(".inner").addClass("hover");
-        $("#play .comp .inner").removeClass("hover");
+    $(comp).mouseleave(function () {
+        $(this).find(".inner").fadeTo(speed , 0, function() {});
+    });
+
+   $(human).mouseenter(function () {
+      // $(human).find(".inner").addClass("hover");
+      // $(comp).find(".inner").removeClass("hover");
+       $(this).find(".inner").fadeTo(speed , 0.5, function() {});
+       $(this).css({'cursor': 'pointer'});
+    });
+
+    $(human).mouseleave(function () {
+        $(this).find(".inner").fadeTo(speed , 0, function() {});
     });
 
 });

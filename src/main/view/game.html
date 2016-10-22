@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <title>Kalah | Главная</title>
+    <title>Kalah | Игра</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -20,7 +20,6 @@
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <!--My scripts-->
     <script type="text/javascript" src="js/scripts.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Orbitron:500,700" rel="stylesheet">
   </head>
   <body>
     <header>
@@ -49,29 +48,61 @@
       </div>
     </header>
     <div id="main">
-      <div class="hellow z-depth-3">
-        <div class="inner">
-          <h1>Добро пожаловать в игру Калах</h1>
-          <div id="hellow" class="row container"><a href="#rules" class="waves-effect waves-light btn-large">Правила</a><a href="#play" class="waves-effect waves-light btn-large">Играть</a></div>
-        </div>
-      </div>
-      <div id="play" class="vs-menu z-depth-3">
-        <div class="comp right">
-          <div class="inner">
-            <h2>VS AI</h2>
+      <div id="apponent" class="row"></div>
+      <div class="row container">
+        <div class="board">
+          <div class="kalah"><span>0</span></div>
+          <div class="row">
+            <div class="col s1">
+              <div class="lunka"><span>6</span></div>
+            </div>
+            <div class="col s1">
+              <div class="lunka"><span>6</span></div>
+            </div>
+            <div class="col s1">
+              <div class="lunka"><span>6</span></div>
+            </div>
+            <div class="col s1">
+              <div class="lunka"><span>6</span></div>
+            </div>
+            <div class="col s1">
+              <div class="lunka"><span>6</span></div>
+            </div>
+            <div class="col s1">
+              <div class="lunka"><span>6</span></div>
+            </div>
+            <div class="col s1">
+              <div class="lunka"><span>6</span></div>
+            </div>
           </div>
-        </div>
-        <div class="human left">
-          <div class="inner">
-            <h2>VS Human</h2>
+          <div class="row">
+            <div class="col s1">
+              <div class="lunka"><span>6</span></div>
+            </div>
+            <div class="col s1">
+              <div class="lunka"><span>6</span></div>
+            </div>
+            <div class="col s1">
+              <div class="lunka"><span>6</span></div>
+            </div>
+            <div class="col s1">
+              <div class="lunka"><span>6</span></div>
+            </div>
+            <div class="col s1">
+              <div class="lunka"><span>6</span></div>
+            </div>
+            <div class="col s1">
+              <div class="lunka"><span>6</span></div>
+            </div>
+            <div class="col s1">
+              <div class="lunka"><span>6</span></div>
+            </div>
           </div>
+          <div class="kalah"><span>0</span></div>
         </div>
       </div>
-      <div id="rules" class="row video z-depth-3">
-        <div class="video-container">
-          <iframe width="auto" height="100vh" src="http://www.youtube.com/embed/_vjbFCVnxBQ" frameborder="0"></iframe>
-        </div>
-      </div>
+      <div id="player" class="row"></div>
+      <div id="save-game" class="row"></div>
     </div>
     <footer>
       <div id="more-footer" class="container">

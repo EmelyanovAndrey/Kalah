@@ -1,9 +1,10 @@
 doctype html
 
 //-Измненить настройки
+- var baseUrl = "/Kalah/"
 - var title = "Kalah"
 - var siteName = title
-- var menu = [{name: "Правила", link: "#"}, {name:"Играть с человеком", link: "#"}, {name: "Играть с компьютером", link: "#"}, {name: "Профиль", link: "#"}]
+- var menu = [{name: "Главная", link: "/Kalah/"}, {name: "Правила", link: "#"}, {name:"Играть с человеком", link: "#"}, {name: "Играть с компьютером", link: "#"}, {name: "Профиль", link: "#"}]
 - var footerTitle = siteName
 - var footerText = "Онлайн игра Калах"
 - var dataCopyright = "2016"
@@ -44,6 +45,10 @@ html(lang="ru")
         script(type="text/javascript", src="js/jquery.mb.browser.min.js")
         script(type="text/javascript", src="js/materialize.min.js")
 
+        //My scripts
+        script(type="text/javascript", src="js/scripts.min.js")
+
+
         block head
 
         block scripts
@@ -60,13 +65,13 @@ html(lang="ru")
                 nav
                     .nav-wrapper.container
                         .large-nav-bar
-                            a.brand-logo(href="#") #{siteName}
+                            a.brand-logo(href="#{baseUrl}") #{siteName}
                             ul.right
                                 each item in menu
                                     li
                                         a.grey-text.text-lighten-3(href=item.link, target="_blank") #{item.name}
                         .mini-nav-bar
-                            a.brand-logo.dropdown-button(href="#", data-activates="headerMenu") #{siteName}
+                            a.brand-logo.dropdown-button(href="#{baseUrl}", data-activates="headerMenu") #{siteName}
 
 
         #main

@@ -31,7 +31,6 @@ header {
 
       a.btn-large{
         background-color: @color-main;
-        min-width: 10vw;
         margin: 10px;
       }
     }
@@ -68,7 +67,7 @@ header {
 
     h2 {
       text-align: right;
-      margin-right: 10vw;
+      margin-right: 20vw;
       padding-top: 70vh;
     }
   }
@@ -97,18 +96,26 @@ header {
     height: inherit;
     padding: 0;
 
+    .transition(@time){
+      -moz-transition: opacity @time;
+      -webkit-transition: opacity @time;
+      -o-transition: opacity @time;
+    }
+
     .inner {
       background-color: @color-background;
       height: inherit;
       opacity: 0;
 
       &.hover {
+
         opacity: 0.8;
         cursor: pointer;
       }
     }
 
     h2 {
+      font-size: 5vw;
       color: @color-text;
       margin-top: 0;
       font-family: 'Orbitron', sans-serif;
@@ -143,70 +150,65 @@ header {
   }
 }
 
-.game {
+.board {
+
+  @color-board-background: @color-main;
+  @color-board-border: @color-main-dark;
+  @color-object-background: @color-background;
+  @color-object-border: @color-object-background - 15%;
+
+  background-color: @color-board-background;
+
   color: white;
-  box-shadow: inset 0px 0px 8px #590934;
+  box-shadow: inset 10px 10px 10px @color-board-border;
   border-radius: 60px;
 
-  background-color: #880e4f;
+  height: 40vh;
 
-  align-content: center;
+  margin: 20px;
 
-  width: auto;
+  .col {
+    margin: 10px;
+  }
 
-  padding-top: 20px;
-  margin-top: 20px;
-}
+  .object() {
+    background-color: @color-object-background;
+    text-align: center;
+    white-space: nowrap;
 
-.kalax {
-  min-height: 120px;
-  width: 50px;
+    margin: 10px;
 
-  background-color: #37474f;
+    border: 2px solid @color-object-background;
+    box-shadow: inset 0px 0px 8px @color-object-border;
 
-  text-align: center;
-  line-height: 110px;
-  white-space: nowrap;
+    &:hover {
+      background-color: white;
+      color: @color-object-background;
+      cursor: pointer;
+    }
+  }
 
-  margin: 0 auto;
-  margin-bottom: 20px;
+  .kalah {
+    line-height: 30vh;
+    height: 30vh;
+    width: 5vw;
 
-  border: 2px solid #37474f;
-  box-shadow: inset 0px 0px 8px #212b30;
-  border-radius: 20px;
-}
+    border-radius: 30px;
 
-.kalax:hover {
-  background-color: white;
-  color: #37474f;
-  cursor: pointer;
-}
+    .object();
+  }
 
-.lunka {
-  min-width: 80px;
+  .lunka {
+    line-height: 10vh;
+    height: 10vh;
+    width: 10vh;
 
-  height: auto;
-  text-align: center;
-  line-height: 40px;
-  white-space: nowrap;
+    border-radius: 100px;
 
-  margin: 0px 10px;
+    .object();
 
-  background-color: #37474f;
-  color: white;
+    .row & {
 
-  border-radius: 50px;
-  border: 2px solid #37474f;
-  box-shadow: inset 0px 0px 8px #212b30;
-}
-
-.lunka:hover {
-  background-color: white;
-  color: #37474f;
-
-  cursor: pointer;
-}
-
-#lunka {
-  margin-top: 5px;
+    }
+  }
 }
