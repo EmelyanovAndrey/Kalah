@@ -15,9 +15,7 @@ public class Alveolus
 
     //region Конструкторы
     public Alveolus()
-    {w
-            wd
-            wdwdwdw
+    {
     }
 
     public Alveolus(int quantityStones)
