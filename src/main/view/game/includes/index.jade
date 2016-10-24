@@ -1,0 +1,34 @@
+extends ../../includes/layout
+
+mixin lunka()
+    - for(var i = 0; i < 7; i++)
+        td.lunka
+            span 6
+
+block title
+    title #{title} | Игра
+
+block head
+
+block scripts
+
+block content
+    .row#apponent
+
+    .row.container
+        .board
+            table#board
+                tr
+                    td(rowspan=2).kalah
+                        span 0
+
+                    +lunka()
+
+                    td(rowspan=2).kalah
+                        span 0
+                tr
+                    +lunka()
+
+    .row#player
+
+    .row#save-game

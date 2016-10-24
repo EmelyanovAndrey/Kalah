@@ -106,12 +106,6 @@ header {
       background-color: @color-background;
       height: inherit;
       opacity: 0;
-
-      &.hover {
-
-        opacity: 0.8;
-        cursor: pointer;
-      }
     }
 
     h2 {
@@ -129,18 +123,17 @@ header {
   .comp {
     .vs('ai.jpg');
   }
-
 }
 
 #rules.video {
 
   margin-top: 30px;
   margin-bottom: 0;
-  height: auto;
+  height: 100vh;
   width: 75vw;
 
   .video-container {
-    height: inherit;
+    height: auto;
     width: auto;
 
     .iframe {
@@ -150,31 +143,38 @@ header {
   }
 }
 
+.unselect() {
+  -moz-user-select: none;
+  -o-user-select:none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .board {
 
   @color-board-background: @color-main;
   @color-board-border: @color-main-dark;
+
   @color-object-background: @color-background;
   @color-object-border: @color-object-background - 15%;
 
   background-color: @color-board-background;
 
-  color: white;
+  color: @color-text;
   box-shadow: inset 10px 10px 10px @color-board-border;
   border-radius: 60px;
 
-  height: 40vh;
 
   margin: 20px;
-
-  .col {
-    margin: 10px;
-  }
 
   .object() {
     background-color: @color-object-background;
     text-align: center;
     white-space: nowrap;
+
+    color: @color-text;
 
     margin: 10px;
 
@@ -182,16 +182,24 @@ header {
     box-shadow: inset 0px 0px 8px @color-object-border;
 
     &:hover {
-      background-color: white;
+      background-color: @color-text;
       color: @color-object-background;
       cursor: pointer;
     }
+
+    & .active {
+      background-color: @color-text;
+      color: @color-object-background;
+      border: 2px solid @color-object-background;
+      box-shadow: inset 0px 0px 20px @color-object-border;
+    }
+
+    .unselect();
   }
 
   .kalah {
-    line-height: 30vh;
     height: 30vh;
-    width: 5vw;
+    width: 0.5vw;
 
     border-radius: 30px;
 
@@ -199,16 +207,21 @@ header {
   }
 
   .lunka {
-    line-height: 10vh;
-    height: 10vh;
-    width: 10vh;
+    height: 5vh;
+    width: 1vh;
 
     border-radius: 100px;
 
     .object();
+  }
 
-    .row & {
+  table {
+    border-collapse: inherit;
+    padding: 20px;
+    height: 40vh;
+    border-spacing: 1vw 1vh;
 
+    td {
     }
   }
 }

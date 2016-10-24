@@ -1,54 +1,58 @@
-//VS
+(function() {
+  var comp, human, vs_item;
 
-$(function(){
-    if (jQuery.browser.mozilla == true) {
+  human = "#play .human";
 
-        $("#play .comp").addClass("simple");
-        $("#play .human").addClass("simple")
+  comp = "#play .comp";
+
+  $(function() {
+    if (jQuery.browser.mozilla === true) {
+      $(human).addClass("simple");
+      $(comp).addClass("simple");
     }
-});
+  });
 
-$(document).ready(function () {
-
-    $("#hellow").on("click", "a", function (event) {
-        //отменяем стандартную обработку нажатия по ссылке
-        event.preventDefault();
-
-        //забираем идентификатор бока с атрибута href
-        var id = $(this).attr('href'),
-
-            //узнаем высоту от начала страницы до блока на который ссылается якорь
-            top = $(id).offset().top;
-
-        //анимируем переход на расстояние - top за 350 мс
-        $('body,html').animate({scrollTop: top}, 350);
+  vs_item = function(item, speed, opacity) {
+    if (speed == null) {
+      speed = 500;
+    }
+    if (opacity == null) {
+      opacity = 0.6;
+    }
+    $(item).mouseenter(function() {
+      $(this).find(".inner").fadeTo(speed, opacity, function() {});
+      $(this).css({
+        'cursor': 'pointer'
+      });
     });
-
-    var comp = $("#play .comp");
-    var human = $("#play .human");
-    var speed = 800;
-    var opacity = 0.6;
-
-    $(comp).mouseenter(function () {
-        //$(comp).find(".inner").addClass("hover");
-        //$(human).find(".inner").removeClass("hover");
-        $(this).find(".inner").fadeTo(speed , opacity, function() {});
-        $(this).css({'cursor': 'pointer'});
+    $(item).mouseleave(function() {
+      $(this).find(".inner").fadeTo(speed, 0, function() {});
     });
+  };
 
-    $(comp).mouseleave(function () {
-        $(this).find(".inner").fadeTo(speed , 0, function() {});
+  $(document).ready(function() {
+    var lunka;
+    $("#hellow").on("click", "a", function(event) {
+      var id, top;
+      event.preventDefault();
+      id = $(this).attr('href');
+      top = $(id).offset().top;
+      $('body, html').animate({
+        scrollTop: top
+      }, 350);
     });
-
-   $(human).mouseenter(function () {
-      // $(human).find(".inner").addClass("hover");
-      // $(comp).find(".inner").removeClass("hover");
-       $(this).find(".inner").fadeTo(speed , opacity, function() {});
-       $(this).css({'cursor': 'pointer'});
+    vs_item(human);
+    vs_item(comp);
+    lunka = $("#board").find(".lunka");
+    lunka.mousedown(function() {
+      $(this).addClass("active");
     });
-
-    $(human).mouseleave(function () {
-        $(this).find(".inner").fadeTo(speed , 0, function() {});
+    lunka.mouseup(function() {
+      return $(this).removeClass("active");
     });
+  });
 
-});
+  return;
+
+}).call(this);
+
