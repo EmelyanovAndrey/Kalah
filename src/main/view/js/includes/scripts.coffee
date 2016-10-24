@@ -48,15 +48,12 @@
     #Game-page
     lunka = $("#board .lunka")
 
-    lunka.click ->
-      $ @
-        .addClass "active"
+    lunka.mousedown ->
+      $(@).addClass "active"
       return
-#    lunka.mousedown ->
-#      $(@).addClass "active"
-#      return
-#    lunka.mouseup ->
-#      $(@).removeClass "active"
+    lunka.mouseup ->
+      $(@).removeClass "active"
+      return
 
     return
   return

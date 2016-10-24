@@ -44,8 +44,11 @@
     vs_item(human);
     vs_item(comp);
     lunka = $("#board .lunka");
-    lunka.click(function() {
+    lunka.mousedown(function() {
       $(this).addClass("active");
+    });
+    lunka.mouseup(function() {
+      $(this).removeClass("active");
     });
   });
 

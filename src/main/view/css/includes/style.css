@@ -243,9 +243,6 @@ header .brand-logo {
   color: #37474f;
   cursor: pointer;
 }
-.board .kalah .active {
-  color: red;
-}
 .board .lunka {
   height: 5vh;
   width: 1vh;
@@ -269,12 +266,15 @@ header .brand-logo {
   color: #37474f;
   cursor: pointer;
 }
-.board .lunka .active {
-  color: red;
-}
 .board table {
   border-collapse: inherit;
   padding: 20px;
   height: 40vh;
   border-spacing: 1vw 1vh;
+}
+.board .active {
+  background-color: #f5f5f5;
+  color: #37474f;
+  border: 2px solid #37474f;
+  box-shadow: inset 0px 0px 20px #283840;
 }
