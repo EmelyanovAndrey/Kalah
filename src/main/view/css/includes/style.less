@@ -1,0 +1,265 @@
+@import "styleTemplate";
+
+header {
+  .brand-logo {
+    font-family: 'Patua One';
+  }
+}
+
+#main {
+  padding: 0 !important;
+
+  .hellow{
+    background: url(../assets/img/slider_1.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+    color: @color-text;
+
+    height: 100vh;
+    width: 100vw;
+
+    .inner {
+      text-align: center;
+      padding-top: 35vh;
+
+      h1 {
+        font-size: 5vw;
+      }
+
+      a.btn-large{
+        background-color: @color-main;
+        margin: 10px;
+      }
+    }
+  }
+}
+
+.vs-menu {
+  margin: 5px 0;
+  height: 100vh;
+  width: 100vw;
+
+  .shape-outside-polygon(@x1,@y1,@x2,@y2,@x3,@y3,@x4,@y4) {
+    -webkit-shape-outside: polygon(@x1 @y1, @x2 @y2, @x3 @y3, @x4 @y4);
+    shape-outside: polygon(@x1 @y1, @x2 @y2, @x3 @y3, @x4 @y4);
+
+    -webkit-clip-path: polygon(@x1 @y1, @x2 @y2, @x3 @y3, @x4 @y4);
+    clip-path: polygon(@x1 @y1, @x2 @y2, @x3 @y3, @x4 @y4);
+  }
+
+  .left {
+    .shape-outside-polygon(0, 0, 0, 100%, 40%, 100%, 60%, 0);
+    float: left;
+
+    h2 {
+      text-align: left;
+      margin-left: 10vw;
+      padding-top: 35vh;
+    }
+  }
+
+  .right {
+    .shape-outside-polygon(40%, 100%, 60%, 0, 100%, 0, 100%, 100%);
+    float: right;
+
+    h2 {
+      text-align: right;
+      margin-right: 20vw;
+      padding-top: 70vh;
+    }
+  }
+
+  .simple {
+    width: 50vw !important;
+    position: relative !important;
+    background-position: center;
+
+    h2 {
+      text-align: center;
+      padding-top: 50vh;
+      margin: 0;
+    }
+  }
+
+  .vs(@img) {
+    background: url('../assets/img/@{img}');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    position: absolute;
+
+    width: 100vw;
+    height: inherit;
+    padding: 0;
+
+    .transition(@time){
+      -moz-transition: opacity @time;
+      -webkit-transition: opacity @time;
+      -o-transition: opacity @time;
+    }
+
+    .inner {
+      background-color: @color-background;
+      height: inherit;
+      opacity: 0;
+    }
+
+    h2 {
+      font-size: 5vw;
+      color: @color-text;
+      margin-top: 0;
+      font-family: 'Orbitron', sans-serif;
+    }
+  }
+
+  .human {
+    .vs('human2.jpg');
+  }
+
+  .comp {
+    .vs('ai.jpg');
+  }
+}
+
+#rules.video {
+
+  margin-top: 30px;
+  margin-bottom: 0;
+  height: 100vh;
+  width: 75vw;
+
+  .video-container {
+    height: auto;
+    width: auto;
+
+    .iframe {
+      height: inherit;
+      width: auto;
+    }
+  }
+}
+
+.unselect() {
+  -moz-user-select: none;
+  -o-user-select:none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.board {
+
+  @color-board-background: @color-main;
+  @color-board-border: @color-main-dark;
+
+  @color-object-background: @color-background;
+  @color-object-border: @color-object-background - 15%;
+
+  background-color: @color-board-background;
+
+  color: @color-text;
+  box-shadow: inset 10px 10px 10px @color-board-border;
+  border-radius: 60px;
+
+
+  margin: 20px;
+
+  .object() {
+    background-color: @color-object-background;
+    text-align: center;
+    white-space: nowrap;
+
+    color: @color-text;
+
+    margin: 10px;
+
+    border: 2px solid @color-object-background;
+    box-shadow: inset 0px 0px 8px @color-object-border;
+
+    &:hover {
+      background-color: @color-text;
+      color: @color-object-background;
+      cursor: pointer;
+    }
+
+
+
+    .unselect();
+  }
+
+  .kalah {
+    height: 30vh;
+    width: 0.5vw;
+
+    border-radius: 30px;
+
+    .object();
+  }
+
+  .lunka {
+    height: 5vh;
+    width: 1vh;
+
+    border-radius: 100px;
+
+    .object();
+  }
+
+  table {
+    border-collapse: inherit;
+    padding: 20px;
+    height: 40vh;
+    border-spacing: 1vw 1vh;
+
+    td {
+    }
+  }
+
+  .active {
+    background-color: @color-text;
+    color: @color-object-background;
+    border: 2px solid @color-object-background;
+    box-shadow: inset 0px 0px 20px @color-object-border;
+  }
+}
+
+.game {
+
+  padding-top: 10vh;
+
+  image{
+    @game-photo-size: 12vh;
+
+    //width: @game-photo-size;
+    //height: @game-photo-size;
+    //background: url(../assets/img/profile-test.jpg);
+    //background-repeat: no-repeat;
+    //background-size: cover;
+    //background-position: center;
+
+    border-radius: 100px;
+  }
+
+  .user {
+    float: right;
+  }
+
+  .apponent {
+    display: inline-block;
+    width: 50vw;
+    img {
+      float: left;
+    }
+
+    .nick {
+      font-size: 250%;
+
+    }
+  }
+
+}

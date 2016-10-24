@@ -1,0 +1,41 @@
+extends layout
+
+mixin lunka()
+    - for(var i = 0; i < 7; i++)
+        td.lunka
+            span 6
+
+block title
+    title #{title} | Игра
+
+block head
+
+block scripts
+
+block content
+
+    .game.container
+        .row.apponent
+            img.photo.col.s1(src=baseUrl+"assets/img/profile-test.jpg")
+            .nick.col.s1 apponent
+
+        .row
+            .board
+                table#board
+                    tr
+                        td(rowspan=2).kalah
+                            span 0
+
+                        +lunka()
+
+                        td(rowspan=2).kalah
+                            span 0
+                    tr
+                        +lunka()
+
+        .row
+            .user
+                img.photo.responsive-img(src=baseUrl + "assets/img/profile-test.jpg")
+                .nick
+
+    .row.save-game

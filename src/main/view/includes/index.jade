@@ -1,0 +1,30 @@
+extends layout
+
+block title
+    title #{title} | Главная
+
+block head
+    link(href="https://fonts.googleapis.com/css?family=Orbitron:500,700", rel="stylesheet")
+
+block scripts
+
+block content
+    .hellow.z-depth-3
+        .inner
+            h1 Добро пожаловать в игру Калах
+            #hellow.row.container
+                a.waves-effect.waves-light.btn-large(href="#rules") Правила
+                a.waves-effect.waves-light.btn-large(href="#play") Играть
+
+    #play.vs-menu.z-depth-3
+        .comp.right
+            .inner
+                h2 VS AI
+
+        .human.left
+            .inner
+                h2 VS Human
+
+    #rules.row.video
+        .video-container.z-depth-3
+            iframe(width="auto" height="100vh" src="http://www.youtube.com/embed/_vjbFCVnxBQ" frameborder="0")
