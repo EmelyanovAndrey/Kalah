@@ -5,6 +5,8 @@
  
 ## Directory-based project format
 .idea/
+inspection/
+_windows/
 # if you remove the above rule, at least ignore user-specific stuff:
 # .idea/workspace.xml
 # .idea/tasks.xml
@@ -13,7 +15,18 @@
 # .idea/dataSources.xml
 # .idea/sqlDataSources.xml
 # .idea/dynamic.xml
- 
+
+
+## Some strange files
+IntelliLang.xml
+databaseSettings.xml
+debugger.xml
+diff.xml
+github_settings.xml
+ide.general.xml
+vcs.xml
+web-browsers.xml
+
 ## File-based project format
 *.ipr
 *.iws
