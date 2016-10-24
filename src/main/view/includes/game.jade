@@ -13,7 +13,10 @@ block head
 block scripts
 
 block content
-    .row#apponent
+    .row.container.apponent
+        .photo
+            img(src=baseUrl+"assets/img/")
+        .nick
 
     .row.container
         .board
@@ -29,6 +32,6 @@ block content
                 tr
                     +lunka()
 
-    .row#player
+    .row.player
 
-    .row#save-game
+    .row.save-game

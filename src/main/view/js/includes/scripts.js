@@ -26,7 +26,7 @@
       });
     });
     $(item).mouseleave(function() {
-      $(this).find(".inner").fadeTo(0, 0, function() {});
+      $(this).find(".inner").fadeTo(speed, 0, function() {});
     });
   };
 
