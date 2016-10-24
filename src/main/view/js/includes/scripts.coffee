@@ -24,7 +24,7 @@
       .mouseleave ->
         $(@)
           .find ".inner"
-          .fadeTo speed, 0, ->
+          .fadeTo 0, 0, ->
         return
 
     return
