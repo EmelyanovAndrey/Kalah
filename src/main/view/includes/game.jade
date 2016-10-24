@@ -2,7 +2,7 @@ extends layout
 
 mixin lunka()
     - for(var i = 0; i < 7; i++)
-        td.lunka
+        td.lunka.active
             span 6
 
 block title
@@ -19,7 +19,7 @@ block content
         .board
             table#board
                 tr
-                    td(rowspan=2).kalah
+                    td(rowspan=2).kalah.active
                         span 0
 
                     +lunka()

@@ -43,12 +43,9 @@
     });
     vs_item(human);
     vs_item(comp);
-    lunka = $("#board").find(".lunka");
-    lunka.mousedown(function() {
+    lunka = $("#board .lunka");
+    lunka.click(function() {
       $(this).addClass("active");
-    });
-    lunka.mouseup(function() {
-      return $(this).removeClass("active");
     });
   });
 
