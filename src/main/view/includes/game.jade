@@ -13,25 +13,29 @@ block head
 block scripts
 
 block content
-    .row.container.apponent
-        .photo
-            img(src=baseUrl+"assets/img/")
-        .nick
 
-    .row.container
-        .board
-            table#board
-                tr
-                    td(rowspan=2).kalah
-                        span 0
+    .game.container
+        .row.apponent
+            img.photo.col.s1(src=baseUrl+"assets/img/profile-test.jpg")
+            .nick.col.s1 apponent
 
-                    +lunka()
+        .row
+            .board
+                table#board
+                    tr
+                        td(rowspan=2).kalah
+                            span 0
 
-                    td(rowspan=2).kalah
-                        span 0
-                tr
-                    +lunka()
+                        +lunka()
 
-    .row.player
+                        td(rowspan=2).kalah
+                            span 0
+                    tr
+                        +lunka()
+
+        .row
+            .user
+                img.photo.responsive-img(src=baseUrl + "assets/img/profile-test.jpg")
+                .nick
 
     .row.save-game

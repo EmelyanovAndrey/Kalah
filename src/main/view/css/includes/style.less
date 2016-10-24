@@ -228,7 +228,38 @@ header {
   }
 }
 
-.photo-nick() {
+.game {
+
+  padding-top: 10vh;
+
+  image{
+    @game-photo-size: 12vh;
+
+    //width: @game-photo-size;
+    //height: @game-photo-size;
+    //background: url(../assets/img/profile-test.jpg);
+    //background-repeat: no-repeat;
+    //background-size: cover;
+    //background-position: center;
+
+    border-radius: 100px;
+  }
+
+  .user {
+    float: right;
+  }
+
+  .apponent {
+    display: inline-block;
+    width: 50vw;
+    img {
+      float: left;
+    }
+
+    .nick {
+      font-size: 250%;
+
+    }
+  }
 
 }
-

@@ -278,3 +278,22 @@ header .brand-logo {
   border: 2px solid #37474f;
   box-shadow: inset 0px 0px 20px #283840;
 }
+.game {
+  padding-top: 10vh;
+}
+.game image {
+  border-radius: 100px;
+}
+.game .user {
+  float: right;
+}
+.game .apponent {
+  display: inline-block;
+  width: 50vw;
+}
+.game .apponent img {
+  float: left;
+}
+.game .apponent .nick {
+  font-size: 250%;
+}
