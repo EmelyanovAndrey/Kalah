@@ -50,8 +50,9 @@
     kalah = $(".board .kalah")
 
     lunka.mousedown ->
-      $(@)
-        .addClass "active"
+      if (!$(@).hasClass("enemy-obj"))
+        $(@)
+          .addClass "active"
       return
     lunka.mouseup ->
       $(@)

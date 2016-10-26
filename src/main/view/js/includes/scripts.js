@@ -46,7 +46,9 @@
     lunka = $(".board .lunka");
     kalah = $(".board .kalah");
     lunka.mousedown(function() {
-      $(this).addClass("active");
+      if (!$(this).hasClass("enemy-obj")) {
+        $(this).addClass("active");
+      }
     });
     lunka.mouseup(function() {
       $(this).removeClass("active");
