@@ -218,11 +218,18 @@ header .brand-logo {
   color: #f5f5f5;
   box-shadow: inset 10px 10px 10px #790040;
   border-radius: 60px;
-  margin: 20px;
+  margin: 10px;
+}
+.board,
+.board table {
+  border-collapse: separate !important;
+  padding: 20px;
+  height: 30vh;
+  border-spacing: 1vw 1vh;
 }
 .board .kalah {
   height: 30vh;
-  width: 0.5vw;
+  width: 1vw;
   border-radius: 30px;
   background-color: #37474f;
   text-align: center;
@@ -242,6 +249,9 @@ header .brand-logo {
   background-color: #f5f5f5;
   color: #37474f;
   cursor: pointer;
+}
+.board .kalah + .active {
+  box-shadow: inset 0px 0px 20px;
 }
 .board .lunka {
   height: 5vh;
@@ -266,34 +276,39 @@ header .brand-logo {
   color: #37474f;
   cursor: pointer;
 }
-.board table {
-  border-collapse: inherit;
-  padding: 20px;
-  height: 40vh;
-  border-spacing: 1vw 1vh;
-}
-.board .active {
-  background-color: #f5f5f5;
-  color: #37474f;
-  border: 2px solid #37474f;
-  box-shadow: inset 0px 0px 20px #283840;
+.board .lunka + .active {
+  box-shadow: inset 0px 0px 20px;
 }
 .game {
-  padding-top: 10vh;
+  padding-top: 5vh;
 }
-.game image {
+.game .player {
+  float: right;
+  margin: 10px;
+}
+.game .player .nick {
+  font-size: 2vw;
+  float: right;
+  color: #f5f5f5;
+}
+.game .player img {
+  width: 40%;
+  height: 40%;
   border-radius: 100px;
-}
-.game .user {
   float: right;
 }
 .game .apponent {
-  display: inline-block;
-  width: 50vw;
-}
-.game .apponent img {
   float: left;
+  margin: 10px;
 }
 .game .apponent .nick {
-  font-size: 250%;
+  font-size: 2vw;
+  float: left;
+  color: #f5f5f5;
+}
+.game .apponent img {
+  width: 40%;
+  height: 40%;
+  border-radius: 100px;
+  float: left;
 }

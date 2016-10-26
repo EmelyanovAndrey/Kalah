@@ -43,7 +43,7 @@
     });
     vs_item(human);
     vs_item(comp);
-    lunka = $("#board .lunka");
+    lunka = $(".board .lunka");
     lunka.mousedown(function() {
       $(this).addClass("active");
     });
@@ -51,8 +51,6 @@
       $(this).removeClass("active");
     });
   });
-
-  return;
 
 }).call(this);
 

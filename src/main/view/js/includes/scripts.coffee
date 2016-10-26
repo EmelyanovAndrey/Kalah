@@ -46,16 +46,16 @@
     vs_item(comp)
 
     #Game-page
-    lunka = $("#board .lunka")
+    lunka = $(".board .lunka")
 
     lunka.mousedown ->
-      $(@).addClass "active"
+      $(@)
+        .addClass "active"
       return
     lunka.mouseup ->
-      $(@).removeClass "active"
+      $(@)
+        .removeClass "active"
       return
-
     return
-  return
 
 

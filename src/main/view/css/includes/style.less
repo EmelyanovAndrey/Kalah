@@ -166,8 +166,14 @@ header {
   box-shadow: inset 10px 10px 10px @color-board-border;
   border-radius: 60px;
 
+  margin: 10px;
 
-  margin: 20px;
+  &, table {
+    border-collapse: separate !important;
+    padding: 20px;
+    height: 30vh;
+    border-spacing: 1vw 1vh;
+  }
 
   .object() {
     background-color: @color-object-background;
@@ -187,14 +193,16 @@ header {
       cursor: pointer;
     }
 
-
+    & + .active {
+      box-shadow: inset 0px 0px 20px;
+    }
 
     .unselect();
   }
 
   .kalah {
     height: 30vh;
-    width: 0.5vw;
+    width: 1vw;
 
     border-radius: 30px;
 
@@ -209,57 +217,44 @@ header {
 
     .object();
   }
-
-  table {
-    border-collapse: inherit;
-    padding: 20px;
-    height: 40vh;
-    border-spacing: 1vw 1vh;
-
-    td {
-    }
-  }
-
-  .active {
-    background-color: @color-text;
-    color: @color-object-background;
-    border: 2px solid @color-object-background;
-    box-shadow: inset 0px 0px 20px @color-object-border;
-  }
 }
 
 .game {
 
-  padding-top: 10vh;
+  padding-top: 5vh;
 
-  image{
-    @game-photo-size: 12vh;
+  //img {
+  //  background: url(../assets/img/profile-test.jpg);
+  //  background-repeat: no-repeat;
+  //  background-size: cover;
+  //  background-position: center;
+  //}
 
-    //width: @game-photo-size;
-    //height: @game-photo-size;
-    //background: url(../assets/img/profile-test.jpg);
-    //background-repeat: no-repeat;
-    //background-size: cover;
-    //background-position: center;
+  .user(@turn: left) {
+    float: @turn;
+    margin: 10px;
 
-    border-radius: 100px;
+    .nick {
+      font-size: 2vw;
+      float: @turn;
+      color: @color-text;
+    }
+    img {
+      @game-photo-size: 40%;
+
+      width: @game-photo-size;
+      height: @game-photo-size;
+      border-radius: 100px;
+
+      float: @turn;
+    }
   }
 
-  .user {
-    float: right;
+  .player {
+    .user(right);
   }
 
   .apponent {
-    display: inline-block;
-    width: 50vw;
-    img {
-      float: left;
-    }
-
-    .nick {
-      font-size: 250%;
-
-    }
+    .user();
   }
-
 }

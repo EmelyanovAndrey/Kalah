@@ -16,12 +16,11 @@ block content
 
     .game.container
         .row.apponent
-            img.photo.col.s1(src=baseUrl+"assets/img/profile-test.jpg")
-            .nick.col.s1 apponent
+            img(src=baseUrl+"assets/img/profile-test.jpg")
+            .nick apponent
 
         .row
-            .board
-                table#board
+                table.board
                     tr
                         td(rowspan=2).kalah
                             span 0
@@ -33,9 +32,8 @@ block content
                     tr
                         +lunka()
 
-        .row
-            .user
-                img.photo.responsive-img(src=baseUrl + "assets/img/profile-test.jpg")
-                .nick
+        .row.player
+            img(src=baseUrl + "assets/img/profile-test.jpg")
+            .nick player
 
     .row.save-game
