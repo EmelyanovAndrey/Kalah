@@ -8,6 +8,7 @@ a:hover {
 }
 header nav {
   background-color: #880e4f;
+  height: 10vh !important;
 }
 @media all and (min-width: 993px) {
   header nav .mini-nav-bar {
@@ -202,7 +203,7 @@ header .brand-logo {
 }
 #main .game {
   padding-top: 5vh;
-  height: 86vh;
+  height: 90vh !important;
   margin-right: 5vw !important;
 }
 #main .game .player {
