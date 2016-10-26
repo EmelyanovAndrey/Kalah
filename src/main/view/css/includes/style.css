@@ -203,6 +203,7 @@ header .brand-logo {
 #main .game {
   padding-top: 5vh;
   height: 86vh;
+  margin-right: 5vw !important;
 }
 #main .game .player {
   float: right;
@@ -245,7 +246,7 @@ header .brand-logo {
 #main .game .board {
   background-color: #880e4f;
   color: #f5f5f5;
-  box-shadow: inset 10px 10px 10px #790040;
+  box-shadow: 0px 7px 10px #790040;
   border-radius: 60px;
   margin: 10px;
 }

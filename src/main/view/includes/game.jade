@@ -16,28 +16,29 @@ block content
 
     -var apponent_name = "Terminator", player_name = "Marcus"
 
-    .game.container
-        .row
-            .apponent
-                img(src=baseUrl+"assets/img/ai-profile.jpg")
-                .nick #{apponent_name}
+    .game
+        .container
+            .row
+                .apponent
+                    img(src=baseUrl+"assets/img/ai-profile.jpg")
+                    .nick #{apponent_name}
 
-        .row
-            table.board
-                tr
-                    td(rowspan=2).kalah
-                        span 0
+            .row
+                table.board
+                    tr
+                        td(rowspan=2).kalah
+                            span 0
 
-                    +lunka()
+                        +lunka()
 
-                    td(rowspan=2).kalah
-                        span 0
-                tr
-                    +lunka()
+                        td(rowspan=2).kalah
+                            span 0
+                    tr
+                        +lunka()
 
-        .row
-            .player
-                img(src=baseUrl + "assets/img/profile-test.jpg")
-                .nick #{player_name}
+            .row
+                .player
+                    img(src=baseUrl + "assets/img/profile-test.jpg")
+                    .nick #{player_name}
 
     .row.save-game
