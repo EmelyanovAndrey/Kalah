@@ -1,0 +1,7 @@
+# Created by http://www.gitignore.io
+ 
+### Intellij ###
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
+ *
+ !src
+ !.gitignore
