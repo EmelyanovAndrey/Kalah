@@ -5,4 +5,5 @@
  *
  !src
  !.gitignore
- /src/main/view/.idea/workspace.xml
+ .idea/
+ !Kalah.iml
