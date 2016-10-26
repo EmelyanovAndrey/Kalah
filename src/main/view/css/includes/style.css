@@ -202,37 +202,45 @@ header .brand-logo {
 }
 #main .game {
   padding-top: 5vh;
-  height: 90vh;
+  height: 86vh;
 }
 #main .game .player {
   float: right;
+  height: 10vh;
   margin: 10px;
   position: relative;
+  align-content: center;
 }
 #main .game .player .nick {
-  font-size: 2vw;
+  font-size: 130%;
+  height: inherit;
+  line-height: 10vh;
+  padding: 0 10px;
   float: right;
   color: #f5f5f5;
 }
 #main .game .player img {
-  width: 40%;
-  height: 40%;
+  height: inherit;
   border-radius: 100px;
   float: right;
 }
 #main .game .apponent {
   float: left;
+  height: 10vh;
   margin: 10px;
   position: relative;
+  align-content: center;
 }
 #main .game .apponent .nick {
-  font-size: 2vw;
+  font-size: 130%;
+  height: inherit;
+  line-height: 10vh;
+  padding: 0 10px;
   float: left;
   color: #f5f5f5;
 }
 #main .game .apponent img {
-  width: 40%;
-  height: 40%;
+  height: inherit;
   border-radius: 100px;
   float: left;
 }

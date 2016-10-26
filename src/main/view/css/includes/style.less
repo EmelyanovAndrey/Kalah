@@ -145,23 +145,28 @@ header {
   .game {
 
     padding-top: 5vh;
-    height: 90vh;
+    height: 86vh;
 
     .user(@turn: left) {
+      @height: 10vh;
+
       float: @turn;
+      height: @height;
       margin: 10px;
       position: relative;
+      align-content: center;
 
       .nick {
-        font-size: 2vw;
+        font-size: 130%;
+        height: inherit;
+        line-height: @height;
+        padding: 0 10px;
         float: @turn;
         color: @color-text;
       }
-      img {
-        @game-photo-size: 40%;
 
-        width: @game-photo-size;
-        height: @game-photo-size;
+      img {
+        height: inherit;
         border-radius: 100px;
 
         float: @turn;

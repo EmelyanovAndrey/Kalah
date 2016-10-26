@@ -14,10 +14,13 @@ block scripts
 
 block content
 
+    -var apponent_name = "Terminator", player_name = "Marcus"
+
     .game.container
-        .row.apponent
-            img(src=baseUrl+"assets/img/profile-test.jpg")
-            .nick apponent
+        .row
+            .apponent
+                img(src=baseUrl+"assets/img/profile-test.jpg")
+                .nick #{apponent_name}
 
         .row
             table.board
@@ -32,8 +35,9 @@ block content
                 tr
                     +lunka()
 
-        .row.player
-            img(src=baseUrl + "assets/img/profile-test.jpg")
-            .nick player
+        .row
+            .player
+                img(src=baseUrl + "assets/img/profile-test.jpg")
+                .nick #{player_name}
 
     .row.save-game
