@@ -8,12 +8,20 @@ a:hover {
 }
 header nav {
   background-color: #880e4f;
-  height: 10vh !important;
+}
+header nav .nav-wrapper {
+  height: inherit;
+}
+header nav .mini-nav-bar {
+  height: inherit;
 }
 @media all and (min-width: 993px) {
   header nav .mini-nav-bar {
     display: none;
   }
+}
+header nav .large-nav-bar {
+  height: inherit;
 }
 @media all and (max-width: 993px) {
   header nav .large-nav-bar {

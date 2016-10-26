@@ -26,9 +26,12 @@ a {
 header {
   nav {
     background-color: @color-main;
-    height: 10vh !important;
 
+    .nav-wrapper {
+      height: inherit;
+    }
     .mini-nav-bar {
+      height: inherit;
 
       @media all and (min-width: @width-divide) {
         display: none;
@@ -36,6 +39,7 @@ header {
     }
 
     .large-nav-bar {
+      height: inherit;
 
       @media all and (max-width: @width-divide) {
         display: none;
