@@ -189,6 +189,9 @@ header {
       @color-object-background: @color-background;
       @color-object-border: @color-object-background - 15%;
 
+      @color-object-anemy-background: white;
+      @color-object-anemy-border: @color-object-background - 15%;
+
       background-color: @color-board-background;
 
       color: @color-text;
@@ -217,6 +220,13 @@ header {
 
         border: 2px solid @color-object-background;
         box-shadow: inset 0px 0px 8px @color-object-border;
+
+        & + .player-obj {
+          background-color: @color-object-anemy-background;
+          color: @color-background;
+          border: 2px solid @color-object-anemy-background;
+          box-shadow: inset 0px 0px 8px @color-object-anemy-border;
+        }
 
         &:hover {
           background-color: @color-text;

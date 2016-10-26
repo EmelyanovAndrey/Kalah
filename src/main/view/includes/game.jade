@@ -1,9 +1,16 @@
 extends layout
 
-mixin lunka()
-    - for(var i = 0; i < 7; i++)
-        td.lunka
-            span 6
+mixin lunka(modify, count)
+    - if (count == null)
+    -   count = 7
+    - if (modify == 0)
+        - for(var i = 0; i < count; i++)
+            td.lunka
+                span 6
+    - else if (modify == null)
+        - for(var i = 0; i < count; i++)
+            td.lunka.player-obj
+                span 6
 
 block title
     title #{title} | Игра
@@ -26,12 +33,12 @@ block content
             .row
                 table.board
                     tr
-                        td(rowspan=2).kalah.hover
+                        td(rowspan=2).kalah.player-obj
                             span 0
 
-                        +lunka()
+                        +lunka(0)
 
-                        td(rowspan=2).kalah
+                        td(rowspan=2).kalah.player-obj
                             span 0
                     tr
                         +lunka()

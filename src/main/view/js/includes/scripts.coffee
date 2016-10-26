@@ -47,6 +47,7 @@
 
     #Game-page
     lunka = $(".board .lunka")
+    kalah = $(".board .kalah")
 
     lunka.mousedown ->
       $(@)
@@ -56,6 +57,15 @@
       $(@)
         .removeClass "active"
       return
+
+#    kalah.mousedown ->
+#      $(@)
+#        .addClass "active"
+#      return
+#    kalah.mouseup ->
+#      $(@)
+#        .removeClass "active"
+#      return
     return
 
 

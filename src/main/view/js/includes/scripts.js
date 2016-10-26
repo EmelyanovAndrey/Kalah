@@ -31,7 +31,7 @@
   };
 
   $(document).ready(function() {
-    var lunka;
+    var kalah, lunka;
     $("#hellow").on("click", "a", function(event) {
       var id, top;
       event.preventDefault();
@@ -44,6 +44,7 @@
     vs_item(human);
     vs_item(comp);
     lunka = $(".board .lunka");
+    kalah = $(".board .kalah");
     lunka.mousedown(function() {
       $(this).addClass("active");
     });
