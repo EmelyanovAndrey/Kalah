@@ -208,7 +208,6 @@ header .brand-logo {
   float: right;
   height: 10vh;
   margin: 10px;
-  position: relative;
   align-content: center;
 }
 #main .game .player .nick {
@@ -228,7 +227,6 @@ header .brand-logo {
   float: left;
   height: 10vh;
   margin: 10px;
-  position: relative;
   align-content: center;
 }
 #main .game .apponent .nick {
