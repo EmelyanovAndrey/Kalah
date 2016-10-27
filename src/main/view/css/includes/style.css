@@ -388,7 +388,8 @@ header .brand-logo {
   }
 }
 .profile {
-  height: 10vh;
+  float: left;
+  height: 90vh !important;
   width: 25vw;
   margin: 10px;
   align-content: center;
@@ -406,7 +407,16 @@ header .brand-logo {
   margin-right: 10px;
   float: left;
 }
+.save-games {
+  float: right;
+  height: 90vh !important;
+  margin-top: 17vh;
+  align-content: center;
+}
 .btn {
   background-color: #880e4f;
   width: inherit;
+}
+.btn:hover {
+  background-color: #9c2263;
 }

@@ -37,7 +37,7 @@ block content
                     .input-field.col.s12
                         i.material-icons.prefix account_circle
                         select#icons.icons
-                            option(disabled, selected) Выберите аватар
+                            option(disabled selected) Выберите аватар
                             each icon in icons_array
                                 option(value="", data-icon=icon.icon_link).left.circle #{icon.icon_name}
                         label(for="icons") Аватар

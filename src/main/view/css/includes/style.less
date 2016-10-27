@@ -302,7 +302,8 @@ header {
 }
 
 .profile {
-  height: 10vh;
+  float: left;
+  height: 90vh !important;
   width: 25vw;
   margin: 10px;
   align-content: center;
@@ -323,9 +324,22 @@ header {
   }
 }
 
+.save-games {
+  float: right;
+  height: 90vh !important;
+  margin-top: 17vh;
+  align-content: center;
+
+
+}
+
 .btn {
   background-color: @color-main;
   width: inherit;
+
+  &:hover {
+    background-color: @color-main + 20%;
+  }
 }
 
 .unselect() {

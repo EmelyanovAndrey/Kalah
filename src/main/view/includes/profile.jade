@@ -31,7 +31,23 @@ block content
                         input#password.validate(type="password")
                         label(for="password") Пароль
 
+                    .input-field.col.s12
+                        i.material-icons.prefix vpn_key
+                        input#re-password.validate(type="password")
+                        label(for="re-password") Повторите пароль
+
                     .col.s12
                         button.btn.waves-effect.waves-light(type="submit" name="action") Изменить данные
                             i.material-icons.right send
+
+        .save-games
+            .row
+                table.highlight
+                    thead
+                        tr
+                            th №
+                            th Имя
+                            th Счет
+                            th Дата
+                            th Количество камней/лунок
 
