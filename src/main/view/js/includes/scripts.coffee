@@ -35,7 +35,7 @@
     $('input#input_text, textarea#textarea1').characterCounter()
 
     #Плавный скролл
-    $ "#hellow"
+    $ "#slider"
       .on "click", "a", (event) ->
         event.preventDefault()
         id = $(@).attr('href')

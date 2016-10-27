@@ -34,7 +34,7 @@
   $(document).ready(function() {
     var kalah, lunka;
     $('input#input_text, textarea#textarea1').characterCounter();
-    $("#hellow").on("click", "a", function(event) {
+    $("#slider").on("click", "a", function(event) {
       var id, top;
       event.preventDefault();
       id = $(this).attr('href');
