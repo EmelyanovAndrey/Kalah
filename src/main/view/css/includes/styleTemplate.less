@@ -3,9 +3,11 @@
 @color-background: #37474f;
 @color-text: #f5f5f5;
 @color-main-dark: @color-main - 15%;
-@color-menu: @color-main;
+
 @color-input: @color-main;
-@color-input-text: black;
+@color-input-text: @color-text;
+@color-input-active: @color-text;
+@color-input-text-active: @color-text;
 
 @width-divide: 993px;
 @width-divide-phone: 650px;
@@ -99,30 +101,47 @@ body {
   }
 
   input {
-    color: @color-main;
+    color: @color-input-text;
   }
 
-  input[type="text"]:focus {
-    color: @color-input-text;
-    border-bottom: 1px solid @color-input;
-    box-shadow: 0 1px 0 0 @color-input;
+  input[type="text"], input[type="password"], input[type="email"] {
+    &:focus {
+      color: @color-input-text;
+      border-bottom: 1px solid @color-input-active;
+      box-shadow: 0 1px 0 0 @color-input-active;
+    }
 
     & + label {
-      color: @color-input;
+      color: @color-input-text;
     }
+
+    border-bottom: 1px solid @color-input-text;
+    box-shadow: 0 1px 0 0 @color-input-text;
+  }
+
+  .input-field .prefix, .active {
+    color: @color-input-text-active !important;
   }
 
   input[type="checkbox"]:checked {
     color: @color-input-text;
-    border-bottom: 1px solid @color-input;
-    box-shadow: 0 1px 0 0 @color-input;
+    border-bottom: 1px solid @color-input-active;
+    box-shadow: 0 1px 0 0 @color-input-active;
 
     & + label {
-      color: @color-input;
+      color: @color-input-active;
     }
+  }
+
+  .select-wrapper span.caret {
+    color: @color-input-text !important;
   }
 
   .select-dropdown {
     color: @color-input-text;
+  }
+
+  .dropdown-content li > a, .dropdown-content li > span {
+    color: @color-input;
   }
 }

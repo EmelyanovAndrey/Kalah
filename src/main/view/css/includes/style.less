@@ -8,6 +8,7 @@ header {
 
 #main {
   padding: 0 !important;
+  color: @color-text !important;
 
   & .hellow{
     background: url(../assets/img/slider_1.jpg);
@@ -260,6 +261,53 @@ header {
         }
       }
 
+    }
+  }
+
+  .registr {
+    height: 90vh;
+    padding-top: 5vh;
+
+    .inner {
+      height: inherit;
+      align-content: center;
+
+      form {
+        height: 50vh;
+        margin: auto;
+
+        @media all and (min-width: @width-divide) {
+          width: 30vw;
+        }
+
+        @media all and (max-width: @width-divide) {
+          width: 50vw;
+        }
+
+        @media all and (max-width: @width-divide-phone) {
+          width: 60vw;
+        }
+
+        .btn {
+          background-color: @color-main;
+          width: inherit;
+        }
+      }
+
+      h1 {
+        font-family: 'Orbitron', sans-serif;
+
+        @media all and (min-width: @width-divide) {
+          font-size: 4vw !important;
+        }
+
+        @media all and (max-width: @width-divide) {
+          font-size: 6vw;
+        }
+
+        text-align: center;
+        color: @color-text;
+      }
     }
   }
 }

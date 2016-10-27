@@ -29,7 +29,7 @@
           <li><a href="#" target="_blank">Правила</a></li>
           <li><a href="/Kalah/src/main/view/game.html" target="_blank">Играть с человеком</a></li>
           <li><a href="/Kalah/src/main/view/game.html" target="_blank">Играть с компьютером</a></li>
-          <li><a href="#" target="_blank">Профиль</a></li>
+          <li><a href="/Kalah/src/main/view/registration.html" target="_blank">Профиль</a></li>
         </ul>
         <nav>
           <div class="nav-wrapper container">
@@ -39,7 +39,7 @@
                 <li><a href="#" target="_blank" class="grey-text text-lighten-3">Правила</a></li>
                 <li><a href="/Kalah/src/main/view/game.html" target="_blank" class="grey-text text-lighten-3">Играть с человеком</a></li>
                 <li><a href="/Kalah/src/main/view/game.html" target="_blank" class="grey-text text-lighten-3">Играть с компьютером</a></li>
-                <li><a href="#" target="_blank" class="grey-text text-lighten-3">Профиль</a></li>
+                <li><a href="/Kalah/src/main/view/registration.html" target="_blank" class="grey-text text-lighten-3">Профиль</a></li>
               </ul>
             </div>
             <div class="mini-nav-bar"><a href="/Kalah/src/main/view/" data-activates="headerMenu" class="brand-logo dropdown-button">Kalah</a></div>
@@ -48,7 +48,48 @@
       </div>
     </header>
     <div id="main">
-      <div class="registr container"></div>
+      <div class="registr">
+        <div class="inner container">
+          <div class="row">
+            <h1>Регистрация</h1>
+          </div>
+          <div class="row">
+            <form>
+              <div class="input-field col s12"><i class="material-icons prefix">perm_identity</i>
+                <input id="name" type="text" length="10" class="validate">
+                <label for="name">Имя</label>
+              </div>
+              <div class="input-field col s12"><i class="material-icons prefix">vpn_key</i>
+                <input id="password" type="password" class="validate">
+                <label for="password">Пароль</label>
+              </div>
+              <div class="input-field col s12"><i class="material-icons prefix">vpn_key</i>
+                <input id="re-password" type="password" class="validate">
+                <label for="re-password">Повторите пароль</label>
+              </div>
+              <div class="input-field col s12"><i class="material-icons prefix">email</i>
+                <input id="email" type="email" class="validate">
+                <label for="email" data-error="Неверный адрес email" data-success="OK">Email</label>
+              </div>
+              <div class="input-field col s12"><i class="material-icons prefix">account_circle</i>
+                <select id="icons" class="icons">
+                  <option disabled selected>Выберите аватар</option>
+                  <option value="" data-icon="/Kalah/src/main/view/assets/icons/terminator.jpg" class="left circle">Terminator</option>
+                  <option value="" data-icon="/Kalah/src/main/view/assets/icons/marcus.jpg" class="left circle">Marcus</option>
+                </select>
+                <label for="icons">Аватар</label>
+              </div>
+              <div class="col s12">
+                <button type="submit" name="action" class="btn waves-effect waves-light">Зарегистрироваться<i class="material-icons right">send</i></button>
+                <!--<button class="btn waves-effect waves-light" type="submit" name="action">Submit-->
+                <!--<i class="material-icons right">send</i>-->
+                <!--</button>-->
+                <!---->
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
     <footer>
       <div id="more-footer" class="container">

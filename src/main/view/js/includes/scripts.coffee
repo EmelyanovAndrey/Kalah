@@ -7,6 +7,7 @@
     if jQuery.browser.mozilla is true
       $(human).addClass "simple"
       $(comp).addClass "simple"
+    $('select').material_select()
     return
 
   #Затемнение элемента vs-menu
@@ -30,6 +31,8 @@
     return
 
   $(document).ready ->
+
+    $('input#input_text, textarea#textarea1').characterCounter()
 
     #Плавный скролл
     $ "#hellow"
@@ -67,6 +70,21 @@
 #      $(@)
 #        .removeClass "active"
 #      return
+
+    #Registration
+      return
+
+#    $(function() {
+#      $('select').material_select();
+#      $(".dropdown-button").dropdown();
+#      Materialize.updateTextFields();
+#      $('.collapsible').collapsible({
+#        accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+#      });
+#      $("table tbody tr").dblclick(function () {
+#        $('#element').openModal();
+#      });
+#    });
     return
 
 

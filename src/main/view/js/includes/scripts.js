@@ -10,6 +10,7 @@
       $(human).addClass("simple");
       $(comp).addClass("simple");
     }
+    $('select').material_select();
   });
 
   vs_item = function(item, speed, opacity) {
@@ -32,6 +33,7 @@
 
   $(document).ready(function() {
     var kalah, lunka;
+    $('input#input_text, textarea#textarea1').characterCounter();
     $("#hellow").on("click", "a", function(event) {
       var id, top;
       event.preventDefault();
@@ -52,6 +54,7 @@
     });
     lunka.mouseup(function() {
       $(this).removeClass("active");
+      return;
     });
   });
 
