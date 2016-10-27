@@ -49,9 +49,28 @@
     </header>
     <div id="main">
       <div class="container">
-        <div class="row">
-          <div class="profile"><img src="/Kalah/src/main/view/assets/icons/marcus.jpg">
+        <div class="profile">
+          <div class="row"><img src="/Kalah/src/main/view/assets/icons/marcus.jpg">
             <div class="nick">Marcus</div>
+          </div>
+          <div class="row">
+            <form>
+              <div class="input-field col s12"><i class="material-icons prefix">perm_identity</i>
+                <input id="name" type="text" length="10" value="Marcus" class="validate">
+                <label for="name">Имя</label>
+              </div>
+              <div class="input-field col s12"><i class="material-icons prefix">email</i>
+                <input id="email" type="email" value="ilykonst95@gmail.com" class="validate">
+                <label for="email" data-error="Неверный адрес email" data-success="OK">Email</label>
+              </div>
+              <div class="input-field col s12"><i class="material-icons prefix">vpn_key</i>
+                <input id="password" type="password" class="validate">
+                <label for="password">Пароль</label>
+              </div>
+              <div class="col s12">
+                <button type="submit" name="action" class="btn waves-effect waves-light">Изменить данные<i class="material-icons right">send</i></button>
+              </div>
+            </form>
           </div>
         </div>
       </div>

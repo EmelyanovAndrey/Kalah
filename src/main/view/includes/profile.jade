@@ -5,10 +5,33 @@ block title
 
 block content
 
-    -var player_name = "Marcus", icon = baseUrl+"assets/icons/marcus.jpg"
+    -var player_name = "Marcus", icon = baseUrl+"assets/icons/marcus.jpg", email="ilykonst95@gmail.com"
 
     .container
-        .row
-            .profile
+        .profile
+            .row
                 img(src=icon)
                 .nick #{player_name}
+
+            .row
+                form
+                    .input-field.col.s12
+                        i.material-icons.prefix perm_identity
+                        input#name.validate(type="text", length="10" value=player_name)
+                        label(for="name") Имя
+
+                    .input-field.col.s12
+                        i.material-icons.prefix email
+                        input#email.validate(type='email' value=email)
+                        label(for="email" data-error="Неверный адрес email" data-success="OK") Email
+
+
+                    .input-field.col.s12
+                        i.material-icons.prefix vpn_key
+                        input#password.validate(type="password")
+                        label(for="password") Пароль
+
+                    .col.s12
+                        button.btn.waves-effect.waves-light(type="submit" name="action") Изменить данные
+                            i.material-icons.right send
+

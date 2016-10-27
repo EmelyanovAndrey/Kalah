@@ -261,77 +261,71 @@ header {
     }
   }
 
-  .registr, .login {
+  .registration, .login {
+
     height: 90vh;
     padding-top: 5vh;
+    align-content: center;
 
-    .inner {
-      height: inherit;
-      align-content: center;
+    form {
+      height: 50vh;
+      margin: auto;
 
-      form {
-        height: 50vh;
-        margin: auto;
-
-        @media all and (min-width: @width-divide) {
-          width: 30vw;
-        }
-
-        @media all and (max-width: @width-divide) {
-          width: 50vw;
-        }
-
-        @media all and (max-width: @width-divide-phone) {
-          width: 60vw;
-        }
-
-        .btn {
-          background-color: @color-main;
-          width: inherit;
-        }
+      @media all and (min-width: @width-divide) {
+        width: 30vw;
       }
 
-      h1 {
-        font-family: 'Orbitron', sans-serif;
-
-        @media all and (min-width: @width-divide) {
-          font-size: 4vw !important;
-        }
-
-        @media all and (max-width: @width-divide) {
-          font-size: 6vw;
-        }
-
-        text-align: center;
-        color: @color-text;
+      @media all and (max-width: @width-divide) {
+        width: 50vw;
       }
+
+      @media all and (max-width: @width-divide-phone) {
+        width: 60vw;
+      }
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+
+      @media all and (min-width: @width-divide) {
+        font-size: 4vw !important;
+      }
+
+      @media all and (max-width: @width-divide) {
+        font-size: 6vw;
+      }
+
+      text-align: center;
+      color: @color-text;
     }
   }
 }
 
 .profile {
-  @height: 10vh;
-
-  height: @height;
+  height: 10vh;
   width: 25vw;
   margin: 10px;
   align-content: center;
 
   .nick {
-    font-size: 130%;
+    font-size: 200%;
     height: inherit;
-    width: 10vw;
-    line-height: @height;
-    padding: 0 10px;
+    line-height: 10vh;
+    margin-left: 10px;
     color: @color-text;
   }
 
   img {
     height: inherit;
     border-radius: 100px;
-
+    margin-right: 10px;
     float: left;
   }
+}
+
+.btn {
+  background-color: @color-main;
+  width: inherit;
 }
 
 .unselect() {
