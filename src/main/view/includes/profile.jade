@@ -1,0 +1,14 @@
+extends layout
+
+block title
+    title #{title} | Профиль
+
+block content
+
+    -var player_name = "Marcus", icon = baseUrl+"assets/icons/marcus.jpg"
+
+    .container
+        .row
+            .profile
+                img(src=icon)
+                .nick #{player_name}

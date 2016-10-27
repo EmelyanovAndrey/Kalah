@@ -2,7 +2,7 @@
 
 header {
   .brand-logo {
-    font-family: 'Patua One';
+    font-family: 'Patua One', serif;
   }
 }
 
@@ -10,11 +10,8 @@ header {
   padding: 0 !important;
   color: @color-text !important;
 
-  & .hellow{
-    background: url(../assets/img/slider_1.jpg);
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-position: center center;
+  & .hellow {
+    background: url('../assets/img/slider_1.jpg') no-repeat fixed center center;
     background-size: cover;
 
     color: @color-text;
@@ -30,7 +27,7 @@ header {
         font-size: 5vw;
       }
 
-      a.btn-large{
+      a.btn-large {
         background-color: @color-main;
         margin: 10px;
       }
@@ -85,10 +82,8 @@ header {
     }
 
     .vs(@img) {
-      background: url('../assets/img/@{img}');
-      background-repeat: no-repeat;
+      background: url('../assets/img/@{img}') no-repeat center;
       background-size: cover;
-      background-position: center;
 
       position: absolute;
 
@@ -96,7 +91,7 @@ header {
       height: inherit;
       padding: 0;
 
-      .transition(@time){
+      .transition(@time) {
         -moz-transition: opacity @time;
         -webkit-transition: opacity @time;
         -o-transition: opacity @time;
@@ -199,7 +194,7 @@ header {
 
       color: @color-text;
       //box-shadow: inset 10px 10px 10px @color-board-border;
-      box-shadow: 0px 7px 7px @color-board-border;
+      box-shadow: 0 7px 7px @color-board-border;
       border-radius: 60px;
 
       margin: 10px;
@@ -222,7 +217,7 @@ header {
         margin: 10px;
 
         border: 2px solid @color-object-background;
-        box-shadow: inset 0px 0px 8px @color-object-border;
+        box-shadow: inset 0 0 8px @color-object-border;
 
         & + .enemy-obj {
           &:hover {
@@ -233,7 +228,7 @@ header {
         }
 
         & + .active {
-          box-shadow: inset 0px 0px 20px;
+          box-shadow: inset 0 0 20px;
         }
 
         .unselect();
@@ -311,6 +306,31 @@ header {
         color: @color-text;
       }
     }
+  }
+}
+
+.profile {
+  @height: 10vh;
+
+  height: @height;
+  width: 25vw;
+  margin: 10px;
+  align-content: center;
+
+  .nick {
+    font-size: 130%;
+    height: inherit;
+    width: 10vw;
+    line-height: @height;
+    padding: 0 10px;
+    color: @color-text;
+  }
+
+  img {
+    height: inherit;
+    border-radius: 100px;
+
+    float: left;
   }
 }
 
