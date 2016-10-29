@@ -1,0 +1,15 @@
+extends layout
+
+block title
+    title #{title} | Новая игра
+
+block content
+    .new-game
+        .container
+            .row
+                h1 Новая игра
+            .row
+                form
+                    .input-field.col.s12
+                        p.range-field
+                            input#count_lunk(type="range", min="3", max="8")

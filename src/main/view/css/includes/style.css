@@ -40,6 +40,26 @@ header nav .large-nav-bar {
     display: none;
   }
 }
+.slider {
+  background: url('../assets/img/slider.jpg') no-repeat fixed center center;
+  background-size: cover;
+  color: #f5f5f5;
+  height: 92vh;
+  width: 100vw;
+}
+.slider .inner {
+  text-align: center;
+  padding-top: 35vh;
+}
+.slider .inner h1,
+.slider .inner h2,
+.slider .inner h3 {
+  font-size: 5vw;
+}
+.slider .inner a.btn-large {
+  background-color: #880e4f;
+  margin: 10px;
+}
 footer {
   background-color: #880e4f;
   color: #f5f5f5;
@@ -73,6 +93,24 @@ body #main {
   flex: 1 0 auto;
   padding: 20px;
   color: black;
+}
+.btn {
+  background-color: #880e4f;
+}
+.btn,
+.btn .large {
+  width: inherit;
+}
+.btn:hover {
+  background-color: #9c2263;
+}
+input::-moz-focus-inner {
+  border: 0 !important;
+}
+:focus,
+:hover,
+:active {
+  outline: 0;
 }
 .input-field label {
   color: #f5f5f5;
@@ -110,6 +148,12 @@ body #main {
 .input-field input[type="checkbox"]:checked + label {
   color: #f5f5f5;
 }
+.input-field input[type="range"],
+.input-field input[type="range"]:focus,
+.input-field input[type="range"]:-moz-focusring {
+  border: 0;
+  outline: none !important;
+}
 .input-field .select-wrapper span.caret {
   color: #f5f5f5 !important;
 }
@@ -126,26 +170,6 @@ header .brand-logo {
 #main {
   padding: 0 !important;
   color: #f5f5f5 !important;
-}
-#main .slider {
-  background: url('../assets/img/slider.jpg') no-repeat fixed center center;
-  background-size: cover;
-  color: #f5f5f5;
-  height: 92vh;
-  width: 100vw;
-}
-#main .slider .inner {
-  text-align: center;
-  padding-top: 35vh;
-}
-#main .slider .inner h1,
-#main .slider .inner h2,
-#main .slider .inner h3 {
-  font-size: 5vw;
-}
-#main .slider .inner a.btn-large {
-  background-color: #880e4f;
-  margin: 10px;
 }
 #main .vs-menu {
   margin: 5px 0;
@@ -361,49 +385,57 @@ header .brand-logo {
   cursor: pointer;
 }
 #main .registration,
-#main .login {
+#main .login,
+#main .new-game {
   height: 90vh;
   padding-top: 5vh;
   align-content: center;
 }
 #main .registration form,
-#main .login form {
+#main .login form,
+#main .new-game form {
   height: 50vh;
   margin: auto;
 }
 @media all and (min-width: 993px) {
   #main .registration form,
-  #main .login form {
+  #main .login form,
+  #main .new-game form {
     width: 30vw;
   }
 }
 @media all and (max-width: 993px) {
   #main .registration form,
-  #main .login form {
+  #main .login form,
+  #main .new-game form {
     width: 50vw;
   }
 }
 @media all and (max-width: 650px) {
   #main .registration form,
-  #main .login form {
+  #main .login form,
+  #main .new-game form {
     width: 60vw;
   }
 }
 #main .registration h1,
-#main .login h1 {
+#main .login h1,
+#main .new-game h1 {
   font-family: 'Orbitron', sans-serif;
   text-align: center;
   color: #f5f5f5;
 }
 @media all and (min-width: 993px) {
   #main .registration h1,
-  #main .login h1 {
+  #main .login h1,
+  #main .new-game h1 {
     font-size: 4vw !important;
   }
 }
 @media all and (max-width: 993px) {
   #main .registration h1,
-  #main .login h1 {
+  #main .login h1,
+  #main .new-game h1 {
     font-size: 6vw;
   }
 }
@@ -421,7 +453,6 @@ header .brand-logo {
   color: #f5f5f5;
 }
 .profile img {
-  height: inherit;
   border-radius: 100px;
   margin-right: 10px;
   float: left;
@@ -440,11 +471,4 @@ header .brand-logo {
 }
 .save-games table.highlight > tbody > tr:hover {
   background-color: #3c4c54 !important;
-}
-.btn {
-  background-color: #880e4f;
-  width: inherit;
-}
-.btn:hover {
-  background-color: #9c2263;
 }

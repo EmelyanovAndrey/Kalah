@@ -61,6 +61,30 @@ header {
   }
 }
 
+.slider {
+  background: url('../assets/img/slider.jpg') no-repeat fixed center center;
+  background-size: cover;
+
+  color: @color-text;
+
+  height: 92vh;
+  width: 100vw;
+
+  .inner {
+    text-align: center;
+    padding-top: 35vh;
+
+    h1, h2, h3 {
+      font-size: 5vw;
+    }
+
+    a.btn-large {
+      background-color: @color-main;
+      margin: 10px;
+    }
+  }
+}
+
 footer {
   background-color: @color-main;
   color: @color-text;
@@ -106,6 +130,42 @@ body {
   }
 }
 
+.transition(@color, @time: .25s, @param: ease) {
+  -webkit-transition: @color @time @param;
+  -o-transition: @color @time @param;
+  -moz-transition: @color @time @param;
+  transition: @color @time @param;
+}
+
+.unselect() {
+  -moz-user-select: none;
+  -o-user-select:none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.btn {
+  background-color: @color-main;
+
+  &, .large {
+    width: inherit;
+  }
+
+  &:hover {
+    background-color: @color-main + 20%;
+  }
+}
+
+input::-moz-focus-inner {
+  border: 0 !important;
+}
+
+:focus, :hover, :active {
+  outline: 0;
+}
+
 .input-field {
 
   label {
@@ -143,6 +203,11 @@ body {
     & + label {
       color: @color-input-active;
     }
+  }
+
+  input[type="range"],  input[type="range"]:focus, input[type="range"]:-moz-focusring {
+    border: 0;
+    outline: none !important;
   }
 
   .select-wrapper span.caret {

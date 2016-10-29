@@ -10,29 +10,6 @@ header {
   padding: 0 !important;
   color: @color-text !important;
 
-  & .slider {
-    background: url('../assets/img/slider.jpg') no-repeat fixed center center;
-    background-size: cover;
-
-    color: @color-text;
-
-    height: 92vh;
-    width: 100vw;
-
-    .inner {
-      text-align: center;
-      padding-top: 35vh;
-
-      h1, h2, h3 {
-        font-size: 5vw;
-      }
-
-      a.btn-large {
-        background-color: @color-main;
-        margin: 10px;
-      }
-    }
-  }
 
   & .vs-menu {
     margin: 5px 0;
@@ -265,7 +242,7 @@ header {
     }
   }
 
-  .registration, .login {
+  .registration, .login, .new-game {
 
     height: 90vh;
     padding-top: 5vh;
@@ -320,7 +297,6 @@ header {
   }
 
   img {
-    height: inherit;
     border-radius: 100px;
     margin-right: 10px;
     float: left;
@@ -340,33 +316,9 @@ header {
       background-color: @color-background + 5% !important;
     }
   }
-
 }
 
-.transition(@color, @time: .25s, @param) {
-  -webkit-transition: @color @time @param;
-  -o-transition: @color @time @param;
-  -moz-transition: @color @time @param;
-  transition: @color @time @param;
-}
 
-.btn {
-  background-color: @color-main;
-  width: inherit;
-
-  &:hover {
-    background-color: @color-main + 20%;
-  }
-}
-
-.unselect() {
-  -moz-user-select: none;
-  -o-user-select:none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
 
 
 

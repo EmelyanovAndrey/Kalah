@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <title>Kalah | Профиль</title>
+    <title>Kalah | Новая игра</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -53,70 +53,19 @@
       </div>
     </header>
     <div id="main">
-      <div class="container">
-        <div class="row">
-          <div class="col l6 m6 s12">
-            <div class="profile">
-              <div class="row"><img src="/Kalah/src/main/view/assets/icons/marcus.jpg">
-                <div class="nick">Marcus</div>
-              </div>
-              <div class="row">
-                <form>
-                  <div class="input-field col s12"><i class="material-icons prefix">perm_identity</i>
-                    <input id="name" type="text" length="10" value="Marcus" class="validate">
-                    <label for="name">Имя</label>
-                  </div>
-                  <div class="input-field col s12"><i class="material-icons prefix">email</i>
-                    <input id="email" type="email" value="ilykonst95@gmail.com" class="validate">
-                    <label for="email" data-error="Неверный адрес email" data-success="OK">Email</label>
-                  </div>
-                  <div class="input-field col s12"><i class="material-icons prefix">vpn_key</i>
-                    <input id="password" type="password" class="validate">
-                    <label for="password">Пароль</label>
-                  </div>
-                  <div class="input-field col s12"><i class="material-icons prefix">vpn_key</i>
-                    <input id="re-password" type="password" class="validate">
-                    <label for="re-password">Повторите пароль</label>
-                  </div>
-                  <div class="col s12">
-                    <button type="submit" name="action" class="btn waves-effect waves-light large">Изменить данные<i class="material-icons right">send</i></button>
-                  </div>
-                </form>
-              </div>
-            </div>
+      <div class="new-game">
+        <div class="container">
+          <div class="row">
+            <h1>Новая игра</h1>
           </div>
-          <div class="col l6 m6 s12">
-            <div class="save-games">
-              <div class="row">
-                <table class="highlight centered">
-                  <thead>
-                    <tr>
-                      <th>№</th>
-                      <th>Противник</th>
-                      <th>Счет</th>
-                      <th>Дата</th>
-                      <th>Камни/Лунки</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Alex</td>
-                      <td>10/12</td>
-                      <td>10.12.14</td>
-                      <td>6/8</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Mikle</td>
-                      <td>5/3</td>
-                      <td>15.06.16</td>
-                      <td>6/8</td>
-                    </tr>
-                  </tbody>
-                </table>
+          <div class="row">
+            <form>
+              <div class="input-field col s12">
+                <p class="range-field">
+                  <input id="count_lunk" type="range" min="3" max="8">
+                </p>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
