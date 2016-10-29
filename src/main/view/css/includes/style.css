@@ -1,6 +1,7 @@
 html {
   color: #f5f5f5;
   background: #37474f;
+  overflow-x: hidden;
 }
 a:hover {
   text-decoration: none;
