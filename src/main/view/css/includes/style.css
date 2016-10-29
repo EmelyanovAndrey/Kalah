@@ -427,10 +427,19 @@ header .brand-logo {
   float: left;
 }
 .save-games {
-  float: right;
   height: 90vh !important;
-  margin-top: 15vh;
+  margin-top: 18vh;
+  margin-left: 5vw;
   align-content: center;
+}
+.save-games table.highlight > tbody > tr {
+  -webkit-transition: background-color 0.25s ease;
+  -o-transition: background-color 0.25s ease;
+  -moz-transition: background-color 0.25s ease;
+  transition: background-color 0.25s ease;
+}
+.save-games table.highlight > tbody > tr:hover {
+  background-color: #3c4c54 !important;
 }
 .btn {
   background-color: #880e4f;

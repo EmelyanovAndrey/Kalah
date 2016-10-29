@@ -6,6 +6,7 @@ block title
 block content
 
     -var player_name = "Marcus", icon = baseUrl+"assets/icons/marcus.jpg", email="ilykonst95@gmail.com"
+    -var save_games = [{name: "Alex", date: "10.12.14", score: "10/12", count: "6/8"}]
 
     .container
         .row
@@ -44,12 +45,21 @@ block content
             .col.l6.m6.s12
                 .save-games
                     .row
-                        table.highlight
+                        table.highlight.centered
                             thead
                                 tr
                                     th №
                                     th Имя
                                     th Счет
                                     th Дата
-                                    th Количество камней/лунок
+                                    th Камни/Лунки
+                            tbody
+                                - each val, index in save_games
+                                    tr
+                                        td #{index+1}
+                                        td #{val.name}
+                                        td #{val.score}
+                                        td #{val.date}
+                                        td #{val.count}
+
 
