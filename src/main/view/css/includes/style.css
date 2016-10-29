@@ -410,7 +410,6 @@ header .brand-logo {
 .profile {
   float: left;
   height: 90vh !important;
-  width: 25vw;
   margin: 10px;
   align-content: center;
 }
@@ -430,7 +429,7 @@ header .brand-logo {
 .save-games {
   float: right;
   height: 90vh !important;
-  margin-top: 17vh;
+  margin-top: 15vh;
   align-content: center;
 }
 .btn {

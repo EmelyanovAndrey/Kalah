@@ -8,46 +8,48 @@ block content
     -var player_name = "Marcus", icon = baseUrl+"assets/icons/marcus.jpg", email="ilykonst95@gmail.com"
 
     .container
-        .profile
-            .row
-                img(src=icon)
-                .nick #{player_name}
+        .row
+            .col.l6.m6.s12
+                .profile
+                    .row
+                        img(src=icon)
+                        .nick #{player_name}
 
-            .row
-                form
-                    .input-field.col.s12
-                        i.material-icons.prefix perm_identity
-                        input#name.validate(type="text", length="10" value=player_name)
-                        label(for="name") Имя
+                    .row
+                        form
+                            .input-field.col.s12
+                                i.material-icons.prefix perm_identity
+                                input#name.validate(type="text", length="10" value=player_name)
+                                label(for="name") Имя
 
-                    .input-field.col.s12
-                        i.material-icons.prefix email
-                        input#email.validate(type='email' value=email)
-                        label(for="email" data-error="Неверный адрес email" data-success="OK") Email
+                            .input-field.col.s12
+                                i.material-icons.prefix email
+                                input#email.validate(type='email' value=email)
+                                label(for="email" data-error="Неверный адрес email" data-success="OK") Email
 
 
-                    .input-field.col.s12
-                        i.material-icons.prefix vpn_key
-                        input#password.validate(type="password")
-                        label(for="password") Пароль
+                            .input-field.col.s12
+                                i.material-icons.prefix vpn_key
+                                input#password.validate(type="password")
+                                label(for="password") Пароль
 
-                    .input-field.col.s12
-                        i.material-icons.prefix vpn_key
-                        input#re-password.validate(type="password")
-                        label(for="re-password") Повторите пароль
+                            .input-field.col.s12
+                                i.material-icons.prefix vpn_key
+                                input#re-password.validate(type="password")
+                                label(for="re-password") Повторите пароль
 
-                    .col.s12
-                        button.btn.waves-effect.waves-light(type="submit" name="action") Изменить данные
-                            i.material-icons.right send
-
-        .save-games
-            .row
-                table.highlight
-                    thead
-                        tr
-                            th №
-                            th Имя
-                            th Счет
-                            th Дата
-                            th Количество камней/лунок
+                            .col.s12
+                                button.btn.waves-effect.waves-light(type="submit" name="action") Изменить данные
+                                    i.material-icons.right send
+            .col.l6.m6.s12
+                .save-games
+                    .row
+                        table.highlight
+                            thead
+                                tr
+                                    th №
+                                    th Имя
+                                    th Счет
+                                    th Дата
+                                    th Количество камней/лунок
 
