@@ -61,9 +61,29 @@
           <div class="row">
             <form>
               <div class="input-field col s12">
+                <label for="count_lunk">Число лунок</label>
                 <p class="range-field">
                   <input id="count_lunk" type="range" min="3" max="8">
                 </p>
+              </div>
+              <div class="input-field col s12">
+                <label for="count_stouns">Число камней</label>
+                <p class="range-field">
+                  <input id="count_stouns" type="range" min="6" max="12">
+                </p>
+              </div>
+              <div class="input-field col s12">
+                <label for="level">Уровень сложности</label>
+                <p class="range-field">
+                  <input id="level" type="range" min="1" max="5">
+                </p>
+              </div>
+              <div class="input-field col s12"><i class="material-icons prefix">perm_identity</i>
+                <input id="friend" type="text" length="10" class="validate">
+                <label for="friend">Пригласить друга</label>
+              </div>
+              <div class="col s12">
+                <button type="submit" name="action" class="btn waves-effect waves-light">Создать игру<i class="material-icons right">send</i></button>
               </div>
             </form>
           </div>
