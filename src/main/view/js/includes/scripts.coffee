@@ -52,6 +52,8 @@
     lunka = $(".board .lunka")
     kalah = $(".board .kalah")
 
+
+#    Анимация нажатия на лунку
     lunka.mousedown ->
       if (!$(@).hasClass("enemy-obj"))
         $(@)
@@ -62,6 +64,7 @@
         .removeClass "active"
       return
 
+#      Анимация нажатия на калах
 #    kalah.mousedown ->
 #      $(@)
 #        .addClass "active"
@@ -72,19 +75,8 @@
 #      return
 
     #Registration
-      return
+    return
 
-#    $(function() {
-#      $('select').material_select();
-#      $(".dropdown-button").dropdown();
-#      Materialize.updateTextFields();
-#      $('.collapsible').collapsible({
-#        accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-#      });
-#      $("table tbody tr").dblclick(function () {
-#        $('#element').openModal();
-#      });
-#    });
     return
 
 

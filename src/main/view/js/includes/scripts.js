@@ -54,8 +54,8 @@
     });
     lunka.mouseup(function() {
       $(this).removeClass("active");
-      return;
     });
+    return;
   });
 
 }).call(this);
