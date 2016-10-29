@@ -455,6 +455,12 @@ header .brand-logo {
   height: 60vh;
   overflow: scroll;
 }
+#main .registration .games table,
+#main .login .games table,
+#main .new-game .games table,
+#main .game-list .games table {
+  overflow-x: hidden;
+}
 #main .registration h1,
 #main .login h1,
 #main .new-game h1,
