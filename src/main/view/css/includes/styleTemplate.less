@@ -130,6 +130,14 @@ body {
   }
 }
 
+table.highlight > tbody > tr {
+  .transition(background-color, .25s, ease);
+
+  &:hover {
+    background-color: @color-background + 5% !important;
+  }
+}
+
 .transition(@color, @time: .25s, @param: ease) {
   -webkit-transition: @color @time @param;
   -o-transition: @color @time @param;

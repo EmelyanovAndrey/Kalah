@@ -1,0 +1,29 @@
+extends layout
+
+block title
+    title #{title} | Список игр
+
+block content
+    -var games = [{name: "Alex", count: "12/8"}, {name: "Alex", count: "12/8"}, {name: "Alex", count: "12/8"},{name: "Alex", count: "12/8"},{name: "Alex", count: "12/8"},{name: "Alex", count: "12/8"},{name: "Alex", count: "12/8"},{name: "Alex", count: "12/8"},{name: "Alex", count: "12/8"}]
+    .game-list
+        .container
+            .row
+                h1 Список игр
+            .row
+                .games
+                    table.highlight.centered
+                        thead
+                            tr
+                                th №
+                                th Противник
+                                th Камни/Лунки
+                        tbody
+                            - each val, index in games
+                                tr
+                                    td #{index + 1}
+                                    td #{val.name}
+                                    td #{val.count}
+                form
+                    .col.s12
+                        button.btn.waves-effect.waves-light(type="submit" name="action") Создать свою игру
+                            i.material-icons.right send

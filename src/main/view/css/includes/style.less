@@ -242,13 +242,13 @@ header {
     }
   }
 
-  .registration, .login, .new-game {
+  .registration, .login, .new-game, .game-list {
 
     height: 90vh;
     padding-top: 5vh;
     align-content: center;
 
-    form {
+    form, table {
       height: 50vh;
       margin: auto;
 
@@ -263,6 +263,12 @@ header {
       @media all and (max-width: @width-divide-phone) {
         width: 60vw;
       }
+    }
+
+    .games {
+
+      height: 60vh;
+      overflow: scroll;
     }
 
     h1 {
@@ -309,13 +315,7 @@ header {
   margin-left: 5vw;
   align-content: center;
 
-  table.highlight > tbody > tr {
-    .transition(background-color, .25s, ease);
 
-    &:hover {
-      background-color: @color-background + 5% !important;
-    }
-  }
 }
 
 
