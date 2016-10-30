@@ -242,14 +242,41 @@ header {
     }
   }
 
+  .game-list {
+
+  }
+
   .registration, .login, .new-game, .game-list {
 
     height: 90vh;
     padding-top: 5vh;
     align-content: center;
 
-    form, table {
-      height: 50vh;
+    table {
+      overflow-y: scroll;
+
+      thead, tbody tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+      }
+
+      tbody {
+        display: block;
+        overflow: auto;
+        height: 50vh;
+
+        tr {
+          display: table;
+        }
+      }
+    }
+
+    a {
+      display: block;
+    }
+
+    form, table, a {
       margin: auto;
 
       @media all and (min-width: @width-divide) {
@@ -263,17 +290,6 @@ header {
       @media all and (max-width: @width-divide-phone) {
         width: 60vw;
       }
-    }
-
-    .games {
-      height: 40vh;
-      overflow: scroll;
-
-      & table {
-        overflow-x: hidden;
-
-      }
-
     }
 
     h1 {
@@ -295,7 +311,6 @@ header {
 
 .profile {
   float: left;
-  height: 90vh !important;
   margin: 10px;
   align-content: center;
 
@@ -319,8 +334,6 @@ header {
   margin-top: 18vh;
   margin-left: 5vw;
   align-content: center;
-
-
 }
 
 

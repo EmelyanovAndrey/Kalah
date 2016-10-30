@@ -103,14 +103,18 @@ table.highlight > tbody > tr {
 table.highlight > tbody > tr:hover {
   background-color: #3c4c54 !important;
 }
-.btn {
+.btn,
+.btn + a {
   background-color: #880e4f;
 }
 .btn,
-.btn .large {
+.btn + a,
+.btn .large,
+.btn + a .large {
   width: inherit;
 }
-.btn:hover {
+.btn:hover,
+.btn + a:hover {
   background-color: #9c2263;
 }
 input::-moz-focus-inner {
@@ -401,6 +405,44 @@ header .brand-logo {
   padding-top: 5vh;
   align-content: center;
 }
+#main .registration table,
+#main .login table,
+#main .new-game table,
+#main .game-list table {
+  overflow-y: scroll;
+}
+#main .registration table thead,
+#main .login table thead,
+#main .new-game table thead,
+#main .game-list table thead,
+#main .registration table tbody tr,
+#main .login table tbody tr,
+#main .new-game table tbody tr,
+#main .game-list table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+#main .registration table tbody,
+#main .login table tbody,
+#main .new-game table tbody,
+#main .game-list table tbody {
+  display: block;
+  overflow: auto;
+  height: 50vh;
+}
+#main .registration table tbody tr,
+#main .login table tbody tr,
+#main .new-game table tbody tr,
+#main .game-list table tbody tr {
+  display: table;
+}
+#main .registration a,
+#main .login a,
+#main .new-game a,
+#main .game-list a {
+  display: block;
+}
 #main .registration form,
 #main .login form,
 #main .new-game form,
@@ -408,8 +450,11 @@ header .brand-logo {
 #main .registration table,
 #main .login table,
 #main .new-game table,
-#main .game-list table {
-  height: 50vh;
+#main .game-list table,
+#main .registration a,
+#main .login a,
+#main .new-game a,
+#main .game-list a {
   margin: auto;
 }
 @media all and (min-width: 993px) {
@@ -420,7 +465,11 @@ header .brand-logo {
   #main .registration table,
   #main .login table,
   #main .new-game table,
-  #main .game-list table {
+  #main .game-list table,
+  #main .registration a,
+  #main .login a,
+  #main .new-game a,
+  #main .game-list a {
     width: 30vw;
   }
 }
@@ -432,7 +481,11 @@ header .brand-logo {
   #main .registration table,
   #main .login table,
   #main .new-game table,
-  #main .game-list table {
+  #main .game-list table,
+  #main .registration a,
+  #main .login a,
+  #main .new-game a,
+  #main .game-list a {
     width: 50vw;
   }
 }
@@ -444,22 +497,13 @@ header .brand-logo {
   #main .registration table,
   #main .login table,
   #main .new-game table,
-  #main .game-list table {
+  #main .game-list table,
+  #main .registration a,
+  #main .login a,
+  #main .new-game a,
+  #main .game-list a {
     width: 60vw;
   }
-}
-#main .registration .games,
-#main .login .games,
-#main .new-game .games,
-#main .game-list .games {
-  height: 40vh;
-  overflow: scroll;
-}
-#main .registration .games table,
-#main .login .games table,
-#main .new-game .games table,
-#main .game-list .games table {
-  overflow-x: hidden;
 }
 #main .registration h1,
 #main .login h1,
@@ -487,7 +531,6 @@ header .brand-logo {
 }
 .profile {
   float: left;
-  height: 90vh !important;
   margin: 10px;
   align-content: center;
 }
