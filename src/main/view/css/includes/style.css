@@ -84,12 +84,11 @@ footer .footer-copyright .row {
 }
 body {
   display: flex;
-  min-height: 100vh;
   flex-direction: column;
 }
 body #main {
   flex: 1 0 auto;
-  height: 100vh;
+  min-height: 100vh;
   padding: 20px;
 }
 table.highlight > tbody > tr {
@@ -548,4 +547,21 @@ header .brand-logo {
 .save-games {
   margin-left: 5vw;
   align-content: center;
+}
+.save-games table {
+  overflow-y: scroll;
+}
+.save-games table thead,
+.save-games table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.save-games table tbody {
+  display: block;
+  overflow: auto;
+  height: 50vh;
+}
+.save-games table tbody tr {
+  display: table;
 }

@@ -115,13 +115,12 @@ footer {
 
 body {
   display: flex;
-  min-height: 100vh;
   flex-direction: column;
 
   #main {
     flex: 1 0 auto;
 
-    height: 100vh;
+    min-height: 100vh;
 
     padding: 20px;
   }
@@ -132,6 +131,28 @@ table.highlight > tbody > tr {
 
   &:hover {
     background-color: @color-background + 5% !important;
+  }
+}
+
+.table-scrollable(@height) {
+  table {
+    overflow-y: scroll;
+
+    thead, tbody tr {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    tbody {
+      display: block;
+      overflow: auto;
+      height: @height;
+
+      tr {
+        display: table;
+      }
+    }
   }
 }
 

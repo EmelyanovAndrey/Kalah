@@ -271,25 +271,7 @@ header {
   padding-top: 5vh;
   align-content: center;
 
-  table {
-    overflow-y: scroll;
-
-    thead, tbody tr {
-      display: table;
-      width: 100%;
-      table-layout: fixed;
-    }
-
-    tbody {
-      display: block;
-      overflow: auto;
-      height: 50vh;
-
-      tr {
-        display: table;
-      }
-    }
-  }
+  .table-scrollable(50vh);
 
   a {
     display: block;
@@ -330,6 +312,8 @@ header {
 .save-games {
   margin-left: 5vw;
   align-content: center;
+
+  .table-scrollable(50vh);
 
 }
 
