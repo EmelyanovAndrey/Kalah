@@ -88,6 +88,7 @@ body {
 }
 body #main {
   flex: 1 0 auto;
+  color: #f5f5f5 !important;
   min-height: 100vh;
   padding: 20px;
 }
@@ -206,7 +207,6 @@ header .brand-logo {
 }
 #main {
   padding: 0 !important;
-  color: #f5f5f5 !important;
 }
 .profile {
   float: left;
@@ -554,4 +554,32 @@ header .brand-logo {
 }
 .save-games table tbody tr {
   display: table;
+}
+.rules {
+  margin-top: 10vh;
+}
+.rules img {
+  height: 25vh;
+  margin: 7px;
+}
+@media all and (min-width: 993px) {
+  .rules img {
+    width: 30vw;
+  }
+}
+@media all and (max-width: 993px) {
+  .rules img {
+    width: 40vw;
+  }
+}
+@media all and (max-width: 650px) {
+  .rules img {
+    width: 50vw;
+  }
+}
+.rules .row + .right img {
+  float: right;
+}
+.rules .row + .left img {
+  float: left;
 }

@@ -8,9 +8,7 @@ header {
 
 #main {
   padding: 0 !important;
-  color: @color-text !important;
 }
-
 
 .profile {
   @height: 13vh;
@@ -325,6 +323,42 @@ header {
 }
 
 .rules {
+
+  margin-top: 10vh;
+
+  img {
+    height: 25vh;
+
+    @media all and (min-width: @width-divide) {
+      width: 30vw;
+    }
+
+    @media all and (max-width: @width-divide) {
+      width: 40vw;
+    }
+
+    @media all and (max-width: @width-divide-phone) {
+      width: 50vw;
+    }
+
+    margin: 7px;
+  }
+
+  .row + .right {
+    img {
+      float: right;
+    }
+
+
+  }
+
+  .row + .left {
+    img {
+      float: left;
+    }
+
+
+  }
 
 }
 
