@@ -212,6 +212,19 @@ header {
       border-collapse: separate;
       padding: 20px;
       height: 30vh;
+
+      @media all and (min-width: @width-divide) {
+        width: 100% !important;
+      }
+
+      @media all and (max-width: @width-divide) {
+        width: 100% !important;
+      }
+
+      @media all and (max-width: @width-divide-phone) {
+        width: 90vw !important;
+      }
+
       border-spacing: 1vw 1vh;
 
     }
@@ -267,6 +280,10 @@ header {
       }
     }
 
+  }
+
+  .save-game {
+    padding-top: 10vh;
   }
 }
 

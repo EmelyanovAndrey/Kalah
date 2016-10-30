@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <title>Kalah | Игра</title>
+    <title>Kalah | Новая игра</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -53,48 +53,39 @@
       </div>
     </header>
     <div id="main">
-      <div class="game">
+      <div class="new-game">
         <div class="container">
           <div class="row">
-            <div class="apponent"><img src="/Kalah/src/main/view/assets/img/ai-profile.jpg">
-              <div class="nick">Terminator</div>
-            </div>
+            <h1>Новая игра</h1>
           </div>
           <div class="row">
-            <table class="board">
-              <tr>
-                <td rowspan="2" class="kalah enemy-obj"><span>0</span></td>
-                <td class="lunka enemy-obj"><span>6</span></td>
-                <td class="lunka enemy-obj"><span>6</span></td>
-                <td class="lunka enemy-obj"><span>6</span></td>
-                <td class="lunka enemy-obj"><span>6</span></td>
-                <td class="lunka enemy-obj"><span>6</span></td>
-                <td class="lunka enemy-obj"><span>6</span></td>
-                <td class="lunka enemy-obj"><span>6</span></td>
-                <td rowspan="2" class="kalah"><span>0</span></td>
-              </tr>
-              <tr>
-                <td class="lunka"><span>6</span></td>
-                <td class="lunka"><span>6</span></td>
-                <td class="lunka"><span>6</span></td>
-                <td class="lunka"><span>6</span></td>
-                <td class="lunka"><span>6</span></td>
-                <td class="lunka"><span>6</span></td>
-                <td class="lunka"><span>6</span></td>
-              </tr>
-            </table>
-          </div>
-          <div class="row">
-            <div class="player"><img src="/Kalah/src/main/view/assets/img/profile-test.jpg">
-              <div class="nick">Marcus</div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="save-game">
-              <div class="col s12">
-                <button type="submit" name="action" class="btn waves-effect waves-light large">Сохранить игру<i class="material-icons right">send</i></button>
+            <form>
+              <div class="input-field col s12">
+                <label for="count_lunk">Число лунок</label>
+                <p class="range-field">
+                  <input id="count_lunk" type="range" min="3" max="8">
+                </p>
               </div>
-            </div>
+              <div class="input-field col s12">
+                <label for="count_stouns">Число камней</label>
+                <p class="range-field">
+                  <input id="count_stouns" type="range" min="6" max="12">
+                </p>
+              </div>
+              <div class="input-field col s12">
+                <label for="level">Уровень сложности</label>
+                <p class="range-field">
+                  <input id="level" type="range" min="1" max="5">
+                </p>
+              </div>
+              <!--.input-field.col.s12
+              i.material-icons.prefix perm_identity
+              input#friend.validate(type="text", length="10")
+              label(for="friend") Пригласить друга
+              
+              -->
+              <div class="col s12"><a href="/Kalah/src/main/view/game.html" type="submit" name="action" class="btn waves-effect waves-light">Создать игру<i class="material-icons right">send</i></a></div>
+            </form>
           </div>
         </div>
       </div>
