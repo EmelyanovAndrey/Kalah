@@ -285,7 +285,7 @@ header {
   }
 }
 
-.registration, .login, .new-game, .game-list {
+.registration, .login, .new-game, .game-list, .rules {
 
   height: 90vh;
   padding-top: 5vh;
@@ -297,20 +297,7 @@ header {
     display: block;
   }
 
-  h1 {
-    font-family: 'Orbitron', sans-serif;
 
-    @media all and (min-width: @width-divide) {
-      font-size: 4vw !important;
-    }
-
-    @media all and (max-width: @width-divide) {
-      font-size: 6vw;
-    }
-
-    text-align: center;
-    color: @color-text;
-  }
 }
 
 .save-games {
@@ -324,10 +311,7 @@ header {
 
 .rules {
 
-  margin-top: 10vh;
-
   img {
-    height: 25vh;
 
     @media all and (min-width: @width-divide) {
       width: 30vw;
@@ -341,10 +325,10 @@ header {
       width: 50vw;
     }
 
-    margin: 7px;
+    margin: 10px;
   }
 
-  .row + .right {
+  & .right {
     img {
       float: right;
     }
@@ -352,7 +336,7 @@ header {
 
   }
 
-  .row + .left {
+  & .left {
     img {
       float: left;
     }

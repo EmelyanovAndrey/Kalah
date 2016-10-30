@@ -51,14 +51,30 @@ header nav .large-nav-bar {
   text-align: center;
   padding-top: 35vh;
 }
-.slider .inner h1,
-.slider .inner h2,
-.slider .inner h3 {
-  font-size: 5vw;
-}
 .slider .inner a.btn-large {
   background-color: #880e4f;
   margin: 10px;
+}
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  word-wrap: break-word;
+  text-align: center;
+  color: #f5f5f5;
+}
+@media all and (min-width: 993px) {
+  h1 {
+    font-size: 4vw !important;
+  }
+}
+@media all and (max-width: 993px) {
+  h1 {
+    font-size: 6vw;
+  }
+}
+@media all and (max-width: 650px) {
+  h1 {
+    font-size: 9vw;
+  }
 }
 footer {
   background-color: #880e4f;
@@ -466,7 +482,8 @@ header .brand-logo {
 .registration,
 .login,
 .new-game,
-.game-list {
+.game-list,
+.rules {
   height: 90vh;
   padding-top: 5vh;
   align-content: center;
@@ -474,17 +491,20 @@ header .brand-logo {
 .registration table,
 .login table,
 .new-game table,
-.game-list table {
+.game-list table,
+.rules table {
   overflow-y: auto;
 }
 .registration table thead,
 .login table thead,
 .new-game table thead,
 .game-list table thead,
+.rules table thead,
 .registration table tbody tr,
 .login table tbody tr,
 .new-game table tbody tr,
-.game-list table tbody tr {
+.game-list table tbody tr,
+.rules table tbody tr {
   display: table;
   width: 100%;
   table-layout: fixed;
@@ -492,7 +512,8 @@ header .brand-logo {
 .registration table tbody,
 .login table tbody,
 .new-game table tbody,
-.game-list table tbody {
+.game-list table tbody,
+.rules table tbody {
   display: block;
   overflow: auto;
   height: 45vh;
@@ -500,38 +521,16 @@ header .brand-logo {
 .registration table tbody tr,
 .login table tbody tr,
 .new-game table tbody tr,
-.game-list table tbody tr {
+.game-list table tbody tr,
+.rules table tbody tr {
   display: table;
 }
 .registration a,
 .login a,
 .new-game a,
-.game-list a {
+.game-list a,
+.rules a {
   display: block;
-}
-.registration h1,
-.login h1,
-.new-game h1,
-.game-list h1 {
-  font-family: 'Orbitron', sans-serif;
-  text-align: center;
-  color: #f5f5f5;
-}
-@media all and (min-width: 993px) {
-  .registration h1,
-  .login h1,
-  .new-game h1,
-  .game-list h1 {
-    font-size: 4vw !important;
-  }
-}
-@media all and (max-width: 993px) {
-  .registration h1,
-  .login h1,
-  .new-game h1,
-  .game-list h1 {
-    font-size: 6vw;
-  }
 }
 .save-games {
   margin-left: 5vw;
@@ -555,12 +554,8 @@ header .brand-logo {
 .save-games table tbody tr {
   display: table;
 }
-.rules {
-  margin-top: 10vh;
-}
 .rules img {
-  height: 25vh;
-  margin: 7px;
+  margin: 10px;
 }
 @media all and (min-width: 993px) {
   .rules img {
@@ -577,9 +572,9 @@ header .brand-logo {
     width: 50vw;
   }
 }
-.rules .row + .right img {
+.rules .right img {
   float: right;
 }
-.rules .row + .left img {
+.rules .left img {
   float: left;
 }

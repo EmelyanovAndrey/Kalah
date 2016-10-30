@@ -75,15 +75,31 @@ header {
     text-align: center;
     padding-top: 35vh;
 
-    h1, h2, h3 {
-      font-size: 5vw;
-    }
-
     a.btn-large {
       background-color: @color-main;
       margin: 10px;
     }
   }
+}
+
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  word-wrap: break-word;
+
+  @media all and (min-width: @width-divide) {
+    font-size: 4vw !important;
+  }
+
+  @media all and (max-width: @width-divide) {
+    font-size: 6vw;
+  }
+
+  @media all and (max-width: @width-divide-phone) {
+    font-size: 9vw;
+  }
+
+  text-align: center;
+  color: @color-text;
 }
 
 footer {
