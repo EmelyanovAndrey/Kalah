@@ -87,14 +87,13 @@ header {
 
 footer {
   background-color: @color-main;
-  color: @color-text;
-  margin-top: 20px;
 
   a {
     &:hover {
       text-decoration: underline;
     }
   }
+
   #more-footer {
     padding-top: 20px;
 
@@ -107,7 +106,6 @@ footer {
     font-weight: 300;
     line-height: 50px;
     background-color: @color-main-dark;
-
 
     .row {
       margin-bottom: 0;
@@ -123,10 +121,9 @@ body {
   #main {
     flex: 1 0 auto;
 
+    height: 100vh;
+
     padding: 20px;
-
-    color:black;
-
   }
 }
 
@@ -166,10 +163,6 @@ table.highlight > tbody > tr {
   }
 }
 
-input::-moz-focus-inner {
-  border: 0 !important;
-}
-
 :focus, :hover, :active {
   outline: 0;
 }
@@ -182,6 +175,10 @@ input::-moz-focus-inner {
 
   input {
     color: @color-input-text;
+
+    &::-moz-focus-inner {
+      border: 0 !important;
+    }
   }
 
   input[type="text"], input[type="password"], input[type="email"] {

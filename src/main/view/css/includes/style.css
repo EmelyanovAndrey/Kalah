@@ -62,8 +62,6 @@ header nav .large-nav-bar {
 }
 footer {
   background-color: #880e4f;
-  color: #f5f5f5;
-  margin-top: 20px;
 }
 footer a:hover {
   text-decoration: underline;
@@ -91,8 +89,8 @@ body {
 }
 body #main {
   flex: 1 0 auto;
+  height: 100vh;
   padding: 20px;
-  color: black;
 }
 table.highlight > tbody > tr {
   -webkit-transition: background-color 0.25s ease;
@@ -117,9 +115,6 @@ table.highlight > tbody > tr:hover {
 .btn + a:hover {
   background-color: #9c2263;
 }
-input::-moz-focus-inner {
-  border: 0 !important;
-}
 :focus,
 :hover,
 :active {
@@ -130,6 +125,9 @@ input::-moz-focus-inner {
 }
 .input-field input {
   color: #f5f5f5;
+}
+.input-field input::-moz-focus-inner {
+  border: 0 !important;
 }
 .input-field input[type="text"],
 .input-field input[type="password"],
@@ -184,46 +182,65 @@ header .brand-logo {
   padding: 0 !important;
   color: #f5f5f5 !important;
 }
-#main .vs-menu {
+.profile {
+  float: left;
+  margin: 10px;
+  align-content: center;
+  height: 13vh;
+}
+.profile .nick {
+  font-size: 200%;
+  float: right;
+  height: inherit;
+  line-height: 13vh;
+  margin-left: 10px;
+  color: #f5f5f5;
+}
+.profile img {
+  border-radius: 100px;
+  margin-right: 10px;
+  float: left;
+}
+.vs-menu {
   margin: 5px 0;
   height: 100vh;
   width: 100vw;
 }
-#main .vs-menu .left {
+.vs-menu .left {
   -webkit-shape-outside: polygon(0 0, 0 100%, 40% 100%, 60% 0);
   shape-outside: polygon(0 0, 0 100%, 40% 100%, 60% 0);
   -webkit-clip-path: polygon(0 0, 0 100%, 40% 100%, 60% 0);
   clip-path: polygon(0 0, 0 100%, 40% 100%, 60% 0);
   float: left;
 }
-#main .vs-menu .left h2 {
+.vs-menu .left h2 {
   text-align: left;
   margin-left: 10vw;
   padding-top: 35vh;
 }
-#main .vs-menu .right {
+.vs-menu .right {
   -webkit-shape-outside: polygon(40% 100%, 60% 0, 100% 0, 100% 100%);
   shape-outside: polygon(40% 100%, 60% 0, 100% 0, 100% 100%);
   -webkit-clip-path: polygon(40% 100%, 60% 0, 100% 0, 100% 100%);
   clip-path: polygon(40% 100%, 60% 0, 100% 0, 100% 100%);
   float: right;
 }
-#main .vs-menu .right h2 {
+.vs-menu .right h2 {
   text-align: right;
   margin-right: 20vw;
   padding-top: 70vh;
 }
-#main .vs-menu .simple {
+.vs-menu .simple {
   width: 50vw !important;
   position: relative !important;
   background-position: center;
 }
-#main .vs-menu .simple h2 {
+.vs-menu .simple h2 {
   text-align: center;
   padding-top: 50vh;
   margin: 0;
 }
-#main .vs-menu .human {
+.vs-menu .human {
   background: url('../assets/img/human2.jpg') no-repeat center;
   background-size: cover;
   position: absolute;
@@ -231,22 +248,22 @@ header .brand-logo {
   height: inherit;
   padding: 0;
 }
-#main .vs-menu .human a,
-#main .vs-menu .human {
+.vs-menu .human a,
+.vs-menu .human {
   height: inherit;
 }
-#main .vs-menu .human .inner {
+.vs-menu .human .inner {
   background-color: #37474f;
   height: inherit;
   opacity: 0;
 }
-#main .vs-menu .human h2 {
+.vs-menu .human h2 {
   font-size: 5vw;
   color: #f5f5f5;
   margin-top: 0;
   font-family: 'Orbitron', sans-serif;
 }
-#main .vs-menu .comp {
+.vs-menu .comp {
   background: url('../assets/img/ai.jpg') no-repeat center;
   background-size: cover;
   position: absolute;
@@ -254,47 +271,46 @@ header .brand-logo {
   height: inherit;
   padding: 0;
 }
-#main .vs-menu .comp a,
-#main .vs-menu .comp {
+.vs-menu .comp a,
+.vs-menu .comp {
   height: inherit;
 }
-#main .vs-menu .comp .inner {
+.vs-menu .comp .inner {
   background-color: #37474f;
   height: inherit;
   opacity: 0;
 }
-#main .vs-menu .comp h2 {
+.vs-menu .comp h2 {
   font-size: 5vw;
   color: #f5f5f5;
   margin-top: 0;
   font-family: 'Orbitron', sans-serif;
 }
-#main #rules.video {
+#rules.video {
   margin-top: 30px;
   margin-bottom: 0;
   height: 100vh;
   width: 75vw;
 }
-#main #rules.video .video-container {
+#rules.video .video-container {
   height: auto;
   width: auto;
 }
-#main #rules.video .video-container .iframe {
+#rules.video .video-container .iframe {
   height: inherit;
   width: auto;
 }
-#main .game {
+.game {
   padding-top: 5vh;
-  height: 90vh !important;
   margin-right: 5vw !important;
 }
-#main .game .player {
+.game .player {
   float: right;
   height: 10vh;
   margin: 10px;
   align-content: center;
 }
-#main .game .player .nick {
+.game .player .nick {
   font-size: 130%;
   height: inherit;
   line-height: 10vh;
@@ -302,18 +318,18 @@ header .brand-logo {
   float: right;
   color: #f5f5f5;
 }
-#main .game .player img {
+.game .player img {
   height: inherit;
   border-radius: 100px;
   float: right;
 }
-#main .game .apponent {
+.game .apponent {
   float: left;
   height: 10vh;
   margin: 10px;
   align-content: center;
 }
-#main .game .apponent .nick {
+.game .apponent .nick {
   font-size: 130%;
   height: inherit;
   line-height: 10vh;
@@ -321,26 +337,26 @@ header .brand-logo {
   float: left;
   color: #f5f5f5;
 }
-#main .game .apponent img {
+.game .apponent img {
   height: inherit;
   border-radius: 100px;
   float: left;
 }
-#main .game .board {
+.game .board {
   background-color: #880e4f;
   color: #f5f5f5;
   box-shadow: 0 7px 7px #790040;
   border-radius: 60px;
   margin: 10px;
 }
-#main .game .board,
-#main .game .board table {
+.game .board,
+.game .board table {
   border-collapse: separate;
   padding: 20px;
   height: 30vh;
   border-spacing: 1vw 1vh;
 }
-#main .game .board .kalah {
+.game .board .kalah {
   height: 30vh;
   width: 1vw;
   border-radius: 30px;
@@ -358,15 +374,15 @@ header .brand-logo {
   -ms-user-select: none;
   user-select: none;
 }
-#main .game .board .kalah + .enemy-obj:hover {
+.game .board .kalah + .enemy-obj:hover {
   background-color: #37474f;
   color: #f5f5f5;
   cursor: default;
 }
-#main .game .board .kalah + .active {
+.game .board .kalah + .active {
   box-shadow: inset 0 0 20px;
 }
-#main .game .board .lunka {
+.game .board .lunka {
   height: 5vh;
   width: 1vh;
   border-radius: 100px;
@@ -384,171 +400,152 @@ header .brand-logo {
   -ms-user-select: none;
   user-select: none;
 }
-#main .game .board .lunka + .enemy-obj:hover {
+.game .board .lunka + .enemy-obj:hover {
   background-color: #37474f;
   color: #f5f5f5;
   cursor: default;
 }
-#main .game .board .lunka + .active {
+.game .board .lunka + .active {
   box-shadow: inset 0 0 20px;
 }
-#main .game .board .lunka:hover {
+.game .board .lunka:hover {
   background-color: #f5f5f5;
   color: #37474f;
   cursor: pointer;
 }
-#main .registration,
-#main .login,
-#main .new-game,
-#main .game-list {
+.registration,
+.login,
+.new-game,
+.game-list {
   height: 90vh;
   padding-top: 5vh;
   align-content: center;
 }
-#main .registration table,
-#main .login table,
-#main .new-game table,
-#main .game-list table {
+.registration table,
+.login table,
+.new-game table,
+.game-list table {
   overflow-y: scroll;
 }
-#main .registration table thead,
-#main .login table thead,
-#main .new-game table thead,
-#main .game-list table thead,
-#main .registration table tbody tr,
-#main .login table tbody tr,
-#main .new-game table tbody tr,
-#main .game-list table tbody tr {
+.registration table thead,
+.login table thead,
+.new-game table thead,
+.game-list table thead,
+.registration table tbody tr,
+.login table tbody tr,
+.new-game table tbody tr,
+.game-list table tbody tr {
   display: table;
   width: 100%;
   table-layout: fixed;
 }
-#main .registration table tbody,
-#main .login table tbody,
-#main .new-game table tbody,
-#main .game-list table tbody {
+.registration table tbody,
+.login table tbody,
+.new-game table tbody,
+.game-list table tbody {
   display: block;
   overflow: auto;
   height: 50vh;
 }
-#main .registration table tbody tr,
-#main .login table tbody tr,
-#main .new-game table tbody tr,
-#main .game-list table tbody tr {
+.registration table tbody tr,
+.login table tbody tr,
+.new-game table tbody tr,
+.game-list table tbody tr {
   display: table;
 }
-#main .registration a,
-#main .login a,
-#main .new-game a,
-#main .game-list a {
+.registration a,
+.login a,
+.new-game a,
+.game-list a {
   display: block;
 }
-#main .registration form,
-#main .login form,
-#main .new-game form,
-#main .game-list form,
-#main .registration table,
-#main .login table,
-#main .new-game table,
-#main .game-list table,
-#main .registration a,
-#main .login a,
-#main .new-game a,
-#main .game-list a {
+.registration form,
+.login form,
+.new-game form,
+.game-list form,
+.registration table,
+.login table,
+.new-game table,
+.game-list table,
+.registration a,
+.login a,
+.new-game a,
+.game-list a {
   margin: auto;
 }
 @media all and (min-width: 993px) {
-  #main .registration form,
-  #main .login form,
-  #main .new-game form,
-  #main .game-list form,
-  #main .registration table,
-  #main .login table,
-  #main .new-game table,
-  #main .game-list table,
-  #main .registration a,
-  #main .login a,
-  #main .new-game a,
-  #main .game-list a {
+  .registration form,
+  .login form,
+  .new-game form,
+  .game-list form,
+  .registration table,
+  .login table,
+  .new-game table,
+  .game-list table,
+  .registration a,
+  .login a,
+  .new-game a,
+  .game-list a {
     width: 30vw;
   }
 }
 @media all and (max-width: 993px) {
-  #main .registration form,
-  #main .login form,
-  #main .new-game form,
-  #main .game-list form,
-  #main .registration table,
-  #main .login table,
-  #main .new-game table,
-  #main .game-list table,
-  #main .registration a,
-  #main .login a,
-  #main .new-game a,
-  #main .game-list a {
+  .registration form,
+  .login form,
+  .new-game form,
+  .game-list form,
+  .registration table,
+  .login table,
+  .new-game table,
+  .game-list table,
+  .registration a,
+  .login a,
+  .new-game a,
+  .game-list a {
     width: 50vw;
   }
 }
 @media all and (max-width: 650px) {
-  #main .registration form,
-  #main .login form,
-  #main .new-game form,
-  #main .game-list form,
-  #main .registration table,
-  #main .login table,
-  #main .new-game table,
-  #main .game-list table,
-  #main .registration a,
-  #main .login a,
-  #main .new-game a,
-  #main .game-list a {
+  .registration form,
+  .login form,
+  .new-game form,
+  .game-list form,
+  .registration table,
+  .login table,
+  .new-game table,
+  .game-list table,
+  .registration a,
+  .login a,
+  .new-game a,
+  .game-list a {
     width: 60vw;
   }
 }
-#main .registration h1,
-#main .login h1,
-#main .new-game h1,
-#main .game-list h1 {
+.registration h1,
+.login h1,
+.new-game h1,
+.game-list h1 {
   font-family: 'Orbitron', sans-serif;
   text-align: center;
   color: #f5f5f5;
 }
 @media all and (min-width: 993px) {
-  #main .registration h1,
-  #main .login h1,
-  #main .new-game h1,
-  #main .game-list h1 {
+  .registration h1,
+  .login h1,
+  .new-game h1,
+  .game-list h1 {
     font-size: 4vw !important;
   }
 }
 @media all and (max-width: 993px) {
-  #main .registration h1,
-  #main .login h1,
-  #main .new-game h1,
-  #main .game-list h1 {
+  .registration h1,
+  .login h1,
+  .new-game h1,
+  .game-list h1 {
     font-size: 6vw;
   }
 }
-.profile {
-  float: left;
-  margin: 10px;
-  align-content: center;
-}
-.profile .nick {
-  font-size: 200%;
-  height: inherit;
-  line-height: 10vh;
-  margin-left: 10px;
-  color: #f5f5f5;
-}
-.profile img {
-  border-radius: 100px;
-  margin-right: 10px;
-  float: left;
-}
 .save-games {
-  height: 90vh !important;
-  margin-top: 18vh;
   margin-left: 5vw;
   align-content: center;
 }
