@@ -103,6 +103,7 @@ table.highlight > tbody > tr:hover {
 .btn,
 .btn + a {
   background-color: #880e4f;
+  letter-spacing: 0px;
 }
 .btn,
 .btn + a,
@@ -199,6 +200,9 @@ header .brand-logo {
   border-radius: 100px;
   margin-right: 10px;
   float: left;
+}
+.profile-form {
+  height: 75vh;
 }
 .vs-menu {
   margin: 5px 0;
@@ -444,7 +448,7 @@ header .brand-logo {
 .game-list table tbody {
   display: block;
   overflow: auto;
-  height: 50vh;
+  height: 45vh;
 }
 .registration table tbody tr,
 .login table tbody tr,
@@ -547,6 +551,7 @@ header .brand-logo {
 .save-games {
   margin-left: 5vw;
   align-content: center;
+  height: inherit;
 }
 .save-games table {
   overflow-y: scroll;
@@ -560,7 +565,7 @@ header .brand-logo {
 .save-games table tbody {
   display: block;
   overflow: auto;
-  height: 50vh;
+  height: 65vh;
 }
 .save-games table tbody tr {
   display: table;
