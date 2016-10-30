@@ -53,7 +53,12 @@ header nav .large-nav-bar {
 }
 .slider .inner a.btn-large {
   background-color: #880e4f;
-  margin: 10px;
+  margin: 1vw;
+}
+@media all and (max-width: 650px) {
+  .slider .inner a.btn-large {
+    min-width: 35vw;
+  }
 }
 h1 {
   font-family: 'Orbitron', sans-serif;
@@ -349,7 +354,7 @@ header .side-nav {
   font-family: 'Orbitron', sans-serif;
 }
 #rules.video {
-  margin-top: 30px;
+  padding-top: 30vh;
   margin-bottom: 0;
   height: 100vh;
   width: 75vw;

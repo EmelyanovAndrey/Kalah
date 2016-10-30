@@ -86,7 +86,18 @@ header {
 
     a.btn-large {
       background-color: @color-main;
-      margin: 10px;
+
+      margin: 1vw;
+
+      @media all and (min-width: @width-divide) {
+      }
+
+      @media all and (max-width: @width-divide) {
+      }
+
+      @media all and (max-width: @width-divide-phone) {
+        min-width: 35vw;
+      }
     }
   }
 }
