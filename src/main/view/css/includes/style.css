@@ -556,6 +556,7 @@ header .brand-logo {
 }
 .rules,
 .authors {
+  padding: 10px;
   font-family: 'Orbitron', sans-serif;
 }
 .rules img,
