@@ -29,6 +29,8 @@ header {
   }
 
   img {
+
+    height: inherit;
     border-radius: 100px;
     margin-right: 10px;
     float: left;
@@ -152,7 +154,6 @@ header {
 .game {
 
   padding-top: 5vh;
-  margin-right: 5vw !important;
 
   .user(@turn: left) {
     @height: 10vh;
@@ -172,7 +173,7 @@ header {
     }
 
     img {
-      height: inherit;
+      height: @height;
       border-radius: 100px;
 
       float: @turn;
@@ -279,22 +280,6 @@ header {
 
   a {
     display: block;
-  }
-
-  form, table, a {
-    margin: auto;
-
-    @media all and (min-width: @width-divide) {
-      width: 30vw;
-    }
-
-    @media all and (max-width: @width-divide) {
-      width: 50vw;
-    }
-
-    @media all and (max-width: @width-divide-phone) {
-      width: 60vw;
-    }
   }
 
   h1 {
