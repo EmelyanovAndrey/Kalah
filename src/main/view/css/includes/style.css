@@ -492,9 +492,6 @@ header .side-nav {
   color: #37474f;
   cursor: pointer;
 }
-.game .save-game {
-  padding-top: 10vh;
-}
 .registration,
 .login,
 .new-game,
