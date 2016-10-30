@@ -34,6 +34,7 @@
   $(document).ready(function() {
     var kalah, lunka;
     $('input#input_text, textarea#textarea1').characterCounter();
+    $('.button-collapse').sideNav();
     $("#slider").on("click", "a", function(event) {
       var id, top;
       event.preventDefault();

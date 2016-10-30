@@ -4,6 +4,20 @@ header {
   .brand-logo {
     font-family: 'Patua One', serif;
   }
+
+  .side-nav li>a>i, .side-nav li>a>[class^="mdi-"], .side-nav li>a>[class*="mdi-"], .side-nav li>a>i.material-icons {
+    color: @color-text;
+  }
+
+  .userView {
+    h1 {
+      font-family: 'Patua One', serif;
+    }
+    .background-img('slider.jpg', false);
+  }
+  .side-nav {
+    background-color: @color-background;
+  }
 }
 
 #main {
@@ -87,8 +101,7 @@ header {
   }
 
   .vs(@img) {
-    background: url('../assets/img/@{img}') no-repeat center;
-    background-size: cover;
+    .background-img(@img, false);
 
     position: absolute;
 

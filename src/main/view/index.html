@@ -30,12 +30,40 @@
   <body>
     <header>
       <div class="navbar">
-        <ul id="headerMenu" class="dropdown-content">
-          <li><a href="/Kalah/src/main/view/index.html" target="_blank">Главная</a></li>
-          <li><a href="/Kalah/src/main/view/about.html" target="_blank">Об игре</a></li>
-          <li><a href="/Kalah/src/main/view/game.html" target="_blank">Играть с человеком</a></li>
-          <li><a href="/Kalah/src/main/view/game.html" target="_blank">Играть с компьютером</a></li>
-          <li><a href="/Kalah/src/main/view/registration.html" target="_blank">Профиль</a></li>
+        <!--ul#headerMenu.dropdown-content-->
+        <!--    each item in menu-->
+        <!--        li-->
+        <!--            a(href=item.link target="_blank") #{item.name}-->
+        <!--        //-li.diveder-->
+        
+        <ul id="slide-out" class="side-nav">
+          <li>
+            <div class="userView">
+              <h1>Kalah</h1>
+              <!--a(href="#!user")-->
+              <!--    img.circle(src=baseUrl+"assets/img/profile-test.jpg")-->
+              <!--a(href="#!name")-->
+              <!--    span.name MArccus-->
+              <!--a(href="#!email")-->
+              <!--    span.email awdwadaw@adawd-->
+            </div>
+          </li>
+          <!--li-->
+          <!--    a(href="#!") Главная-->
+          <!--        i.material-icons cloud-->
+          <!--li-->
+          <!--    a(href="#!") Second-->
+          <!--li-->
+          <!--    .divider-->
+          <!--li-->
+          <!--    a.subheader Subheader-->
+          <!--li-->
+          <!--    a.waves-effect(href="#!") Third-->
+          <li><a href="/Kalah/src/main/view/index.html" target="_blank" class="grey-text text-lighten-3">Главная<i class="material-icons">view_stream</i></a></li>
+          <li><a href="/Kalah/src/main/view/about.html" target="_blank" class="grey-text text-lighten-3">Об игре<i class="material-icons">info</i></a></li>
+          <li><a href="/Kalah/src/main/view/game.html" target="_blank" class="grey-text text-lighten-3">Играть с человеком<i class="material-icons">perm_identity</i></a></li>
+          <li><a href="/Kalah/src/main/view/game.html" target="_blank" class="grey-text text-lighten-3">Играть с компьютером<i class="material-icons">android</i></a></li>
+          <li><a href="/Kalah/src/main/view/registration.html" target="_blank" class="grey-text text-lighten-3">Профиль<i class="material-icons">account_circle</i></a></li>
         </ul>
         <nav>
           <div class="nav-wrapper container">
@@ -48,7 +76,7 @@
                 <li><a href="/Kalah/src/main/view/registration.html" target="_blank" class="grey-text text-lighten-3">Профиль</a></li>
               </ul>
             </div>
-            <div class="mini-nav-bar"><a href="/Kalah/src/main/view/" data-activates="headerMenu" class="brand-logo dropdown-button">Kalah</a></div>
+            <div class="mini-nav-bar"><a href="#!" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a><a href="/Kalah/src/main/view/" data-activates="slide-out" class="brand-logo">Kalah</a></div>
           </div>
         </nav>
       </div>

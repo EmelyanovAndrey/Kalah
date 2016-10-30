@@ -34,7 +34,12 @@
 
     $('input#input_text, textarea#textarea1').characterCounter()
 
-    #Плавный скролл
+
+#  Боковое меню
+    $('.button-collapse').sideNav();
+
+
+#   Плавный скролл
     $ "#slider"
       .on "click", "a", (event) ->
         event.preventDefault()

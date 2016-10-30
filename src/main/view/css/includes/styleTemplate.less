@@ -62,9 +62,18 @@ header {
   }
 }
 
-.slider {
-  background: url('../assets/img/slider.jpg') no-repeat fixed center center;
+.background-img(@file, @fixed)  when (@fixed = true){
+  background: url('../assets/img/@{file}') no-repeat fixed center center;
   background-size: cover;
+}
+
+.background-img(@file, @fixed)  when (@fixed = false){
+  background: url('../assets/img/@{file}') no-repeat center center;
+  background-size: cover;
+}
+
+.slider {
+  .background-img('slider.jpg', true);
 
   color: @color-text;
 

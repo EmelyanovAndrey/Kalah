@@ -4,7 +4,7 @@ doctype html
 - var baseUrl = "/Kalah/src/main/view/"
 - var title = "Kalah"
 - var siteName = title
-- var menu = [{name: "Главная", link: baseUrl + "index.html"}, {name: "Об игре", link: baseUrl+ "about.html"}, {name:"Играть с человеком", link: baseUrl+"game.html"}, {name: "Играть с компьютером", link: baseUrl+"game.html"}, {name: "Профиль", link: baseUrl + "registration.html"}]
+- var menu = [{name: "Главная", link: baseUrl + "index.html", icon: "view_stream"}, {name: "Об игре", link: baseUrl+ "about.html", icon: "info"}, {name:"Играть с человеком", link: baseUrl+"game.html", icon: "perm_identity"}, {name: "Играть с компьютером", link: baseUrl+"game.html", icon: "android"}, {name: "Профиль", link: baseUrl + "registration.html", icon: "account_circle"}]
 - var footerTitle = siteName
 - var footerText = "Онлайн игра Калах"
 - var dataCopyright = "2016"
@@ -65,11 +65,39 @@ html(lang="ru")
     body
         header
             .navbar
-                ul#headerMenu.dropdown-content
+                //ul#headerMenu.dropdown-content
+                //    each item in menu
+                //        li
+                //            a(href=item.link target="_blank") #{item.name}
+                //        //-li.diveder
+
+
+                ul#slide-out.side-nav
+                    li
+                        .userView
+                            h1 Kalah
+                            //a(href="#!user")
+                            //    img.circle(src=baseUrl+"assets/img/profile-test.jpg")
+                            //a(href="#!name")
+                            //    span.name MArccus
+                            //a(href="#!email")
+                            //    span.email awdwadaw@adawd
+                    //li
+                    //    a(href="#!") Главная
+                    //        i.material-icons cloud
+                    //li
+                    //    a(href="#!") Second
+                    //li
+                    //    .divider
+                    //li
+                    //    a.subheader Subheader
+                    //li
+                    //    a.waves-effect(href="#!") Third
                     each item in menu
                         li
-                            a(href=item.link target="_blank") #{item.name}
-                        //-li.diveder
+                            a.grey-text.text-lighten-3(href=item.link, target="_blank") #{item.name}
+                                i.material-icons #{item.icon}
+
                 nav
                     .nav-wrapper.container
                         .large-nav-bar
@@ -79,7 +107,9 @@ html(lang="ru")
                                     li
                                         a.grey-text.text-lighten-3(href=item.link, target="_blank") #{item.name}
                         .mini-nav-bar
-                            a.brand-logo.dropdown-button(href="#{baseUrl}", data-activates="headerMenu") #{siteName}
+                            a(href="#!", data-activates="slide-out").button-collapse
+                                i.material-icons menu
+                            a.brand-logo(href="#{baseUrl}", data-activates="slide-out") #{siteName}
 
 
         #main

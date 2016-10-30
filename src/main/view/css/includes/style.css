@@ -221,6 +221,22 @@ table.highlight > tbody > tr:hover {
 header .brand-logo {
   font-family: 'Patua One', serif;
 }
+header .side-nav li > a > i,
+header .side-nav li > a > [class^="mdi-"],
+header .side-nav li > a > [class*="mdi-"],
+header .side-nav li > a > i.material-icons {
+  color: #f5f5f5;
+}
+header .userView {
+  background: url('../assets/img/slider.jpg') no-repeat center center;
+  background-size: cover;
+}
+header .userView h1 {
+  font-family: 'Patua One', serif;
+}
+header .side-nav {
+  background-color: #37474f;
+}
 #main {
   padding: 0 !important;
 }
@@ -287,7 +303,7 @@ header .brand-logo {
   margin: 0;
 }
 .vs-menu .human {
-  background: url('../assets/img/human2.jpg') no-repeat center;
+  background: url('../assets/img/human2.jpg') no-repeat center center;
   background-size: cover;
   position: absolute;
   width: 100vw;
@@ -310,7 +326,7 @@ header .brand-logo {
   font-family: 'Orbitron', sans-serif;
 }
 .vs-menu .comp {
-  background: url('../assets/img/ai.jpg') no-repeat center;
+  background: url('../assets/img/ai.jpg') no-repeat center center;
   background-size: cover;
   position: absolute;
   width: 100vw;
