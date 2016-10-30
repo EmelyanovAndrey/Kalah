@@ -285,7 +285,7 @@ header {
   }
 }
 
-.registration, .login, .new-game, .game-list, .rules {
+.registration, .login, .new-game, .game-list, .rules{
 
   height: 90vh;
   padding-top: 5vh;
@@ -309,7 +309,7 @@ header {
 
 }
 
-.rules {
+.rules, .authors {
 
   img {
 
@@ -344,6 +344,19 @@ header {
 
   }
 
+  font-family: 'Orbitron', sans-serif;
+
+  @media all and (min-width: @width-divide) {
+    font-size: 2vw !important;
+  }
+
+  @media all and (max-width: @width-divide) {
+    font-size: 4vw;
+  }
+
+  @media all and (max-width: @width-divide-phone) {
+    font-size: 5vw;
+  }
 }
 
 

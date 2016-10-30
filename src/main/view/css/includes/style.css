@@ -554,27 +554,55 @@ header .brand-logo {
 .save-games table tbody tr {
   display: table;
 }
-.rules img {
+.rules,
+.authors {
+  font-family: 'Orbitron', sans-serif;
+}
+.rules img,
+.authors img {
   margin: 10px;
 }
 @media all and (min-width: 993px) {
-  .rules img {
+  .rules img,
+  .authors img {
     width: 30vw;
   }
 }
 @media all and (max-width: 993px) {
-  .rules img {
+  .rules img,
+  .authors img {
     width: 40vw;
   }
 }
 @media all and (max-width: 650px) {
-  .rules img {
+  .rules img,
+  .authors img {
     width: 50vw;
   }
 }
-.rules .right img {
+.rules .right img,
+.authors .right img {
   float: right;
 }
-.rules .left img {
+.rules .left img,
+.authors .left img {
   float: left;
+}
+@media all and (min-width: 993px) {
+  .rules,
+  .authors {
+    font-size: 2vw !important;
+  }
+}
+@media all and (max-width: 993px) {
+  .rules,
+  .authors {
+    font-size: 4vw;
+  }
+}
+@media all and (max-width: 650px) {
+  .rules,
+  .authors {
+    font-size: 5vw;
+  }
 }
