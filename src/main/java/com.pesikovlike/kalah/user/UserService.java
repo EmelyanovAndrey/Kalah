@@ -1,7 +1,6 @@
 package com.pesikovlike.kalah.user;
 
 import com.pesikovlike.kalah.model.dao.interfaces.AvatarDAO;
-import com.pesikovlike.kalah.model.dao.interfaces.DAOFactory;
 import com.pesikovlike.kalah.model.dao.interfaces.UserDAO;
 import com.pesikovlike.kalah.model.entity.Avatar;
 import com.pesikovlike.kalah.model.entity.User;
@@ -17,11 +16,14 @@ import javax.inject.Named;
 public class UserService {
 
     @Inject
-    @Named("daoFactory")
-    private DAOFactory daoFactory;
+    @Named("userDAO")
+    private UserDAO userDAO;
+
+    @Inject
+    @Named("avatarDAO")
+    private AvatarDAO avatarDAO;
 
     private boolean userExist(String login) {
-        UserDAO userDAO = daoFactory.getUserDAO();
         User user = userDAO.getUserByLogin(login);
         return user == null ? false : true;
     }
@@ -30,10 +32,8 @@ public class UserService {
         if (userExist(login)) {
             return 1;
         }
-        AvatarDAO avatarDAO = daoFactory.getAvatarDAO();
         Avatar avatar = avatarDAO.getAvatarById(avatarId);
         User user = new User(login, password, email, avatar);
-        UserDAO userDAO = daoFactory.getUserDAO();
         userDAO.insertUser(user);
 
         return 0;
@@ -43,7 +43,6 @@ public class UserService {
         if (!userExist(login)) {
             return 1;
         }
-        UserDAO userDAO = daoFactory.getUserDAO();
         User user = userDAO.getUserByLogin(login);
         if(!user.getPassword().equals(password)) {
             return 2;

@@ -13,7 +13,6 @@ import java.util.List;
 /**
  * Created by Igor on 01.11.2016.
  */
-@Stateless
 public class PostgresHibernateUserDAO implements UserDAO {
     public void insertUser(User user) {
         Session s = PostgresHibernateSessionFactory.getSessionFactory().openSession();

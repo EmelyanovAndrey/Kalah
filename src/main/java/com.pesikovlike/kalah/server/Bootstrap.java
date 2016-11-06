@@ -1,6 +1,9 @@
 package com.pesikovlike.kalah.server;
 
 
+import com.pesikovlike.kalah.model.dao.interfaces.AvatarDAO;
+import com.pesikovlike.kalah.model.entity.Avatar;
+
 import javax.annotation.PostConstruct;
 
 import javax.ejb.Singleton;
@@ -13,7 +16,7 @@ import javax.inject.Inject;
  */
 @Singleton
 @Startup
-public class Bootstrapssss {
+public class Bootstrap {
 
     @Inject
     private PostgresHibernateStartup postgresHibernateStartup;

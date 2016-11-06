@@ -7,7 +7,6 @@ import javax.ejb.Local;
 /**
  * Created by Igor on 31.10.2016.
  */
-@Local
 public interface AvatarDAO {
     public void insertAvatar(Avatar avatar);
 

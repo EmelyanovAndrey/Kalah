@@ -11,7 +11,6 @@ import javax.ejb.Stateless;
 /**
  * Created by Igor on 01.11.2016.
  */
-@Stateless
 public class PostgresHibernateAvatarDAO implements AvatarDAO {
     public void insertAvatar(Avatar avatar) {
         Session s = PostgresHibernateSessionFactory.getSessionFactory().openSession();

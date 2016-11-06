@@ -14,7 +14,6 @@ import java.util.List;
 /**
  * Created by Igor on 01.11.2016.
  */
-@Stateless
 public class PostgresHibernateGameStateDAO implements GameStateDAO {
     public void insertGameState(GameState gameState) {
         Session s = PostgresHibernateSessionFactory.getSessionFactory().openSession();

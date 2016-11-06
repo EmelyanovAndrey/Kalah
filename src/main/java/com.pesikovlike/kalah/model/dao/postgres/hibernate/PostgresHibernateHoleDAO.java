@@ -14,7 +14,6 @@ import java.util.List;
 /**
  * Created by Igor on 01.11.2016.
  */
-@Stateless
 public class PostgresHibernateHoleDAO implements HoleDAO {
     public void insertHole(Hole hole) {
         Session s = PostgresHibernateSessionFactory.getSessionFactory().openSession();

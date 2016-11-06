@@ -9,7 +9,6 @@ import java.util.List;
 /**
  * Created by Igor on 31.10.2016.
  */
-@Local
 public interface HoleDAO {
     public void insertHole(Hole hole);
 

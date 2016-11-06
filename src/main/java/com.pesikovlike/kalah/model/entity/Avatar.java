@@ -14,12 +14,8 @@ public class Avatar {
     private String filePath;
     private Collection<User> usersByAvatarId;
 
-    public Avatar(){}
-    public Avatar(int id, String avatarName, String filePath){
-        avatarId = id;
-        this.avatarName = avatarName;
-        this.filePath = filePath;
-    }
+    public Avatar(){avatarId = System.currentTimeMillis();}
+
 
 
     @Id

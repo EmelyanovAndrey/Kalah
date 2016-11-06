@@ -4,9 +4,8 @@ package com.pesikovlike.kalah.server;
  * Created by Igor on 06.11.2016.
  */
 
+import com.pesikovlike.kalah.model.dao.DAOFactory;
 import com.pesikovlike.kalah.model.dao.interfaces.AvatarDAO;
-import com.pesikovlike.kalah.model.dao.interfaces.DAOFactory;
-import com.pesikovlike.kalah.model.dao.InitFactory;
 import com.pesikovlike.kalah.model.entity.Avatar;
 
 import javax.inject.Inject;
@@ -22,15 +21,15 @@ import javax.inject.Named;
 public class PostgresHibernateStartup {
 
     @Inject
-    @Named("daoFactory")
-    private DAOFactory daoFactory;
+    @Named("avatarDAO")
+    private AvatarDAO avatarDAO;
 
     public void init(){
-        InitFactory.init(InitFactory.DataSources.POSTGRES_HIBERNATE);
+        DAOFactory.init(DAOFactory.DataSources.POSTGRES_HIBERNATE);
 
-        AvatarDAO avatarDAO = daoFactory.getAvatarDAO();
-        Avatar avatar = new Avatar(0, "Sam", "/path");
+        Avatar avatar = new Avatar();
+        avatar.setAvatarName("SubZero");
+        avatar.setFilePath("/SubZero.jpg");
         avatarDAO.insertAvatar(avatar);
-
     }
 }

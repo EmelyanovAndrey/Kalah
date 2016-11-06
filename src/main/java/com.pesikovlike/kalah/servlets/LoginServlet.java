@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
-        if (userService.register(login, password, null, 0) == 1) {
+        if (userService.register(login, password, null, 0) == 0) {
             request.getRequestDispatcher("/profile.html").forward(request, response);
         } else {
             request.getRequestDispatcher("/index.html").forward(request, response);
