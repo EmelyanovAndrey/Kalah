@@ -2,24 +2,5 @@
  
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
- *
- !src
- !.gitignore
- !Kalah.iml
-.DS_Store
-inspection/
-src/.DS_Store
-src/main/.DS_Store
-src/main/view/.DS_Store
-src/main/view/.idea/copyright/
-src/main/view/.idea/modules.xml
-src/main/view/.idea/view.iml
-src/main/view/.idea/watcherTasks.xml
-src/main/view/assets/.DS_Store
-src/main/view/assets/img/.DS_Store
-src/main/view/css/.DS_Store
-src/main/view/js/.DS_Store
-/src/main/view/.idea/
 /.idea/
-/src/main/view/.idea/workspace.xml
-/inspection/
+Kalah.iml
