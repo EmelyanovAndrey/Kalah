@@ -1,7 +1,7 @@
 package com.pesikovlike.kalah.model.entity;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.Set;
 
 /**
  * Created by Igor on 31.10.2016.
@@ -13,17 +13,12 @@ public class User {
     private String login;
     private String password;
     private String email;
-    private Collection<GameState> gameStatesOfUser1;
-    private Collection<GameState> gameStatesOfUser2;
+    private Set<GameState> gameStatesOfUser1;
+    private Set<GameState> gameStatesOfUser2;
     private Avatar avatar;
 
-    public User(){this.userId = System.currentTimeMillis();}
-    public User(String login, String password, String email, Avatar avatar){
-        this.userId = System.currentTimeMillis();
-        this.login = login;
-        this.password = password;
-        this.email = email;
-    }
+    public User(){userId = System.currentTimeMillis();}
+
 
     @Id
     @Column(name = "user_id", nullable = false)
@@ -90,20 +85,20 @@ public class User {
     }
 
     @OneToMany(mappedBy = "user1")
-    public Collection<GameState> getGameStatesOfUser1() {
+    public Set<GameState> getGameStatesOfUser1() {
         return gameStatesOfUser1;
     }
 
-    public void setGameStatesOfUser1(Collection<GameState> gameStatesOfUser1) {
+    public void setGameStatesOfUser1(Set<GameState> gameStatesOfUser1) {
         this.gameStatesOfUser1 = gameStatesOfUser1;
     }
 
     @OneToMany(mappedBy = "user2")
-    public Collection<GameState> getGameStatesOfUser2() {
+    public Set<GameState> getGameStatesOfUser2() {
         return gameStatesOfUser2;
     }
 
-    public void setGameStatesOfUser2(Collection<GameState> gameStatesOfUser2) {
+    public void setGameStatesOfUser2(Set<GameState> gameStatesOfUser2) {
         this.gameStatesOfUser2 = gameStatesOfUser2;
     }
 

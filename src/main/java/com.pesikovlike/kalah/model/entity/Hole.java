@@ -13,12 +13,8 @@ public class Hole {
     private int stoneCount;
     private GameState gameState;
 
-    public Hole(){}
-    public Hole(int number, int stoneCount){
-        this.holeId = System.currentTimeMillis();
-        this.number = number;
-        this.stoneCount = stoneCount;
-    }
+    public Hole(){holeId = System.currentTimeMillis();}
+
 
     @Id
     @Column(name = "hole_id", nullable = false)

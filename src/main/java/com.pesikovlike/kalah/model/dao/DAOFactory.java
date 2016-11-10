@@ -35,10 +35,11 @@ public class DAOFactory {
     @ApplicationScoped
     @Named("avatarDAO")
     public AvatarDAO getAvatarDAO() {
-        switch (dataSource) {
-            case POSTGRES_HIBERNATE:
-                avatarDAO = new PostgresHibernateAvatarDAO();
-        }
+        if (avatarDAO == null)
+            switch (dataSource) {
+                case POSTGRES_HIBERNATE:
+                    avatarDAO = new PostgresHibernateAvatarDAO();
+            }
         return avatarDAO;
     }
 
@@ -46,6 +47,7 @@ public class DAOFactory {
     @ApplicationScoped
     @Named("userDAO")
     public UserDAO getUserDAO() {
+        if(userDAO == null)
         switch (dataSource) {
             case POSTGRES_HIBERNATE:
                 userDAO = new PostgresHibernateUserDAO();
@@ -57,6 +59,7 @@ public class DAOFactory {
     @ApplicationScoped
     @Named("gameStateDAO")
     public GameStateDAO getGameStateDAO() {
+        if(gameStateDAO == null)
         switch (dataSource) {
             case POSTGRES_HIBERNATE:
                 gameStateDAO = new PostgresHibernateGameStateDAO();
@@ -68,6 +71,7 @@ public class DAOFactory {
     @ApplicationScoped
     @Named("holeDAO")
     public HoleDAO getHoleDAO() {
+        if(holeDAO == null)
         switch (dataSource) {
             case POSTGRES_HIBERNATE:
                 holeDAO = new PostgresHibernateHoleDAO();

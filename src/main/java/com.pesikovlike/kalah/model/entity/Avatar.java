@@ -1,7 +1,7 @@
 package com.pesikovlike.kalah.model.entity;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.Set;
 
 /**
  * Created by Igor on 31.10.2016.
@@ -12,7 +12,7 @@ public class Avatar {
     private long avatarId;
     private String avatarName;
     private String filePath;
-    private Collection<User> usersByAvatarId;
+    private Set<User> usersByAvatarId;
 
     public Avatar(){avatarId = System.currentTimeMillis();}
 
@@ -71,11 +71,11 @@ public class Avatar {
     }
 
     @OneToMany(mappedBy = "avatar")
-    public Collection<User> getUsersByAvatarId() {
+    public Set<User> getUsersByAvatarId() {
         return usersByAvatarId;
     }
 
-    public void setUsersByAvatarId(Collection<User> usersByAvatarId) {
+    public void setUsersByAvatarId(Set<User> usersByAvatarId) {
         this.usersByAvatarId = usersByAvatarId;
     }
 }

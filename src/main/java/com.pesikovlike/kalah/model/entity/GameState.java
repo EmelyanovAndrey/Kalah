@@ -3,6 +3,7 @@ package com.pesikovlike.kalah.model.entity;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * Created by Igor on 31.10.2016.
@@ -19,36 +20,10 @@ public class GameState {
     private boolean priority;
     private User user1;
     private User user2;
-    private Collection<Hole> holes;
+    private Set<Hole> holes;
 
-    public GameState(){}
-    public GameState(User user1, User user2, Date lastSaveDate, int stoneCountOfUser1,
-                     int stoneCountOfUser2, int initialHoleCount, int initialStoneCount,
-                     boolean priority) {
-        gameStateId = System.currentTimeMillis();
-        this.user1 = user1;
-        this.user2 = user2;
-        this.lastSaveDate = lastSaveDate;
-        this.stoneCountOfUser1 = stoneCountOfUser1;
-        this.stoneCountOfUser2 = stoneCountOfUser2;
-        this.initialHoleCount = initialHoleCount;
-        this.initialStoneCount = initialStoneCount;
-        this.priority = priority;
-    }
-    public GameState(User user1, User user2, Date lastSaveDate, int stoneCountOfUser1,
-                     int stoneCountOfUser2, int initialHoleCount, int initialStoneCount,
-                     boolean priority, Collection<Hole> holes) {
-        gameStateId = System.currentTimeMillis();
-        this.user1 = user1;
-        this.user2 = user2;
-        this.lastSaveDate = lastSaveDate;
-        this.stoneCountOfUser1 = stoneCountOfUser1;
-        this.stoneCountOfUser2 = stoneCountOfUser2;
-        this.initialHoleCount = initialHoleCount;
-        this.initialStoneCount = initialStoneCount;
-        this.priority = priority;
-        this.holes = holes;
-    }
+    public GameState(){gameStateId = System.currentTimeMillis();}
+
 
     @Id
     @Column(name = "game_state_id", nullable = false)
@@ -112,7 +87,7 @@ public class GameState {
 
     @Basic
     @Column(name = "priority", nullable = false)
-    public boolean isPriority() {
+    public boolean getPriority() {
         return priority;
     }
 
@@ -171,11 +146,11 @@ public class GameState {
     }
 
     @OneToMany(mappedBy = "gameState")
-    public Collection<Hole> getHoles() {
+    public Set<Hole> getHoles() {
         return holes;
     }
 
-    public void setHoles(Collection<Hole> holes) {
+    public void setHoles(Set<Hole> holes) {
         this.holes = holes;
     }
 }

@@ -23,17 +23,21 @@ public class UserService {
     @Named("avatarDAO")
     private AvatarDAO avatarDAO;
 
-    private boolean userExist(String login) {
+    public boolean userExist(String login) {
         User user = userDAO.getUserByLogin(login);
         return user == null ? false : true;
     }
 
     public int register(String login, String password, String email, int avatarId) {
         if (userExist(login)) {
-            return 1;
+            return 1; //пользователь уже существует
         }
         Avatar avatar = avatarDAO.getAvatarById(avatarId);
-        User user = new User(login, password, email, avatar);
+        User user = new User();
+        user.setLogin(login);
+        user.setPassword(password);
+        user.setEmail(email);
+        user.setAvatar(avatar);
         userDAO.insertUser(user);
 
         return 0;
@@ -41,13 +45,14 @@ public class UserService {
 
     public int authorize(String login, String password) {
         if (!userExist(login)) {
-            return 1;
+            return 1; //пользователя не существует
         }
         User user = userDAO.getUserByLogin(login);
         if(!user.getPassword().equals(password)) {
-            return 2;
+            return 2; //пароли не совпадают
         }
 
+        //код авторизации
         return 0;
     }
 }
