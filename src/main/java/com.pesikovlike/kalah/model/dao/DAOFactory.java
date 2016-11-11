@@ -7,6 +7,7 @@ import com.pesikovlike.kalah.model.dao.postgres.hibernate.PostgresHibernateHoleD
 import com.pesikovlike.kalah.model.dao.postgres.hibernate.PostgresHibernateUserDAO;
 
 import javax.ejb.EJB;
+import javax.ejb.Singleton;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Named;
