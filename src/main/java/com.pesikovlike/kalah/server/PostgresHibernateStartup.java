@@ -20,16 +20,8 @@ import javax.inject.Named;
  </alternatives>*/
 public class PostgresHibernateStartup {
 
-    @Inject
-    @Named("avatarDAO")
-    private AvatarDAO avatarDAO;
-
     public void init(){
         DAOFactory.init(DAOFactory.DataSources.POSTGRES_HIBERNATE);
 
-        Avatar avatar = new Avatar();
-        avatar.setAvatarName("SubZero");
-        avatar.setFilePath("/SubZero.jpg");
-        avatarDAO.insertAvatar(avatar);
     }
 }

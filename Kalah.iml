@@ -98,5 +98,6 @@
     <orderEntry type="library" scope="PROVIDED" name="GlassFish 4.0.0 - WebSocket" level="application_server_libraries" />
     <orderEntry type="library" name="Maven: javax:javaee-web-api:7.0" level="project" />
     <orderEntry type="library" name="Maven: javax:javaee-web-api:7.0" level="project" />
+    <orderEntry type="library" name="Maven: org.sonatype.sisu:sisu-inject-bean:1.4.2" level="project" />
   </component>
 </module>

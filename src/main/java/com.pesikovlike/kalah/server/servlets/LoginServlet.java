@@ -1,4 +1,4 @@
-package com.pesikovlike.kalah.servlets;
+package com.pesikovlike.kalah.server.servlets;
 
 import com.pesikovlike.kalah.user.UserService;
 

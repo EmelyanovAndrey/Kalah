@@ -1,4 +1,4 @@
-package com.pesikovlike.kalah.filer;
+package com.pesikovlike.kalah.server.filer;
 
 /**
  * Created by Igor on 06.11.2016.
