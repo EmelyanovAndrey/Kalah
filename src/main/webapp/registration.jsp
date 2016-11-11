@@ -9,7 +9,7 @@
 
 </head>
 <body>
-
+<a href="/kalah-1.0/index.html" target="_blank" class="grey-text text-lighten-3">Главная<i class="material-icons">view_stream</i></a>
     <main>
         <section class="row">
             <div id="form_wrapper" class="form_wrapper">

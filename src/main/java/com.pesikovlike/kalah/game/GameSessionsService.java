@@ -15,19 +15,6 @@ import java.util.Set;
 public class GameSessionsService {
 
     private final Map<Long, GameSession> gameSessions = new HashMap<Long, GameSession>();
-    private final Set<Session> sessions = new HashSet<Session>();
-
-    public int addSession(Session session){
-        sessions.add(session);
-        return 0;
-    }
-
-    public int deleteSession(Session session){
-        sessions.remove(session);
-        return 0;
-    }
-
-
 
 
     public int addGameSession(GameSession gameSession){
