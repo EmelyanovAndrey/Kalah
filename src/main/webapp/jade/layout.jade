@@ -4,6 +4,7 @@ doctype html
 - var baseUrl = "/Kalah/src/main/view/"
 - var title = "Kalah"
 - var siteName = title
+- var profile = title
 - var menu = [{name: "Главная", link: baseUrl + "index.html", icon: "view_stream"}, {name: "Об игре", link: baseUrl+ "about.html", icon: "info"}, {name:"Играть с человеком", link: baseUrl+"game.html", icon: "perm_identity"}, {name: "Играть с компьютером", link: baseUrl+"game.html", icon: "android"}, {name: "Профиль", link: baseUrl + "registration.html", icon: "account_circle"}]
 - var footerTitle = siteName
 - var footerText = "Онлайн игра Калах"
@@ -65,34 +66,11 @@ html(lang="ru")
     body
         header
             .navbar
-                //ul#headerMenu.dropdown-content
-                //    each item in menu
-                //        li
-                //            a(href=item.link target="_blank") #{item.name}
-                //        //-li.diveder
-
-
                 ul#slide-out.side-nav
                     li
                         .userView
-                            h1 Kalah
-                            //a(href="#!user")
-                            //    img.circle(src=baseUrl+"assets/img/profile-test.jpg")
-                            //a(href="#!name")
-                            //    span.name MArccus
-                            //a(href="#!email")
-                            //    span.email awdwadaw@adawd
-                    //li
-                    //    a(href="#!") Главная
-                    //        i.material-icons cloud
-                    //li
-                    //    a(href="#!") Second
-                    //li
-                    //    .divider
-                    //li
-                    //    a.subheader Subheader
-                    //li
-                    //    a.waves-effect(href="#!") Third
+                            h1 #{profile}
+
                     each item in menu
                         li
                             a.grey-text.text-lighten-3(href=item.link, target="_blank") #{item.name}
