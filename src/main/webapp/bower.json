@@ -1,0 +1,22 @@
+{
+  "name": "webapp",
+  "version": "0.1.0",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Илья <ilykonst95@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize.css": "*",
+    "jquery": "2.*",
+    "materialize": "*"
+  }
+}

@@ -1,0 +1,30 @@
+extends template/layout
+
+
+
+
+block title
+    title #{title} | Войти
+
+block content
+    .login
+        .container
+            .row
+                h1 Войти
+            .row
+                form
+                    .input-field.col.s12
+                        i.material-icons.prefix perm_identity
+                        input#name.validate(type="text", length="10")
+                        label(for="name") Имя
+
+                    .input-field.col.s12
+                        i.material-icons.prefix vpn_key
+                        input#password.validate(type="password")
+                        label(for="password") Пароль
+
+                    .col.s12
+                        a.btn.waves-effect.waves-light.large(href=baseUrl+"profile.html" type="submit" name="action") Войти
+                            i.material-icons.right lock
+                    .col.s12
+                        a.btn.waves-effect.waves-light(href=baseUrl + "registration.html" type="submit" name="action") Зарегистрироваться

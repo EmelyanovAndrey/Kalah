@@ -1,0 +1,70 @@
+html {
+  background: $secondary-color;
+  color: $font-color;
+}
+
+h1 {
+  text-align: center;
+}
+
+.side-nave {
+
+  background: $secondary-color;
+
+  h1 {
+    font-size: $sidenav-font-size * 3;
+  }
+}
+
+li > a > i,
+li > a > [class^="mdi-"], li > a > [class*="mdi-"],
+li > a > i.material-icons {
+  color: $font-color;
+}
+
+.userView {
+  color: $secondary-color;
+
+  h1 {
+    font-family: 'Patua One', serif;
+  }
+}
+
+.brand-logo {
+  font-family: 'Patua One', serif;
+}
+
+nav {
+  box-shadow: none !important;
+
+  .mini-nav-bar {
+    .brand-logo {
+      font-size: 2rem;
+    }
+
+    @media #{$large-and-up} {
+      display: none;
+    }
+  }
+
+  .large-nav-bar {
+    @media #{$medium-and-down} {
+      display: none;
+    }
+  }
+}
+
+@mixin background-img($file, $fixed) {
+  @if ($fixed) {
+    background: url('#{$file}') no-repeat fixed center center;
+    background-size: cover;
+  }
+  @else if ($fixed == false) {
+    background: url('#{$file}') no-repeat center center;
+    background-size: cover;
+  }
+}
+
+@mixin transition($color, $time: .25s, $param: ease) {
+  transition: $color $time $param;
+}

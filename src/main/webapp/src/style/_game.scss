@@ -1,0 +1,132 @@
+.game {
+
+  padding-top: 5vh;
+
+  @mixin user($turn: left) {
+  $height: 10vh;
+
+  float: $turn;
+  height: $height;
+  margin: 10px;
+  align-content: center;
+
+  .nick {
+    font-size: 130%;
+    height: inherit;
+    line-height: $height;
+    padding: 0 10px;
+    float: $turn;
+    color: $font-color;
+  }
+
+  img {
+    height: $height;
+    border-radius: 100px;
+
+    float: $turn;
+  }
+}
+
+  .player {
+    @include user(right);
+  }
+
+  .apponent {
+    @include user();
+  }
+
+  .board {
+
+    $color-board-background: $primary-color;
+    $color-board-border: $primary-color-dark;
+
+    $color-object-background: $secondary-color;
+    $color-object-border: $color-object-background - 15%;
+
+    $color-object-anemy-background: white;
+    $color-object-anemy-border: $color-object-background - 15%;
+
+    background-color: $color-board-background;
+
+    color: $font-color;
+    //box-shadow: inset 10px 10px 10px @color-board-border;
+    box-shadow: 0 7px 7px $color-board-border;
+    border-radius: 60px;
+
+    margin: 10px;
+
+    &, table {
+      border-collapse: separate;
+      padding: 20px;
+      height: 30vh;
+
+      @media #{$medium-and-up} {
+        width: 100% !important;
+      }
+
+      @media #{$medium-and-down} {
+        width: 100% !important;
+      }
+
+      @media #{$small-and-down} {
+        width: 90vw !important;
+      }
+
+      border-spacing: 1vw 1vh;
+
+    }
+
+    @mixin object() {
+    background-color: $color-object-background;
+    text-align: center;
+    white-space: nowrap;
+
+    color: $font-color;
+
+    margin: 10px;
+
+    border: 2px solid $color-object-background;
+    box-shadow: inset 0 0 8px $color-object-border;
+
+    & + .enemy-obj {
+      &:hover {
+        background-color: $color-object-background;
+        color: $font-color;
+        cursor: default;
+      }
+    }
+
+    & + .active {
+      box-shadow: inset 0 0 20px;
+    }
+  }
+
+    .kalah {
+      height: 30vh;
+      width: 1vw;
+
+      border-radius: 30px;
+
+      @include object;
+    }
+
+    .lunka {
+      height: 5vh;
+      width: 1vh;
+
+      border-radius: 100px;
+
+      @include object;
+
+      &:hover {
+        background-color: $font-color;
+        color: $color-object-background;
+        cursor: pointer;
+      }
+    }
+
+  }
+
+  .save-game {
+  }
+}

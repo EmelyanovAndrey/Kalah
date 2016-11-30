@@ -1,0 +1,28 @@
+.profile {
+  $height: 13vh;
+  float: left;
+  margin: 10px;
+  align-content: center;
+  height: $height;
+
+  .nick {
+    font-size: 200%;
+    float: right;
+    height: inherit;
+    line-height: $height;
+    margin-left: 10px;
+    color: $font-color;
+  }
+
+  img {
+
+    height: inherit;
+    border-radius: 100px;
+    margin-right: 10px;
+    float: left;
+  }
+}
+
+.profile-form {
+  height: 75vh;
+}
