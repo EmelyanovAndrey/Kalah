@@ -37,7 +37,7 @@ select {
   }
 
   span.caret {
-    color: initial;
+    color: $font-color;
     position: absolute;
     right: 0;
     top: 0;
