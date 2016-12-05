@@ -1,4 +1,4 @@
-package com.pesikovlike.kalah.model.dao.interfaces;
+package com.pesikovlike.kalah.model.dao;
 
 import com.pesikovlike.kalah.model.entity.GameState;
 import com.pesikovlike.kalah.model.entity.Hole;

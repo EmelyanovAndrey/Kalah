@@ -1,9 +1,10 @@
 package com.pesikovlike.kalah.server.websocket.game;
 
+
 import com.pesikovlike.kalah.game.bid.GameBid;
 import com.pesikovlike.kalah.game.bid.GameBidService;
 import com.pesikovlike.kalah.game.session.GameSession;
-import com.pesikovlike.kalah.model.dao.interfaces.UserDAO;
+import com.pesikovlike.kalah.model.dao.UserDAO;
 import com.pesikovlike.kalah.user.UserService;
 
 import javax.ejb.EJB;
