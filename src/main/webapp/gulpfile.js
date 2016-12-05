@@ -1,9 +1,13 @@
-var gulp = require('gulp'),
+var dest = require('gulp-dest'),
+    gulp = require('gulp'),
     watch = require('gulp-watch'),
+    es = require('event-stream'),
     prefixer = require('gulp-autoprefixer'),
     jade = require('gulp-jade'),
     uglify = require('gulp-uglify'),
     sass = require('gulp-sass'),
+    coffee = require('gulp-coffee'),
+    concat = require('gulp-concat'),
     sourcemaps = require('gulp-sourcemaps'),
     rigger = require('gulp-rigger'),
     cssmin = require('gulp-minify-css'),
@@ -24,6 +28,7 @@ var path = {
     src: { //Пути откуда брать исходники
         html: 'src/*.jade',
         js: 'src/js/main.js',
+        coffee: 'src/js/**/*.coffee',
         style: 'src/style/main.scss',
         img: 'src/img/**/*.*',
         fonts: 'src/fonts/**/*.*'
@@ -31,6 +36,7 @@ var path = {
     watch: {
         html: 'src/**/*.jade',
         js: 'src/js/**/*.js',
+        coffee: 'src/js/**/*.coffee',
         style: 'src/style/**/*.scss',
         img: 'src/img/**/*.*',
         fonts: 'src/fonts/**/*.*'
@@ -56,8 +62,13 @@ gulp.task('html:build', function () {
 });
 
 gulp.task('js:build', function () {
-    gulp.src(path.src.js)
-        .pipe(rigger())
+    return es.merge(
+        gulp.src('src/js/vendor/*.coffee').pipe(coffee()),
+        gulp.src('src/js/vendor/*.js'),
+        gulp.src('src/js/*.coffee').pipe(coffee()),
+        gulp.src('src/js/*.js')
+    )
+        .pipe(concat('main.js'))
         .pipe(sourcemaps.init()) //Инициализируем sourcemap
         .pipe(uglify()) //Сожмем наш js
         .pipe(sourcemaps.write()) //Пропишем карты
@@ -108,7 +119,7 @@ gulp.task('watch', function(){
     watch([path.watch.style], function(event, cb) {
         gulp.start('style:build');
     });
-    watch([path.watch.js], function(event, cb) {
+    watch([path.watch.js, path.watch.coffee], function(event, cb) {
         gulp.start('js:build');
     });
     watch([path.watch.img], function(event, cb) {

@@ -13,6 +13,7 @@ h1 {
 
   h1 {
     font-size: $sidenav-font-size * 3;
+    color: $font-color;
   }
 }
 
@@ -23,7 +24,7 @@ li > a > i.material-icons {
 }
 
 .userView {
-  color: $secondary-color;
+  color: $font-color;
 
   h1 {
     font-family: 'Patua One', serif;
