@@ -1,6 +1,6 @@
 {
   "name": "WebApp",
-  "version": "2.0.0",
+  "version": "0.1.0",
   "description": "",
   "license": "MIT",
   "dependencies": {
@@ -16,6 +16,11 @@
     "gulp-uglify": "*",
     "gulp-watch": "*",
     "imagemin-pngquant": "*",
-    "rimraf": "*"
+    "rimraf": "*",
+    "event-stream": "*",
+    "gulp-concat": "*",
+    "gulp-coffee": "*",
+    "gulp-dest": "*",
+    "event-stream": "*"
   }
 }
