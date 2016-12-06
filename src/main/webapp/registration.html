@@ -19,12 +19,39 @@
     <!--JQuery UI-->
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <!--JQuery AJAX-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <!--Browser-master-->
     <script type="text/javascript" src="js/jquery.mb.browser.min.js"></script>
     <!--Materialize-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <!--My scripts-->
     <script type="text/javascript" src="js/scripts.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#registration-btn").on("click", function () {
+                var data = {};
+                data.login = $("#name").val();
+                data.password = $("#password").val();
+                data.email = $("#email").val();
+                console.log(data);
+                $.ajax({
+                    type: "POST",
+                    url: "/kalah-1.0/registration",
+                    async: true,
+                    data: JSON.stringify(data),
+                    contentType: "application/json",
+                    success: function (result) {
+                        alert(result)
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert("Error status code: " + xhr.status);
+                        alert("Error details: " + thrownError);
+                    }
+                });
+            });
+        });
+    </script>
   </head>
   <body>
     <header>
@@ -89,7 +116,7 @@
                 </select>
                 <label for="icons">Аватар</label>
               </div>
-              <div class="col s12"><a href="/kalah-1.0/login.html" type="submit" name="action" class="btn waves-effect waves-light">Зарегистрироваться<i class="material-icons right">send</i></a></div>
+              <div class="col s12"><a id="registration-btn" type="submit" name="action" class="btn waves-effect waves-light">Зарегистрироваться<i class="material-icons right">send</i></a></div>
             </form>
           </div>
         </div>

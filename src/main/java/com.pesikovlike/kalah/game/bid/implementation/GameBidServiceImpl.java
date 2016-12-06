@@ -30,18 +30,10 @@ public class GameBidServiceImpl implements GameBidService {
     @Named("userDAO")
     private UserDAO userDAO;
 
-    private GameBidFactory gameBidFactory;
-
     private final Map<String, GameBid> gameBids = new HashMap<String, GameBid>();
 
-    public int addBid(String creatorLogin, String friendLogin, int holeCount, int stoneCount, Session sessionOfCreator) {
-        GameBid newBid = gameBidFactory.getGameSession();
-        newBid.setCreatorLogin(creatorLogin);
-        newBid.setFriendLogin(friendLogin);
-        newBid.setHoleCount(holeCount);
-        newBid.setStoneCount(stoneCount);
-        newBid.setSessionOfCreator(sessionOfCreator);
-        gameBids.put(creatorLogin, newBid);
+    public int addBid(GameBid newBid) {
+        gameBids.put(newBid.getCreatorLogin(), newBid);
         return 0;
     }
 
@@ -58,7 +50,7 @@ public class GameBidServiceImpl implements GameBidService {
         Set<GameBid> bids = new HashSet<GameBid>();
         for(Map.Entry<String, GameBid> bid : gameBids.entrySet()) {
             GameBid value = bid.getValue();
-            if (value.getFriendLogin() == null || value.getFriendLogin().equals(friendLogin)) {
+            if (value.getFriendLogin() == "" || value.getFriendLogin().equals(friendLogin)) {
                 bids.add(value);
             }
         }

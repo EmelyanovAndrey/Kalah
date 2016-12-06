@@ -19,7 +19,7 @@ public class GameBidFactory {
         GameBidFactory.impl = impl;
     }
 
-    public GameBid getGameSession() {
+    public GameBid getGameBid() {
         if (gameBid == null)
             switch (impl) {
                 case IMPL:

@@ -64,16 +64,17 @@
             <h1>Войти</h1>
           </div>
           <div class="row">
-            <form>
+            <form action="" method="post" accept-charset="UTF-8">
               <div class="input-field col s12"><i class="material-icons prefix">perm_identity</i>
-                <input id="name" type="text" length="10" class="validate">
+                <input id="name" name="username" type="text" length="10" class="validate">
                 <label for="name">Имя</label>
               </div>
               <div class="input-field col s12"><i class="material-icons prefix">vpn_key</i>
-                <input id="password" type="password" class="validate">
+                <input id="password" name="password" type="password" class="validate">
                 <label for="password">Пароль</label>
               </div>
-              <div class="col s12"><a href="/kalah-1.0/profile.html" type="submit" name="action" class="btn waves-effect waves-light large">Войти<i class="material-icons right">lock</i></a></div>
+              <div class="col s12"><input type="submit" value="Войти" class="btn waves-effect waves-light"></div>
+              <!--<div class="col s12"><a href="/kalah-1.0/secure/profile.html" type="submit" name="action" class="btn waves-effect waves-light large">Войти<i class="material-icons right">lock</i></a></div>-->
             </form>
           </div>
           <div class="row">

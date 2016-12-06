@@ -9,7 +9,7 @@ import java.util.Set;
  */
 public interface GameBidService {
 
-    public int addBid(String creatorLogin, String friendLogin, int holeCount, int stoneCount, Session sessionOfCreator);
+    public int addBid(GameBid newBid);
 
     public int deleteBid(String creatorLogin);
 

@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet {
 
     private static final Logger LOGGER = Logger.getLogger( "MyLogger" );
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         String login = request.getParameter("login");

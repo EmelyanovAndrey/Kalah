@@ -66,7 +66,6 @@ public class GameSessionsServiceImpl implements GameSessionService {
                 bid.getHoleCount(), bid.getStoneCount());
 
         GameSession gameSession = gameSessionFactory.getGameSession();
-        gameSession.setSessionOfCreator(bid.getSessionOfCreator());
         gameSession.setSessionOfJoined(bid.getSessionOfJoined());
         gameSession.setGameState(gameState);
 
