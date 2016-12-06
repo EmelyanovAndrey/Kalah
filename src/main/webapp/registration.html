@@ -41,8 +41,13 @@
                     async: true,
                     data: JSON.stringify(data),
                     contentType: "application/json",
-                    success: function (result) {
-                        alert(result)
+                    success: function (res) {
+                      console.log(res);
+                        if (res.result == "success") {
+                            location.href = '/kalah-1.0/profile.html';
+                        } else {
+                            alert("Пользователь с таким именем уже существует.");
+                        }
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
                         alert("Error status code: " + xhr.status);

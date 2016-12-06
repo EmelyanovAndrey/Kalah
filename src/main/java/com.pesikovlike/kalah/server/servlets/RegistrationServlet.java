@@ -1,6 +1,8 @@
 package com.pesikovlike.kalah.server.servlets;
 
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.pesikovlike.kalah.game.bid.GameBidService;
 import com.pesikovlike.kalah.model.dao.UserDAO;
 import com.pesikovlike.kalah.user.UserService;
@@ -21,6 +23,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -62,16 +66,26 @@ public class RegistrationServlet extends HttpServlet {
         String email = requestJson.getString("email");
         int avatar = -1;
 
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.setHeader("Cache-Control", "no-cache");
         if (userService.register(login, password, email, avatar) == 0) {
-
             session.setAttribute("login", login);
-
             LOGGER.log(Level.SEVERE, "Success registration for user: " + login);
-            response.getWriter().write("{result: 'success'}");
+
+            Map<String, String> resultMap = new HashMap<String, String>();
+            resultMap.put("result", "success");
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String json = gson.toJson(resultMap);
+            response.getWriter().write(json);
         } else {
             LOGGER.log(Level.SEVERE, "Error registration for user: " + login);
-            response.getWriter().write("{result: 'error';" +
-                    "type: 'user exist'}");
+
+            Map<String, String> resultMap = new HashMap<String, String>();
+            resultMap.put("result", "error");
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String json = gson.toJson(resultMap);
+            response.getWriter().write(json);
 
         }
     }

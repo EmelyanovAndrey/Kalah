@@ -76,8 +76,8 @@ public class CreateNewGameServlet extends HttpServlet {
         LOGGER.log(Level.SEVERE, "Receive data: " + jsonStr);
 
         response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
         response.setHeader("Cache-Control", "no-cache");
-
         if (friendLogin == "" || userService.userExist(requestJson.getString("friendLogin"))) {
             GameBid newBid = gameBidFactory.getGameBid();
             newBid.setCreatorLogin(creatorLogin);
@@ -89,7 +89,7 @@ public class CreateNewGameServlet extends HttpServlet {
             LOGGER.log(Level.SEVERE, "Success game creation for user: " + creatorLogin);
             request.getRequestDispatcher("/game.html").forward(request, response);
         } else {
-            response.getWriter().write("{result: 'error';" +
+            response.getWriter().write("{result: 'error'," +
                     "type: 'friend not exist'}");
 
             LOGGER.log(Level.SEVERE, "Error game creation for user: " + creatorLogin);

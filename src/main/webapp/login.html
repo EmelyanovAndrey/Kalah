@@ -25,6 +25,34 @@
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <!--My scripts-->
     <script type="text/javascript" src="js/scripts.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("#login-btn").on("click", function () {
+          var data = {};
+          data.login = $("#name").val();
+          data.password = $("#password").val();
+          console.log(data);
+          $.ajax({
+            type: "POST",
+            url: "/kalah-1.0/login",
+            async: true,
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            success: function (res) {
+              if (res.result == "success") {
+                location.href = '/kalah-1.0/game-list.html';
+              } else {
+                alert("Неверные данные аутентификации.");
+              }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+              alert("Error status code: " + xhr.status);
+              alert("Error details: " + thrownError);
+            }
+          });
+        });
+      });
+    </script>
   </head>
   <body>
     <header>
@@ -64,7 +92,7 @@
             <h1>Войти</h1>
           </div>
           <div class="row">
-            <form action="" method="post" accept-charset="UTF-8">
+            <form>
               <div class="input-field col s12"><i class="material-icons prefix">perm_identity</i>
                 <input id="name" name="username" type="text" length="10" class="validate">
                 <label for="name">Имя</label>
@@ -73,9 +101,8 @@
                 <input id="password" name="password" type="password" class="validate">
                 <label for="password">Пароль</label>
               </div>
-              <div class="col s12"><input type="submit" value="Войти" class="btn waves-effect waves-light"></div>
-              <!--<div class="col s12"><a href="/kalah-1.0/secure/profile.html" type="submit" name="action" class="btn waves-effect waves-light large">Войти<i class="material-icons right">lock</i></a></div>-->
-            </form>
+              <div class="col s12"><input id="login-btn" value="Войти" class="btn waves-effect waves-light"></div>
+              </form>
           </div>
           <div class="row">
             <div class="col s12"><a href="/kalah-1.0/registration.html" type="submit" name="action" class="btn waves-effect waves-light">Зарегистрироваться</a></div>
