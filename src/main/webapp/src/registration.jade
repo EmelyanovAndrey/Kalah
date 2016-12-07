@@ -1,47 +1,52 @@
 extends template/layout
 
-
-
-
 block title
     title #{title} | Регистрация
 
 block content
+    mixin select(items, first)
+        select
+            option(disabled, selected) #{first}
+            each item in items
+                option #{item}
+
+    -var baseUrl=""
+
     - var icons_array = [{icon_name: "Terminator", icon_link: baseUrl+"img/terminator.jpg"}, {icon_name: "Marcus", icon_link: baseUrl+"img/marcus.jpg"}]
     .registration
         .container
             .row
                 h1 Регистрация
             .row
-                form
+                form#registration
                     .input-field.col.s12
                         i.material-icons.prefix perm_identity
-                        input#name.validate(type="text", length="10")
+                        input#name.validate(type="text", minlength='4' maxlength="16", data-error="Слишком длинное имя")
                         label(for="name") Имя
 
                     .input-field.col.s12
                         i.material-icons.prefix vpn_key
-                        input#password.validate(type="password")
+                        input#password.validate(type="password", minlength='6', maxlength="20")
                         label(for="password") Пароль
 
                     .input-field.col.s12
                         i.material-icons.prefix vpn_key
-                        input#re-password.validate(type="password")
+                        input#re-password.validate(type="password", minlength='6', maxlength="20", data-error="Пароли не совпадают", data-success="Пароли совпадают")
                         label(for="re-password") Повторите пароль
 
                     .input-field.col.s12
                         i.material-icons.prefix email
                         input#email.validate(type='email')
-                        label(for="email" data-error="Неверный адрес email" data-success="OK") Email
+                        label(for="email" data-error="Неверный адрес email") Email
 
                     .input-field.col.s12
                         i.material-icons.prefix account_circle
                         select#icons.icons
                             option(disabled selected) Выберите аватар
                             each icon in icons_array
-                                option(value="", data-icon=icon.icon_link).left.circle #{icon.icon_name}
+                                option(data-icon=icon.icon_link).left.circle #{icon.icon_name}
                         label(for="icons") Аватар
 
                     .col.s12
-                        a.btn.waves-effect.waves-light(href=baseUrl+"login.html" type="submit" name="action") Зарегистрироваться
+                        a#signup.btn.waves-effect.waves-light(type="submit" name="action") Зарегистрироваться
                             i.material-icons.right send

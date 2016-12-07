@@ -16,7 +16,7 @@
   ],
   "dependencies": {
     "normalize.css": "*",
-    "jquery": "2.*",
+    "jquery": "2.1.1",
     "materialize": "*"
   }
 }

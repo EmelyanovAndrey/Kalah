@@ -94,7 +94,7 @@
  * animation-delay and instead set custom keyframes for each color (as redundant as it
  * seems).
  *
- * We write out each animation in full (instead of separating animation-name,
+ * We write out each animation in full (instead of separating animation-item,
  * animation-duration, etc.) because under the polyfill, Safari does not recognize those
  * specific properties properly, treats them as -webkit-animation, and overrides the
  * other animation rules. See https://github.com/Polymer/platform/issues/53.

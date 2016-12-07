@@ -11,7 +11,7 @@
 //          animation-duration($duration)
 //          animation-fill-mode($mode)
 //          animation-iteration-count($count)
-//          animation-name($name)
+//          animation-item($item)
 //          animation-play-state($state)
 //          animation-timing-function($function)
 //      background-size($args)
@@ -91,12 +91,12 @@
 //     -o-animation-iteration-count: $count;
 //     animation-iteration-count: $count;
 // }
-// @mixin animation-name($name) {
-//     -webkit-animation-name: $name;
-//     -moz-animation-name: $name;
-//     -ms-animation-name: $name;
-//     -o-animation-name: $name;
-//     animation-name: $name;
+// @mixin animation-item($item) {
+//     -webkit-animation-item: $item;
+//     -moz-animation-item: $item;
+//     -ms-animation-item: $item;
+//     -o-animation-item: $item;
+//     animation-item: $item;
 // }
 // @mixin animation-play-state($state) {
 //     -webkit-animation-play-state: $state;
@@ -114,14 +114,14 @@
 // }
 
 // Keyframes
-// @mixin keyframes($animation-name) {
-//   @-webkit-keyframes #{$animation-name} {
+// @mixin keyframes($animation-item) {
+//   @-webkit-keyframes #{$animation-item} {
 //     @content;
 //   }
-//   @-moz-keyframes #{$animation-name} {
+//   @-moz-keyframes #{$animation-item} {
 //     @content;
 //   }
-//   @keyframes #{$animation-name} {
+//   @keyframes #{$animation-item} {
 //     @content;
 //   }
 // }

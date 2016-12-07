@@ -27,8 +27,13 @@ var path = {
     },
     src: { //Пути откуда брать исходники
         html: 'src/*.jade',
-        js: 'src/js/main.js',
-        coffee: 'src/js/**/*.coffee',
+        js: 'src/js/*.js',
+        vendor: [
+            'src/js/vendor/jquery.js',
+            'src/js/vendor/browser.js',
+            'src/js/vendor/materialize.js'
+        ],
+        coffee: 'src/js/*.coffee',
         style: 'src/style/main.scss',
         img: 'src/img/**/*.*',
         fonts: 'src/fonts/**/*.*'
@@ -62,15 +67,14 @@ gulp.task('html:build', function () {
 });
 
 gulp.task('js:build', function () {
-    return es.merge(
-        gulp.src('src/js/vendor/*.coffee').pipe(coffee()),
-        gulp.src('src/js/vendor/*.js'),
-        gulp.src('src/js/*.coffee').pipe(coffee()),
-        gulp.src('src/js/*.js')
+    return es.concat(
+        gulp.src(path.src.vendor),
+        gulp.src(path.src.coffee).pipe(coffee()),
+        gulp.src(path.src.js)
     )
-        .pipe(concat('main.js'))
         .pipe(sourcemaps.init()) //Инициализируем sourcemap
-        .pipe(uglify()) //Сожмем наш js
+        .pipe(concat('main.js'))
+        // .pipe(uglify()) //Сожмем наш js
         .pipe(sourcemaps.write()) //Пропишем карты
         .pipe(gulp.dest(path.build.js))
         .pipe(reload({stream: true}));
