@@ -1,9 +1,6 @@
 package com.pesikovlike.kalah.server;
 
 
-import com.pesikovlike.kalah.model.dao.interfaces.AvatarDAO;
-import com.pesikovlike.kalah.model.entity.Avatar;
-
 import javax.annotation.PostConstruct;
 
 import javax.ejb.Singleton;

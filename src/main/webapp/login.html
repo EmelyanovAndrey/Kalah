@@ -25,6 +25,34 @@
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <!--My scripts-->
     <script type="text/javascript" src="js/scripts.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("#login-btn").on("click", function () {
+          var data = {};
+          data.login = $("#name").val();
+          data.password = $("#password").val();
+          console.log(data);
+          $.ajax({
+            type: "POST",
+            url: "/kalah-1.0/login",
+            async: true,
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            success: function (res) {
+              if (res.result == "success") {
+                location.href = '/kalah-1.0/game-list.html';
+              } else {
+                alert("Неверные данные аутентификации.");
+              }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+              alert("Error status code: " + xhr.status);
+              alert("Error details: " + thrownError);
+            }
+          });
+        });
+      });
+    </script>
   </head>
   <body>
     <header>
@@ -35,24 +63,24 @@
               <h1>Kalah</h1>
             </div>
           </li>
-          <li><a href="/Kalah/src/main/webapp/index.html" target="_blank" class="grey-text text-lighten-3">Главная<i class="material-icons">view_stream</i></a></li>
-          <li><a href="/Kalah/src/main/webapp/about.html" target="_blank" class="grey-text text-lighten-3">Об игре<i class="material-icons">info</i></a></li>
-          <li><a href="/Kalah/src/main/webapp/game.html" target="_blank" class="grey-text text-lighten-3">Играть с человеком<i class="material-icons">perm_identity</i></a></li>
-          <li><a href="/Kalah/src/main/webapp/game.html" target="_blank" class="grey-text text-lighten-3">Играть с компьютером<i class="material-icons">android</i></a></li>
-          <li><a href="/Kalah/src/main/webapp/registration.html" target="_blank" class="grey-text text-lighten-3">Профиль<i class="material-icons">account_circle</i></a></li>
+          <li><a href="/kalah-1.0/index.html" target="_blank" class="grey-text text-lighten-3">Главная<i class="material-icons">view_stream</i></a></li>
+          <li><a href="/kalah-1.0/about.html" target="_blank" class="grey-text text-lighten-3">Об игре<i class="material-icons">info</i></a></li>
+          <li><a href="/kalah-1.0/game.html" target="_blank" class="grey-text text-lighten-3">Играть с человеком<i class="material-icons">perm_identity</i></a></li>
+          <li><a href="/kalah-1.0/game.html" target="_blank" class="grey-text text-lighten-3">Играть с компьютером<i class="material-icons">android</i></a></li>
+          <li><a href="/kalah-1.0/registration.html" target="_blank" class="grey-text text-lighten-3">Профиль<i class="material-icons">account_circle</i></a></li>
         </ul>
         <nav>
           <div class="nav-wrapper container">
-            <div class="large-nav-bar"><a href="/Kalah/src/main/webapp/" target="_blank" class="brand-logo">Kalah</a>
+            <div class="large-nav-bar"><a href="/kalah-1.0/" target="_blank" class="brand-logo">Kalah</a>
               <ul class="right">
-                <li><a href="/Kalah/src/main/webapp/index.html" target="_blank" class="grey-text text-lighten-3">Главная</a></li>
-                <li><a href="/Kalah/src/main/webapp/about.html" target="_blank" class="grey-text text-lighten-3">Об игре</a></li>
-                <li><a href="/Kalah/src/main/webapp/game.html" target="_blank" class="grey-text text-lighten-3">Играть с человеком</a></li>
-                <li><a href="/Kalah/src/main/webapp/game.html" target="_blank" class="grey-text text-lighten-3">Играть с компьютером</a></li>
-                <li><a href="/Kalah/src/main/webapp/registration.html" target="_blank" class="grey-text text-lighten-3">Профиль</a></li>
+                <li><a href="/kalah-1.0/index.html" target="_blank" class="grey-text text-lighten-3">Главная</a></li>
+                <li><a href="/kalah-1.0/about.html" target="_blank" class="grey-text text-lighten-3">Об игре</a></li>
+                <li><a href="/kalah-1.0/game.html" target="_blank" class="grey-text text-lighten-3">Играть с человеком</a></li>
+                <li><a href="/kalah-1.0/game.html" target="_blank" class="grey-text text-lighten-3">Играть с компьютером</a></li>
+                <li><a href="/kalah-1.0/registration.html" target="_blank" class="grey-text text-lighten-3">Профиль</a></li>
               </ul>
             </div>
-            <div class="mini-nav-bar"><a href="#!" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a><a href="/Kalah/src/main/webapp/" data-activates="slide-out" class="brand-logo">Kalah</a></div>
+            <div class="mini-nav-bar"><a href="#!" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a><a href="/kalah-1.0/" data-activates="slide-out" class="brand-logo">Kalah</a></div>
           </div>
         </nav>
       </div>
@@ -66,18 +94,18 @@
           <div class="row">
             <form>
               <div class="input-field col s12"><i class="material-icons prefix">perm_identity</i>
-                <input id="name" type="text" length="10" class="validate">
+                <input id="name" name="username" type="text" length="10" class="validate">
                 <label for="name">Имя</label>
               </div>
               <div class="input-field col s12"><i class="material-icons prefix">vpn_key</i>
-                <input id="password" type="password" class="validate">
+                <input id="password" name="password" type="password" class="validate">
                 <label for="password">Пароль</label>
               </div>
-              <div class="col s12"><a href="/Kalah/src/main/webapp/profile.html" type="submit" name="action" class="btn waves-effect waves-light large">Войти<i class="material-icons right">lock</i></a></div>
-            </form>
+              <div class="col s12"><input id="login-btn" value="Войти" class="btn waves-effect waves-light"></div>
+              </form>
           </div>
           <div class="row">
-            <div class="col s12"><a href="/Kalah/src/main/webapp/registration.html" type="submit" name="action" class="btn waves-effect waves-light">Зарегистрироваться</a></div>
+            <div class="col s12"><a href="/kalah-1.0/registration.html" type="submit" name="action" class="btn waves-effect waves-light">Зарегистрироваться</a></div>
           </div>
         </div>
       </div>

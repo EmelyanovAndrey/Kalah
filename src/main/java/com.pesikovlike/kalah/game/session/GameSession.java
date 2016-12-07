@@ -5,42 +5,18 @@ import com.pesikovlike.kalah.model.entity.GameState;
 import javax.websocket.Session;
 
 /**
- * Created by Igor on 09.11.2016.
+ * Created by Igor on 06.12.2016.
  */
-public class GameSession {
-    private Session sessionOfCreator;
-    private Session sessionOfJoined;
-    private GameState gameState;
+public interface GameSession {
+    public Session getSessionOfCreator();
 
+    public void setSessionOfCreator(Session sessionOfCreator);
 
-    public GameSession(Session sessionOfCreator, Session sessionOfJoined, GameState gameState){
-        this.sessionOfCreator = sessionOfCreator;
-        this.sessionOfJoined = sessionOfJoined;
-        this.gameState = gameState;
-    }
+    public Session getSessionOfJoined();
 
-    public Session getSessionOfCreator() {
-        return sessionOfCreator;
-    }
+    public void setSessionOfJoined(Session sessionOfJoined);
 
-    public void setSessionOfCreator(Session sessionOfCreator) {
-        this.sessionOfCreator = sessionOfCreator;
-    }
+    public GameState getGameState();
 
-    public Session getSessionOfJoined() {
-        return sessionOfJoined;
-    }
-
-    public void setSessionOfJoined(Session sessionOfJoined) {
-        this.sessionOfJoined = sessionOfJoined;
-    }
-
-    public GameState getGameState() {
-        return gameState;
-    }
-
-    public void setGameState(GameState gameState) {
-        this.gameState = gameState;
-    }
-
+    public void setGameState(GameState gameState);
 }

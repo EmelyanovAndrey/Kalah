@@ -1,9 +1,10 @@
 package com.pesikovlike.kalah.server.websocket.game;
 
+
 import com.pesikovlike.kalah.game.bid.GameBid;
 import com.pesikovlike.kalah.game.bid.GameBidService;
 import com.pesikovlike.kalah.game.session.GameSession;
-import com.pesikovlike.kalah.model.dao.interfaces.UserDAO;
+import com.pesikovlike.kalah.model.dao.UserDAO;
 import com.pesikovlike.kalah.user.UserService;
 
 import javax.ejb.EJB;
@@ -22,13 +23,7 @@ import java.io.StringReader;
 
 /*
  * input message format
-   {
-        operation: create;
-        creatorLogin: ;
-        friendLogin: ;
-        holeCount: ;
-        stoneCount: ;
-   }
+
 
    {
         operation: join;
@@ -65,11 +60,7 @@ public class ForCreatorSocket {
 
         if (operation.equals("create")) { //создаем заявку
             if (userService.userExist(json.getString("friendLogin"))) {
-                gameBidService.addBid(json.getJsonString("creatorLogin").getString(),
-                        json.getJsonString("friendLogin").getString(),
-                        json.getJsonNumber("holeCount").intValue(),
-                        json.getJsonNumber("stoneCount").intValue(),
-                        session);
+
                 session.getBasicRemote().sendText("{result: 'success'}");
             } else {
                 session.getBasicRemote().sendText("{result: 'error';" +

@@ -1,13 +1,12 @@
 package com.pesikovlike.kalah.model.dao.postgres.hibernate;
 
-import com.pesikovlike.kalah.model.dao.interfaces.UserDAO;
+import com.pesikovlike.kalah.model.dao.UserDAO;
 import com.pesikovlike.kalah.model.entity.User;
 import com.pesikovlike.kalah.model.hibernate.PostgresHibernateSessionFactory;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import javax.ejb.Stateless;
 import java.util.List;
 
 /**

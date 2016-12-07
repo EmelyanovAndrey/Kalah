@@ -1,13 +1,10 @@
 package com.pesikovlike.kalah.model.dao;
 
-import com.pesikovlike.kalah.model.dao.interfaces.*;
 import com.pesikovlike.kalah.model.dao.postgres.hibernate.PostgresHibernateAvatarDAO;
 import com.pesikovlike.kalah.model.dao.postgres.hibernate.PostgresHibernateGameStateDAO;
 import com.pesikovlike.kalah.model.dao.postgres.hibernate.PostgresHibernateHoleDAO;
 import com.pesikovlike.kalah.model.dao.postgres.hibernate.PostgresHibernateUserDAO;
 
-import javax.ejb.EJB;
-import javax.ejb.Singleton;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Named;

@@ -1,12 +1,10 @@
 package com.pesikovlike.kalah.model.dao.postgres.hibernate;
 
-import com.pesikovlike.kalah.model.dao.interfaces.AvatarDAO;
+import com.pesikovlike.kalah.model.dao.AvatarDAO;
 import com.pesikovlike.kalah.model.entity.Avatar;
 import com.pesikovlike.kalah.model.hibernate.PostgresHibernateSessionFactory;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
-import javax.ejb.Stateless;
 
 /**
  * Created by Igor on 01.11.2016.

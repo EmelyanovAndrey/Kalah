@@ -4,12 +4,9 @@ package com.pesikovlike.kalah.server;
  * Created by Igor on 06.11.2016.
  */
 
+import com.pesikovlike.kalah.game.bid.GameBidFactory;
+import com.pesikovlike.kalah.game.session.GameSessionFactory;
 import com.pesikovlike.kalah.model.dao.DAOFactory;
-import com.pesikovlike.kalah.model.dao.interfaces.AvatarDAO;
-import com.pesikovlike.kalah.model.entity.Avatar;
-
-import javax.inject.Inject;
-import javax.inject.Named;
 
 
 /**Если нужно будет использовать друной источник данных и начальную инициализацию БД,
@@ -22,6 +19,7 @@ public class PostgresHibernateStartup {
 
     public void init(){
         DAOFactory.init(DAOFactory.DataSources.POSTGRES_HIBERNATE);
-
+        GameSessionFactory.init(GameSessionFactory.GameSessionImpl.IMPL);
+        GameBidFactory.init(GameBidFactory.GameBidImpl.IMPL);
     }
 }

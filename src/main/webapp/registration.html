@@ -19,12 +19,44 @@
     <!--JQuery UI-->
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <!--JQuery AJAX-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <!--Browser-master-->
     <script type="text/javascript" src="js/jquery.mb.browser.min.js"></script>
     <!--Materialize-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <!--My scripts-->
     <script type="text/javascript" src="js/scripts.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#registration-btn").on("click", function () {
+                var data = {};
+                data.login = $("#name").val();
+                data.password = $("#password").val();
+                data.email = $("#email").val();
+                console.log(data);
+                $.ajax({
+                    type: "POST",
+                    url: "/kalah-1.0/registration",
+                    async: true,
+                    data: JSON.stringify(data),
+                    contentType: "application/json",
+                    success: function (res) {
+                      console.log(res);
+                        if (res.result == "success") {
+                            location.href = '/kalah-1.0/profile.html';
+                        } else {
+                            alert("Пользователь с таким именем уже существует.");
+                        }
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert("Error status code: " + xhr.status);
+                        alert("Error details: " + thrownError);
+                    }
+                });
+            });
+        });
+    </script>
   </head>
   <body>
     <header>
@@ -35,24 +67,24 @@
               <h1>Kalah</h1>
             </div>
           </li>
-          <li><a href="/Kalah/src/main/webapp/index.html" target="_blank" class="grey-text text-lighten-3">Главная<i class="material-icons">view_stream</i></a></li>
-          <li><a href="/Kalah/src/main/webapp/about.html" target="_blank" class="grey-text text-lighten-3">Об игре<i class="material-icons">info</i></a></li>
-          <li><a href="/Kalah/src/main/webapp/game.html" target="_blank" class="grey-text text-lighten-3">Играть с человеком<i class="material-icons">perm_identity</i></a></li>
-          <li><a href="/Kalah/src/main/webapp/game.html" target="_blank" class="grey-text text-lighten-3">Играть с компьютером<i class="material-icons">android</i></a></li>
-          <li><a href="/Kalah/src/main/webapp/registration.html" target="_blank" class="grey-text text-lighten-3">Профиль<i class="material-icons">account_circle</i></a></li>
+          <li><a href="/kalah-1.0/index.html" target="_blank" class="grey-text text-lighten-3">Главная<i class="material-icons">view_stream</i></a></li>
+          <li><a href="/kalah-1.0/about.html" target="_blank" class="grey-text text-lighten-3">Об игре<i class="material-icons">info</i></a></li>
+          <li><a href="/kalah-1.0/game.html" target="_blank" class="grey-text text-lighten-3">Играть с человеком<i class="material-icons">perm_identity</i></a></li>
+          <li><a href="/kalah-1.0/game.html" target="_blank" class="grey-text text-lighten-3">Играть с компьютером<i class="material-icons">android</i></a></li>
+          <li><a href="/kalah-1.0/registration.html" target="_blank" class="grey-text text-lighten-3">Профиль<i class="material-icons">account_circle</i></a></li>
         </ul>
         <nav>
           <div class="nav-wrapper container">
-            <div class="large-nav-bar"><a href="/Kalah/src/main/webapp/" target="_blank" class="brand-logo">Kalah</a>
+            <div class="large-nav-bar"><a href="/kalah-1.0/" target="_blank" class="brand-logo">Kalah</a>
               <ul class="right">
-                <li><a href="/Kalah/src/main/webapp/index.html" target="_blank" class="grey-text text-lighten-3">Главная</a></li>
-                <li><a href="/Kalah/src/main/webapp/about.html" target="_blank" class="grey-text text-lighten-3">Об игре</a></li>
-                <li><a href="/Kalah/src/main/webapp/game.html" target="_blank" class="grey-text text-lighten-3">Играть с человеком</a></li>
-                <li><a href="/Kalah/src/main/webapp/game.html" target="_blank" class="grey-text text-lighten-3">Играть с компьютером</a></li>
-                <li><a href="/Kalah/src/main/webapp/registration.html" target="_blank" class="grey-text text-lighten-3">Профиль</a></li>
+                <li><a href="/kalah-1.0/index.html" target="_blank" class="grey-text text-lighten-3">Главная</a></li>
+                <li><a href="/kalah-1.0/about.html" target="_blank" class="grey-text text-lighten-3">Об игре</a></li>
+                <li><a href="/kalah-1.0/game.html" target="_blank" class="grey-text text-lighten-3">Играть с человеком</a></li>
+                <li><a href="/kalah-1.0/game.html" target="_blank" class="grey-text text-lighten-3">Играть с компьютером</a></li>
+                <li><a href="/kalah-1.0/registration.html" target="_blank" class="grey-text text-lighten-3">Профиль</a></li>
               </ul>
             </div>
-            <div class="mini-nav-bar"><a href="#!" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a><a href="/Kalah/src/main/webapp/" data-activates="slide-out" class="brand-logo">Kalah</a></div>
+            <div class="mini-nav-bar"><a href="#!" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a><a href="/kalah-1.0/" data-activates="slide-out" class="brand-logo">Kalah</a></div>
           </div>
         </nav>
       </div>
@@ -84,12 +116,12 @@
               <div class="input-field col s12"><i class="material-icons prefix">account_circle</i>
                 <select id="icons" class="icons">
                   <option disabled selected>Выберите аватар</option>
-                  <option value="" data-icon="/Kalah/src/main/webapp/assets/icons/terminator.jpg" class="left circle">Terminator</option>
-                  <option value="" data-icon="/Kalah/src/main/webapp/assets/icons/marcus.jpg" class="left circle">Marcus</option>
+                  <option value="" data-icon="/kalah-1.0/assets/icons/terminator.jpg" class="left circle">Terminator</option>
+                  <option value="" data-icon="/kalah-1.0/assets/icons/marcus.jpg" class="left circle">Marcus</option>
                 </select>
                 <label for="icons">Аватар</label>
               </div>
-              <div class="col s12"><a href="/Kalah/src/main/webapp/login.html" type="submit" name="action" class="btn waves-effect waves-light">Зарегистрироваться<i class="material-icons right">send</i></a></div>
+              <div class="col s12"><a id="registration-btn" type="submit" name="action" class="btn waves-effect waves-light">Зарегистрироваться<i class="material-icons right">send</i></a></div>
             </form>
           </div>
         </div>
