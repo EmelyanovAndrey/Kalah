@@ -20,7 +20,7 @@ table.dataTable {
   }
 
   tbody {
-    height: auto;
+    height: auto !important;
   }
   .save-games &{
     tbody {

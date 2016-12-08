@@ -6,7 +6,6 @@
 /src/main/webapp/app/
 /src/main/webapp/node_modules/
 /src/main/webapp/js/
-/src/main/webapp/build/
 /src/main/webapp/bower_components/
 /untitled/
 /target/
@@ -18,3 +17,4 @@
 /inspection/
 .idea
 
+/.gitignore
