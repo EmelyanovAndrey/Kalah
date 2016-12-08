@@ -4,13 +4,13 @@ block title
     title #{title} | Список игр
 
 block content
-    -var games = [{name: "Alex", count: "12/8"}, {name: "Alex", count: "12/8"}, {name: "Alex", count: "12/8"},{name: "Alex", count: "12/8"},{name: "Alex", count: "12/8"},{name: "Alex", count: "12/8"},{name: "Alex", count: "12/8"},{name: "Alex", count: "12/8"},{name: "Alex", count: "12/8"}]
+    -var games = [{name: "Alex", count: "12/8"}, {name: "Igor", count: "10/8"}, {name: "Sveta", count: "6/8"},{name: "Olya", count: "12/8"},{name: "Kostya", count: "12/8"},{name: "Bob", count: "15/8"},{name: "Kate", count: "12/8"},{name: "Alex", count: "12/8"},{name: "Alex", count: "12/8"}]
     .game-list
         .container
             .row
                 h1 Список игр
             .row
-                    table.highlight.centered
+                    table.highlight.centered#game_list
                         thead
                             tr
                                 th №

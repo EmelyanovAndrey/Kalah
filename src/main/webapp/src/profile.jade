@@ -6,7 +6,7 @@ block title
 block content
 
     -var player_name = "Marcus", icon = baseUrl+"img/marcus.jpg", email="ilykonst95@gmail.com"
-    -var save_games = [{name: "Alex", date: "10.12.14", score: "10/12", count: "6/8"}, {name: "Mikle", date: "15.06.16", score: "5/3", count: "6/8"}, {name: "Mikle", date: "15.06.16", score: "5/3", count: "6/8"}, {name: "Mikle", date: "15.06.16", score: "5/3", count: "6/8"}, {name: "Mikle", date: "15.06.16", score: "5/3", count: "6/8"}]
+    -var save_games = [{name: "Alex", date: "10.12.14", score: "10/12", stones: "6", lunks: "8"}, {name: "Alex", date: "10.12.14", score: "10/12", stones: "6", lunks: "8"}, {name: "Alex", date: "10.12.14", score: "10/12", stones: "6", lunks: "8"}, {name: "Alex", date: "10.12.14", score: "10/12", stones: "6", lunks: "8"}, {name: "Alex", date: "10.12.14", score: "10/12", stones: "6", lunks: "8"}]
     .container
         .row
             .col.l6.m6.s12
@@ -15,7 +15,7 @@ block content
                     .nick #{player_name}
 
         .row
-            .col.l6.m6.s12
+            .col.l6.m12.s12
                 form.profile-form#profile
                     .input-field.col.s12
                         i.material-icons.prefix perm_identity
@@ -41,17 +41,18 @@ block content
                     .col.s12
                         a#change.btn.waves-effect.waves-light.large(type="submit" name="action") Изменить данные
                             i.material-icons.right send
-            .col.l6.m6.s12
+            .col.l6.m12.s12
                 .save-games
                     .row
-                        table.highlight.centered
+                        table.highlight.centered#save_games
                             thead
                                 tr
                                     th №
                                     th Против
                                     th Счет
                                     th Дата
-                                    th Камни/Лунки
+                                    th Камни
+                                    th Лунки
                             tbody
                                 - each val, index in save_games
                                     tr
@@ -59,6 +60,7 @@ block content
                                         td #{val.name}
                                         td #{val.score}
                                         td #{val.date}
-                                        td #{val.count}
+                                        td #{val.stones}
+                                        td #{val.lunks}
 
 
