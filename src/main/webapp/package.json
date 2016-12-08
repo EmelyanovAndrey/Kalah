@@ -21,6 +21,8 @@
     "gulp-concat": "*",
     "gulp-coffee": "*",
     "gulp-dest": "*",
-    "event-stream": "*"
+    "event-stream": "*",
+    "datatables.net": "*",
+    "datatables.net-dt": "*"
   }
 }

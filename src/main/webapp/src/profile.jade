@@ -16,30 +16,30 @@ block content
 
         .row
             .col.l6.m6.s12
-                form.profile-form
+                form.profile-form#profile
                     .input-field.col.s12
                         i.material-icons.prefix perm_identity
-                        input#name.validate(type="text", length="10" value=player_name)
-                        label(for="item") Имя
+                        input#name.validate(type="text", minlength='4' maxlength="16",  value=player_name)
+                        label(for="name") Имя
 
                     .input-field.col.s12
                         i.material-icons.prefix email
-                        input#email.validate(type='email' value=email)
-                        label(for="email" data-error="Неверный адрес email" data-success="OK") Email
+                        input#email.validate(type='email', value=email,data-error="Неверный адрес email", data-success="OK", minlength='5', maxlength="40")
+                        label(for="email") Email
 
 
                     .input-field.col.s12
                         i.material-icons.prefix vpn_key
-                        input#password.validate(type="password")
+                        input#password.validate(type="password", minlength='6', maxlength="20")
                         label(for="password") Пароль
 
                     .input-field.col.s12
                         i.material-icons.prefix vpn_key
-                        input#re-password.validate(type="password")
+                        input#re-password.validate(type="password", minlength='6', maxlength="20")
                         label(for="re-password") Повторите пароль
 
                     .col.s12
-                        button.btn.waves-effect.waves-light.large(type="submit" name="action") Изменить данные
+                        a#change.btn.waves-effect.waves-light.large(type="submit" name="action") Изменить данные
                             i.material-icons.right send
             .col.l6.m6.s12
                 .save-games

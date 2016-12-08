@@ -31,7 +31,8 @@ var path = {
         vendor: [
             'src/js/vendor/jquery.js',
             'src/js/vendor/browser.js',
-            'src/js/vendor/materialize.js'
+            'src/js/vendor/materialize.js',
+            'src/js/vendor/dataTables.js'
         ],
         coffee: 'src/js/*.coffee',
         style: 'src/style/main.scss',
@@ -113,7 +114,8 @@ gulp.task('build', [
     'js:build',
     'style:build',
     'fonts:build',
-    'image:build'
+    'image:build',
+    'js:build'
 ]);
 
 gulp.task('watch', function(){

@@ -16,6 +16,6 @@
     <mapping class="com.pesikovlike.kalah.model.entity.Hole"/>
     <mapping class="com.pesikovlike.kalah.model.entity.User"/>
     <!-- DB schema will be updated if needed -->
-    <!-- <property name="hbm2ddl.auto">update</property> -->
+    <!-- <property item="hbm2ddl.auto">update</property> -->
   </session-factory>
 </hibernate-configuration>

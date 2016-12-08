@@ -36,8 +36,8 @@ block content
 
                     .input-field.col.s12
                         i.material-icons.prefix email
-                        input#email.validate(type='email')
-                        label(for="email" data-error="Неверный адрес email") Email
+                        input#email.validate(type='email', minlength='5', maxlength="40", data-error="Неверный адрес email")
+                        label(for="email") Email
 
                     .input-field.col.s12
                         i.material-icons.prefix account_circle
