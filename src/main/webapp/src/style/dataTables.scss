@@ -4,7 +4,11 @@
 table.dataTable {
   font-family: Roboto,sans-serif;
 
+  th, tr :hover{
+    cursor: pointer;
+  }
   thead {
+
 
     @media #{$large-and-up} {
       width: 40vw;
