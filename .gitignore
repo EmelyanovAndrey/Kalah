@@ -2,18 +2,19 @@
  
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
-/.idea/
-Kalah.iml
-/.gitignore
-*
-
-/src/main/webapp/app
-
-!/src/main/webapp/src/**/*
-!/src/main/webapp/bower.json
-!/src/main/webapp/gulpfile.js
-!/src/main/webapp/package.json
-!/src/main/webapp/readme.md
-
-/src/main/webapp/.idea/*
+/src/main/webapp/.idea/
 /src/main/webapp/app/
+/src/main/webapp/node_modules/
+/src/main/webapp/js/
+/src/main/webapp/build/
+/src/main/webapp/bower_components/
+/untitled/
+/target/
+/Kalah.iml
+/pom.xml
+/src/main/node_modules/
+/src/main/java/
+/src/main/resources/
+/inspection/
+.idea
+
