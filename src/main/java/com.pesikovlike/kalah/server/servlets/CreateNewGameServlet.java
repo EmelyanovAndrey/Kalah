@@ -1,5 +1,7 @@
 package com.pesikovlike.kalah.server.servlets;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.pesikovlike.kalah.game.bid.GameBid;
 import com.pesikovlike.kalah.game.bid.GameBidFactory;
 import com.pesikovlike.kalah.game.bid.GameBidService;
@@ -20,6 +22,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -43,6 +47,7 @@ public class CreateNewGameServlet extends HttpServlet {
     @EJB
     private UserService userService;
 
+    @Inject
     private GameBidFactory gameBidFactory;
 
     @Inject
@@ -59,7 +64,6 @@ public class CreateNewGameServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
         BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
         String jsonStr = "";
         if (br != null) {
@@ -67,18 +71,19 @@ public class CreateNewGameServlet extends HttpServlet {
         }
         JsonObject requestJson = Json.createReader(new StringReader(jsonStr)).readObject();
 
-
+        HttpSession session = request.getSession();
         String creatorLogin = session.getAttribute("login").toString();
         String friendLogin = requestJson.getJsonString("friendLogin").getString();
-        int holeCount = requestJson.getJsonNumber("holeCount").intValue() * 2;
-        int stoneCount = requestJson.getJsonNumber("stoneCount").intValue();
+
+        int holeCount = Integer.parseInt(requestJson.getJsonString("holeCount").getString()) * 2;
+        int stoneCount = Integer.parseInt(requestJson.getJsonString("stoneCount").getString());
 
         LOGGER.log(Level.SEVERE, "Receive data: " + jsonStr);
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.setHeader("Cache-Control", "no-cache");
-        if (friendLogin == "" || userService.userExist(requestJson.getString("friendLogin"))) {
+        if (friendLogin.equals("") || userService.userExist(requestJson.getString("friendLogin"))) {
             GameBid newBid = gameBidFactory.getGameBid();
             newBid.setCreatorLogin(creatorLogin);
             newBid.setFriendLogin(friendLogin);
@@ -87,13 +92,20 @@ public class CreateNewGameServlet extends HttpServlet {
             gameBidService.addBid(newBid);
 
             LOGGER.log(Level.SEVERE, "Success game creation for user: " + creatorLogin);
-            request.getRequestDispatcher("/game.html").forward(request, response);
+            Map<String, String> resultMap = new HashMap<String, String>();
+            resultMap.put("result", "success");
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String json = gson.toJson(resultMap);
+            session.setAttribute("role", "creator");
+            response.getWriter().write(json);
         } else {
-            response.getWriter().write("{result: 'error'," +
-                    "type: 'friend not exist'}");
 
             LOGGER.log(Level.SEVERE, "Error game creation for user: " + creatorLogin);
-            request.getRequestDispatcher("/new-game-human.html").forward(request, response);
+            Map<String, String> resultMap = new HashMap<String, String>();
+            resultMap.put("result", "error");
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String json = gson.toJson(resultMap);
+            response.getWriter().write(json);
         }
     }
 }

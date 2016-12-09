@@ -2,6 +2,7 @@ package com.pesikovlike.kalah.game.bid;
 
 import com.pesikovlike.kalah.game.bid.implementation.GameBidImpl;
 
+import javax.ejb.Stateless;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Named;

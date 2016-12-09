@@ -1,6 +1,9 @@
 package com.pesikovlike.kalah.server;
 
 
+import com.pesikovlike.kalah.game.bid.GameBidFactory;
+import com.pesikovlike.kalah.game.session.GameSessionFactory;
+
 import javax.annotation.PostConstruct;
 
 import javax.ejb.Singleton;
@@ -21,6 +24,8 @@ public class Bootstrap {
     @PostConstruct
     public void postConstruct(){
         postgresHibernateStartup.init();
+        GameSessionFactory.init(GameSessionFactory.GameSessionImpl.IMPL);
+        GameBidFactory.init(GameBidFactory.GameBidImpl.IMPL);
     }
 
 

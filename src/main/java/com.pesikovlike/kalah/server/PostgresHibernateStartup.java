@@ -19,7 +19,5 @@ public class PostgresHibernateStartup {
 
     public void init(){
         DAOFactory.init(DAOFactory.DataSources.POSTGRES_HIBERNATE);
-        GameSessionFactory.init(GameSessionFactory.GameSessionImpl.IMPL);
-        GameBidFactory.init(GameBidFactory.GameBidImpl.IMPL);
     }
 }

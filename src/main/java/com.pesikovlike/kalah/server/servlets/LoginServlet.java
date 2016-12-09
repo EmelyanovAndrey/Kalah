@@ -65,7 +65,7 @@ public class LoginServlet extends HttpServlet {
             String json = gson.toJson(resultMap);
             response.getWriter().write(json);
         } else {
-            LOGGER.log(Level.SEVERE, "Error registration for user: " + login);
+            LOGGER.log(Level.SEVERE, "Errors registration for user: " + login);
             Map<String, String> resultMap = new HashMap<String, String>();
             resultMap.put("result", "error");
             Gson gson = new GsonBuilder().setPrettyPrinting().create();

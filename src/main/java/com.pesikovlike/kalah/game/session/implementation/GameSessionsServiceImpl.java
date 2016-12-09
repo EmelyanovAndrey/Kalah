@@ -29,6 +29,7 @@ public class GameSessionsServiceImpl implements GameSessionService {
     @Named("userDAO")
     private UserDAO userDAO;
 
+    @Inject
     private GameSessionFactory gameSessionFactory;
 
     private final Map<String, GameSession> gameSessions = new HashMap<String, GameSession>();

@@ -2,6 +2,7 @@ package com.pesikovlike.kalah.game.session;
 
 import com.pesikovlike.kalah.game.session.implementation.GameSessionImpl;
 
+import javax.ejb.Stateless;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Named;
