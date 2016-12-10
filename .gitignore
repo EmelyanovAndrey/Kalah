@@ -6,14 +6,14 @@
 /src/main/webapp/app/
 /src/main/webapp/node_modules/
 /src/main/webapp/js/
+/src/main/webapp/css/
+/src/main/webapp/fonts/
+/src/main/webapp/img/
+/src/main/webapp/*.html
 /src/main/webapp/bower_components/
 /untitled/
 /target/
-/Kalah.iml
-/pom.xml
 /src/main/node_modules/
-/src/main/java/
-/src/main/resources/
 /inspection/
 .idea
 
