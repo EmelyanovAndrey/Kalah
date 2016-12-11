@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public interface GameSessionService {
 
-    public int addGameSession(GameBid bid);
+    public GameSession addGameSession(GameBid bid);
 
     public GameSession getGameSession(String creatorLogin);
 

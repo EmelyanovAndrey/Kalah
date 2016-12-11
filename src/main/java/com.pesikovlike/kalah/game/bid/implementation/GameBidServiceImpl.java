@@ -43,6 +43,7 @@ public class GameBidServiceImpl implements GameBidService {
     }
 
     public GameBid getBid(String creatorLogin) {
+
         return gameBids.get(creatorLogin);
     }
 

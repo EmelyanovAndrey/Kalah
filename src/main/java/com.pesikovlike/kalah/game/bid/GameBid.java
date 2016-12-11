@@ -29,4 +29,8 @@ public interface GameBid {
     public String getFriendLogin();
 
     public void setFriendLogin(String friendLogin);
+
+    public boolean isBlock();
+
+    public void setBlock(boolean block);
 }

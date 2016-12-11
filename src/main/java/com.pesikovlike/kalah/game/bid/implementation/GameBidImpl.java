@@ -14,6 +14,7 @@ public class GameBidImpl implements GameBid{
     private int stoneCount;
     private String creatorLogin;
     private String friendLogin;
+    private boolean block;
 
     public GameBidImpl() {}
     public GameBidImpl(String creatorLogin, String friendLogin, int holeCount, int stoneCount, Session sessionOfCreator) {
@@ -22,6 +23,7 @@ public class GameBidImpl implements GameBid{
         this.holeCount = holeCount;
         this.stoneCount = stoneCount;
         this.sessionOfCreator = sessionOfCreator;
+        this.block = false;
     }
 
 
@@ -72,4 +74,13 @@ public class GameBidImpl implements GameBid{
     public void setFriendLogin(String friendLogin) {
         this.friendLogin = friendLogin;
     }
+
+    public boolean isBlock() {
+        return block;
+    }
+
+    public void setBlock(boolean block) {
+        this.block = block;
+    }
+
 }

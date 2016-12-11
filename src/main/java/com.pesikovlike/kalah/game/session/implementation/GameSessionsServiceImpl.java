@@ -62,17 +62,18 @@ public class GameSessionsServiceImpl implements GameSessionService {
     }
 
 
-    public int addGameSession(GameBid bid) {
+    public GameSession addGameSession(GameBid bid) {
         GameState gameState = initGameState(bid.getCreatorLogin(), bid.getFriendLogin(),
                 bid.getHoleCount(), bid.getStoneCount());
 
         GameSession gameSession = gameSessionFactory.getGameSession();
         gameSession.setSessionOfJoined(bid.getSessionOfJoined());
+        gameSession.setSessionOfCreator(bid.getSessionOfCreator());
         gameSession.setGameState(gameState);
 
         gameSessions.put(bid.getCreatorLogin(), gameSession);
 
-        return 0;
+        return gameSession;
     }
 
     public GameSession getGameSession(String creatorLogin) {

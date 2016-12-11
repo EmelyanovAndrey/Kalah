@@ -44,6 +44,11 @@ public class GetSessionDataServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String login = session.getAttribute("login").toString();
         String role = session.getAttribute("role").toString();
+        String creatorLogin = "";
+        if (session.getAttribute("creatorLogin") != null) {
+            creatorLogin = session.getAttribute("creatorLogin").toString();
+            LOGGER.log(Level.SEVERE, "Creator login: " + creatorLogin);
+        }
 
         LOGGER.log(Level.SEVERE, "User login: " + login);
 
@@ -55,8 +60,10 @@ public class GetSessionDataServlet extends HttpServlet {
         resultMap.put("result", "success");
         resultMap.put("login", login);
         resultMap.put("role", role);
+        resultMap.put("creatorLogin", creatorLogin);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(resultMap);
+        LOGGER.log(Level.SEVERE, "Return data: " + json);
         response.getWriter().write(json);
     }
 }
