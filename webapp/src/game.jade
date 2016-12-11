@@ -1,16 +1,16 @@
 extends template/layout
 
-mixin lunka(modify, count)
-    - if (count == null)
-    -   count = 7
-    - if (modify == 0)
-        - for(var i = 0; i < count; i++)
-            td.lunka
-                span 6
-    - else if (modify == null)
-        - for(var i = 0; i < count; i++)
-            td.lunka.enemy-obj
-                span 6
+//mixin lunka(modify, count)
+//    - if (count == null)
+//    -   count = 6
+//    - if (modify == 0)
+//        - for(var i = 0; i < count; i++)
+//            td.lunka#gamer
+//                span 6
+//    - else if (modify == null)
+//        - for(var i = 0; i < count; i++)
+//            td.lunka.enemy-obj#apponent
+//                span 6
 
 block title
     title #{title} | Игра
@@ -27,18 +27,9 @@ block content
                     .nick #{apponent_name}
 
             .row
-                table.board.no-select
-                    tr
-                        td(rowspan=2).kalah.enemy-obj
-                            span 0
-
-                        +lunka()
-
-                        td(rowspan=2).kalah
-                            span 0
-                    tr
-                        +lunka(0)
-
+                table.board.no-select#board
+                    tr#enemy_list
+                    tr#gamer_list
             .row
                 .player
                     img(src=baseUrl + "img/profile-test.jpg")
