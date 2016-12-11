@@ -2,13 +2,32 @@
  
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
-/src/main/webapp/.idea/
-/src/main/webapp/app/
-/src/main/webapp/node_modules/
-/src/main/webapp/bower_components/
-/untitled/
-/target/
+/webapp/node_modules/
 /src/main/node_modules/
+/untitled/
+/src/main/
+/src/
+/src/main/java/
+/src/main/resources/
+/target/
 /inspection/
-.idea
-!/src/main/webapp/js
+/webapp/WEB-INF/
+/webapp/new-game-human.html
+/webapp/game.html
+/webapp/registration.html
+/webapp/README.md
+/webapp/new-game-ai.html
+/webapp/game-list.html
+/webapp/index.html
+/webapp/about.html
+/.gitignore
+/webapp/profile.html
+/Kalah.iml
+/pom.xml
+/webapp/login.html
+/.idea/
+/webapp/js/
+/webapp/fonts/
+/webapp/img/
+/webapp/css/
+!webapp/src
