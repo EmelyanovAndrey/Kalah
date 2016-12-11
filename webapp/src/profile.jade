@@ -1,0 +1,66 @@
+extends template/layout
+
+block title
+    title #{title} | Профиль
+
+block content
+
+    -var player_name = "Marcus", icon = baseUrl+"img/marcus.jpg", email="ilykonst95@gmail.com"
+    -var save_games = [{name: "Alex", date: "10.12.14", score: "10/12", stones: "6", lunks: "8"}, {name: "Alex", date: "10.12.14", score: "10/12", stones: "6", lunks: "8"}, {name: "Alex", date: "10.12.14", score: "10/12", stones: "6", lunks: "8"}, {name: "Alex", date: "10.12.14", score: "10/12", stones: "6", lunks: "8"}, {name: "Alex", date: "10.12.14", score: "10/12", stones: "6", lunks: "8"}]
+    .container
+        .row
+            .col.l6.m6.s12
+                .profile
+                    img(src=icon)
+                    .nick #{player_name}
+
+        .row
+            .col.l6.m12.s12
+                form.profile-form#profile
+                    .input-field.col.s12
+                        i.material-icons.prefix perm_identity
+                        input#name.validate(type="text", minlength='4' maxlength="16",  value=player_name)
+                        label(for="name") Имя
+
+                    .input-field.col.s12
+                        i.material-icons.prefix email
+                        input#email.validate(type='email', value=email,data-error="Неверный адрес email", data-success="OK", minlength='5', maxlength="40")
+                        label(for="email") Email
+
+
+                    .input-field.col.s12
+                        i.material-icons.prefix vpn_key
+                        input#password.validate(type="password", minlength='6', maxlength="20")
+                        label(for="password") Пароль
+
+                    .input-field.col.s12
+                        i.material-icons.prefix vpn_key
+                        input#re-password.validate(type="password", minlength='6', maxlength="20")
+                        label(for="re-password") Повторите пароль
+
+                    .col.s12
+                        a#change.btn.waves-effect.waves-light.large(type="submit" name="action") Изменить данные
+                            i.material-icons.right send
+            .col.l6.m12.s12
+                .save-games
+                    .row
+                        table.highlight.centered#save_games
+                            thead
+                                tr
+                                    th №
+                                    th Против
+                                    th Счет
+                                    th Дата
+                                    th Камни
+                                    th Лунки
+                            tbody
+                                - each val, index in save_games
+                                    tr
+                                        td #{index+1}
+                                        td #{val.name}
+                                        td #{val.score}
+                                        td #{val.date}
+                                        td #{val.stones}
+                                        td #{val.lunks}
+
+

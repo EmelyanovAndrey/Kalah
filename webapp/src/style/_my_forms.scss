@@ -1,0 +1,91 @@
+form, table, a.btn {
+  margin: auto;
+  margin-top: 10px;
+
+
+  @media #{$large-and-up} {
+    width: 30vw;
+  }
+
+  @media #{$medium-and-down} {
+    width: 50vw;
+  }
+
+  @media #{$small-and-down} {
+    width: 80vw;
+  }
+}
+
+table.highlight > tbody > tr {
+  @include transition(background-color, .25s, ease);
+
+  &:hover {
+    background-color: $secondary-color + 5% !important;
+  }
+}
+
+@mixin table-scrollable($height) {
+  table {
+    overflow-y: auto;
+
+    thead, tbody tr {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    tbody {
+      display: block;
+      overflow: auto;
+      height: $height;
+
+      tr {
+        display: table;
+      }
+    }
+  }
+}
+
+.btn, .btn + a {
+  background-color: $primary-color;
+
+  letter-spacing: 0px;
+
+  &, .large {
+    width: inherit;
+  }
+
+  &:hover {
+    background-color: $primary-color + 20%;
+  }
+}
+
+.registration, .login, .new-game, .game-list, .rules{
+  height: 90vh;
+  padding-top: 5vh;
+  align-content: center;
+
+  @include table-scrollable(45vh);
+
+  a {
+    display: block;
+  }
+}
+
+.registration {
+  & form .btn {
+  }
+}
+
+.save-games {
+  margin-left: 5vw;
+  align-content: center;
+  height: inherit;
+
+  @include table-scrollable(65vh);
+}
+
+input[type="range"]{
+  border: 0 !important;
+}
+
