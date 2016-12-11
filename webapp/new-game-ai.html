@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <title>Kalah | Новая игра</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&amp;subset=cyrillic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet">
+    <!--Styles-->
+    <link type="text/css" rel="stylesheet" href="css/main.css" media="screen,projection">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Scripts-->
+    <script type="text/javascript" src="js/main.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="navbar">
+        <ul id="slide-out" class="side-nav">
+          <li>
+            <div class="userView">
+              <h1>Kalah</h1>
+            </div>
+          </li>
+          <li><a href="index.html" class="grey-text text-lighten-3">Главная<i class="material-icons">view_stream</i></a></li>
+          <li><a href="about.html" class="grey-text text-lighten-3">Об игре<i class="material-icons">info</i></a></li>
+          <li><a href="game.html" class="grey-text text-lighten-3">Играть с человеком<i class="material-icons">perm_identity</i></a></li>
+          <li><a href="game.html" class="grey-text text-lighten-3">Играть с компьютером<i class="material-icons">android</i></a></li>
+          <li><a href="registration.html" class="grey-text text-lighten-3">Профиль<i class="material-icons">account_circle</i></a></li>
+        </ul>
+        <nav>
+          <div class="nav-wrapper container">
+            <div class="large-nav-bar"><a href="" target="_blank" class="brand-logo">Kalah</a>
+              <ul class="right">
+                <li><a href="index.html" target="_blank" class="grey-text text-lighten-3">Главная</a></li>
+                <li><a href="about.html" target="_blank" class="grey-text text-lighten-3">Об игре</a></li>
+                <li><a href="game.html" target="_blank" class="grey-text text-lighten-3">Играть с человеком</a></li>
+                <li><a href="game.html" target="_blank" class="grey-text text-lighten-3">Играть с компьютером</a></li>
+                <li><a href="registration.html" target="_blank" class="grey-text text-lighten-3">Профиль</a></li>
+              </ul>
+            </div>
+            <div class="mini-nav-bar"><a href="#!" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a><a href="" data-activates="slide-out" class="brand-logo">Kalah</a></div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="new-game">
+        <div class="container">
+          <div class="row">
+            <h1>Новая игра</h1>
+          </div>
+          <div class="row">
+            <form>
+              <div class="input-field col s12">
+                <label for="count_lunk">Число лунок</label>
+                <p class="range-field">
+                  <input id="count_lunk" type="range" min="3" max="8">
+                </p>
+              </div>
+              <div class="input-field col s12">
+                <label for="count_stouns">Число камней</label>
+                <p class="range-field">
+                  <input id="count_stouns" type="range" min="6" max="12">
+                </p>
+              </div>
+              <div class="input-field col s12">
+                <label for="level">Уровень сложности</label>
+                <p class="range-field">
+                  <input id="level" type="range" min="1" max="5">
+                </p>
+              </div>
+              <!--.input-field.col.s12
+              i.material-icons.prefix perm_identity
+              input#friend.validate(type="text", length="10")
+              label(for="friend") Пригласить друга
+              
+              -->
+              <div class="col s12"><a href="game.html" type="submit" name="action" class="btn waves-effect waves-light">Создать игру<i class="material-icons right">send</i></a></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="page-footer">
+      <div id="more-footer" class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Kalah</h5>
+            <p class="grey-text text-lighten-4">Онлайн игра Калах</p>
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="white-text">Ссылки</h5>
+            <ul>
+              <li><a href="http://ssau.ru/" target="_blank" class="grey-text text-lighten-3">СГАУ</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container row">
+          <div class="col s12 m6 l6">&copy; 2016 Design by Ilya Konstantinov</div>
+          <div class="col s12 m6 l6"><a href="mailto:ilyakonst95@gmail.com" class="grey-text text-lighten-4 right">Web-master: admin@kalah.com</a></div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
