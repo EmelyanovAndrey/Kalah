@@ -16,6 +16,6 @@ $(document).ready(->
   for i in count
     gamer_list.append('<td class="lunka" id="gamer"><span>6</span></td>')
 
-  board.find('#gamer').onclick ->
-
+#  board.find('#gamer').onclick ->
+  return
 )
