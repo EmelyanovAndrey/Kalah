@@ -1,7 +1,7 @@
 $(document).ready(->
   $('#game_list').find('tr').dblclick ->
     console.log 'blclick'
-    $('#modal').modal('open')
+    $('#join').modal('open')
     return
   return
 )
