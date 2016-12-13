@@ -4,25 +4,37 @@ header
             li
                 .userView
                     h1 #{profile}
-
-
-
             li
-                a.grey-text.text-lighten-3(href='index.html') "Главная"
+                a.grey-text.text-lighten-3(href='index.html') Главная
+                    i.material-icons view_stream
             li
-                a.grey-text.text-lighten-3(href='about.html') "Об игре"
+                a.grey-text.text-lighten-3(href='about.html') Об игре
+                    i.material-icons info
             li
-                a.grey-text.text-lighten-3(href='game-list.html') "Играть с человеком"
+                a.grey-text.text-lighten-3(href='game-list.html') Играть с человеком
+                    i.material-icons perm_identity
             li
-                a.grey-text.text-lighten-3(href='new-game-ai.html') "Играть с компьютером"
+                a.grey-text.text-lighten-3(href='new-game-ai.html') Играть с компьютером
+                    i.material-icons android
             li
-                a.grey-text.text-lighten-3(href='profile.html') "Профиль"
-
+                a.grey-text.text-lighten-3(href='profile.html') Профиль
+                    i.material-icons account_circle
         nav
             .nav-wrapper.container
                 .large-nav-bar
                     a.brand-logo(href="#{baseUrl}" target="_blank") #{siteName}
                     ul.right
+                        li
+                            a.grey-text.text-lighten-3(href='index.html') Главная
+                        li
+                            a.grey-text.text-lighten-3(href='about.html') Об игре
+                        li
+                            a.grey-text.text-lighten-3(href='game-list.html') Играть с человеком
+                        li
+                            a.grey-text.text-lighten-3(href='new-game-ai.html') Играть с компьютером
+                        li
+                            a.grey-text.text-lighten-3(href='profile.html') Профиль
+                                img(src='/img/marcus.jpg')
 
                 .mini-nav-bar
                     a(href="#!", data-activates="slide-out").button-collapse
