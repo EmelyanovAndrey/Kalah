@@ -70,7 +70,8 @@ public class gameWS {
     private UserDAO userDAO;
 
     private GameSession gameSession;
-
+    private String creatorLogin;
+    private GameBid gameBid;
 
     private static final Logger LOGGER = Logger.getLogger("gameWS Servlet");
 
@@ -83,8 +84,8 @@ public class gameWS {
         LOGGER.log(Level.SEVERE, "Message: " + message);
         //для создавшего
         if (operation.equals("create")) { //создаем заявку (на самом деле она уже создана, но мы добавляем в нее сессию вебсокета)
-
-            GameBid gameBid = gameBidService.getBid(mesg.get("login").getAsString());
+            creatorLogin = mesg.get("login").getAsString();
+            gameBid = gameBidService.getBid(creatorLogin);
             gameBid.setSessionOfCreator(session);
             Map<String, String> resultMap = new HashMap<String, String>();
             resultMap.put("operation", "create");
@@ -94,7 +95,7 @@ public class gameWS {
 
         }
         if (operation.equals("conf")) { //подтверждение, что нам нравится тот красавчик, что хочет с нами поиграть
-            GameBid gameBid = gameBidService.getBid(mesg.get("login").getAsString());
+
             String conf = mesg.get("conf").getAsString();
             LOGGER.log(Level.SEVERE, "Start confirm");
             if (conf.equals("no")) {
@@ -150,11 +151,9 @@ public class gameWS {
         }
 
 
-        //для присоединившегося
-
         if (operation.equals("join")) { //попытка присоединится к сессии, отправка запроса создавшему
-
-            GameBid gameBid = gameBidService.getBid(mesg.get("creatorLogin").getAsString());
+            creatorLogin = mesg.get("creatorLogin").getAsString();
+            gameBid = gameBidService.getBid(creatorLogin);
             gameBid.setSessionOfJoined(session);
 
             Map<String, String> resultMap;
@@ -176,6 +175,43 @@ public class gameWS {
             json = gson.toJson(resultMap);
             LOGGER.log(Level.SEVERE, "join, to joined: " + json);
             session.getBasicRemote().sendText(json);
+
+        }
+
+        if (operation.equals("getBoard")) {
+
+            Map<String, String> resultMap;
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String json;
+
+            resultMap = new HashMap<String, String>();
+            resultMap.put("operation", "getBoard");
+            resultMap.put("holeCount", String.valueOf(gameBid.getHoleCount()));
+            resultMap.put("stoneCount", String.valueOf(gameBid.getStoneCount()));
+
+            json = gson.toJson(resultMap);
+            LOGGER.log(Level.SEVERE, "getBoard: " + json);
+            session.getBasicRemote().sendText(json);
+        }
+
+
+        if (operation.equals("step")) {
+
+            Map<String, String> resultMap;
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String json;
+
+            resultMap = new HashMap<String, String>();
+            resultMap.put("operation", "step");
+            resultMap.put("num", mesg.get("num").getAsString());
+
+            json = gson.toJson(resultMap);
+            LOGGER.log(Level.SEVERE, "step: " + json);
+            if (session.equals(gameSession.getSessionOfCreator())){
+                gameSession.getSessionOfJoined().getBasicRemote().sendText(json);
+            } else if (session.equals(gameSession.getSessionOfJoined())){
+                gameSession.getSessionOfCreator().getBasicRemote().sendText(json);
+            }
 
         }
     }
