@@ -1,35 +1,48 @@
 var annimation = function(item) {
+  console.log('anim');
 
-  $(this).mousedown(function() {
-    if (!$(this).hasClass('enemy-obj')) {
-      return $(this).addClass('active');
-    }
-  });
+    item.on('click', function() {
 
-  $(this).mouseup(function() {
-    return $(this).removeClass('active');
-  });
+        // if (!item.hasClass('enemy')) {
+          // setTimeout(function () {
+      alert('awdawd');
+            console.log('lunka_active');
+
+            item.addClass('active');
+          // }, time);
+        //}
+
+    });
+
+    /*item.mouseup(function() {
+      item.removeClass('active');
+    });*/
 };
 
 $(document).ready(function() {
-  var kalah = $('.board .kalah');
-  var lunka = $('.board .lunka');
-
-  annimation(lunka);
-
   var board = $('#board');
+
   var enemy_list = board.find('#enemy_list');
   var gamer_list = board.find('#gamer_list');
 
-  enemy_list.append('<td rowspan=2 class="kalah enemy-obj" id="enemy"><span>0</span></td>');
+  var kalah = board.find('.kalah');
+
+  var lunka = gamer_list.find('.lunka');
+
+  var stouns_count = 6;
+
+
+  enemy_list.append('<td rowspan=2 class="kalah enemy" id="enemy_k"><span>0</span></td>');
 
   for (var i = 0; i  < 6; i++) {
-    enemy_list.append('<td class="lunka enemy-obj" id="enemy_' + i + '"><span>6</span></td>');
+    enemy_list.append('<td class="lunka enemy" id="enemy_' + i + '"><span>' + stouns_count + '</span></td>');
   }
 
-  enemy_list.append('<td rowspan=2 class="kalah" id="gamer"><span>0</span></td>');
+  enemy_list.append('<td rowspan=2 class="kalah" id="gamer_k"><span>0</span></td>');
 
   for (var i = 0; i  < 6; i++) {
-    gamer_list.append('<td class="lunka" id="gamer_' + i + '"><span>6</span></td>');
+    gamer_list.append('<td class="lunka" id="gamer_' + i + '"><span>' + stouns_count + '</span></td>');
   }
+
+  // annimation(kalah);
 });
