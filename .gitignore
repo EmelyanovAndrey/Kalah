@@ -3,8 +3,4 @@
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
 /webapp/node_modules/
-/untitled/
-/.gitignore
-/Kalah.iml
-/pom.xml
 /.idea/

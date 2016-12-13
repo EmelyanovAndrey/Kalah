@@ -1,5 +1,6 @@
 $(document).ready(->
   $('select').material_select()
+  $('.modal').modal()
   $("#game_list").dataTable({
       language: {
         "processing": "Подождите...",
@@ -52,5 +53,7 @@ $(document).ready(->
       }
     }
   )
+
+
 
 )
