@@ -17,7 +17,6 @@ $(document).ready(function() {
 
   annimation(lunka);
 
-
   var board = $('#board');
   var enemy_list = board.find('#enemy_list');
   var gamer_list = board.find('#gamer_list');
