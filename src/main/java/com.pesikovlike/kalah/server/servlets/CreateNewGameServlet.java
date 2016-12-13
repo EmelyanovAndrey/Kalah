@@ -75,7 +75,7 @@ public class CreateNewGameServlet extends HttpServlet {
         String creatorLogin = session.getAttribute("login").toString();
         String friendLogin = requestJson.getJsonString("friendLogin").getString();
 
-        int holeCount = Integer.parseInt(requestJson.getJsonString("holeCount").getString());
+        int holeCount = Integer.parseInt(requestJson.getJsonString("holeCount").getString()) * 2;
         int stoneCount = Integer.parseInt(requestJson.getJsonString("stoneCount").getString());
 
         LOGGER.log(Level.SEVERE, "Receive data: " + jsonStr);
