@@ -46,30 +46,7 @@ html(lang="ru")
         block head
 
     body
-        header
-            .navbar
-                ul#slide-out.side-nav
-                    li
-                        .userView
-                            h1 #{profile}
-
-                    each item in menu
-                        li
-                            a.grey-text.text-lighten-3(href=item.link) #{item.name}
-                                i.material-icons #{item.icon}
-
-                nav
-                    .nav-wrapper.container
-                        .large-nav-bar
-                            a.brand-logo(href="#{baseUrl}" target="_blank") #{siteName}
-                            ul.right
-                                each item in menu
-                                    li
-                                        a.grey-text.text-lighten-3(href=item.link, target="_blank") #{item.name}
-                        .mini-nav-bar
-                            a(href="#!", data-activates="slide-out").button-collapse
-                                i.material-icons menu
-                            a.brand-logo(href="#{baseUrl}", data-activates="slide-out") #{siteName}
+        include header
 
 
         main
