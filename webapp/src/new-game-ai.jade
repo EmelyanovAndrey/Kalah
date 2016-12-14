@@ -1,35 +1,7 @@
-extends template/layout
+extends template/new-game
 
-block title
-    title #{title} | Новая игра
-
-block content
-    .new-game
-        .container
-            .row
-                h1 Новая игра
-            .row
-                form
-                    .input-field.col.s12
-                        label(for="count_lunk") Число лунок
-                        p.range-field
-                            input#count_lunk(type="range", min="3", max="8")
-
-                    .input-field.col.s12
-                        label(for="count_stouns") Число камней
-                        p.range-field
-                            input#count_stouns(type="range", min="6", max="12")
-
-                    .input-field.col.s12
-                        label(for="level") Уровень сложности
-                        p.range-field
-                            input#level(type="range", min="1", max="5")
-
-                    //.input-field.col.s12
-                        i.material-icons.prefix perm_identity
-                        input#friend.validate(type="text", length="10")
-                        label(for="friend") Пригласить друга
-
-                    .col.s12
-                        a.btn.waves-effect.waves-light(href= baseUrl+"game.html" type="submit" name="action") Создать игру
-                            i.material-icons.right send
+block field
+    .input-field.col.s12
+        label(for="level") Уровень сложности
+        p.range-field
+            input#level(type="range", min="1", max="5")
