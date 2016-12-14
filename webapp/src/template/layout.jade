@@ -64,6 +64,14 @@ html(lang="ru")
                                 li
                                     a.grey-text.text-lighten-3(href=item.link, target="_blank") #{item.name}
 
+            #messege.modal
+                .modal-content
+                    h4 Сообщение
+                    p Игрок Marcus хочеть присоединиться к игре
+                .modal-footer
+                    a.modal-action.modal-close.waves-effect.waves-red.btn-flat(href="#")#deny Отклонить
+                    a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href="#")#gran Принять
+
             .footer-copyright
                 .container.row
                     .col.s12.m6.l6 &copy; #{dataCopyright} Design by #{desingBy}
