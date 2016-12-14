@@ -69,6 +69,9 @@ var changeProfileValid = function () {
 };
 
 $(document).ready(function() {
+
+    $('input').attr({"autocomplete": "off"});
+
     // $('#loginin').find('#login').click(function() {
     //
     //     if (loginValid()) {
