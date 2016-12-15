@@ -5,3 +5,6 @@ var profile_img_rendering = function (src) {
     $('#profile_img').append('<img src="'+ src + '">')
 }
 
+$(document).ready(function () {
+   profile_img_rendering('/img/marcus.jpg');
+});

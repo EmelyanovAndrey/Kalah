@@ -88,7 +88,7 @@ gulp.task('style:build', function () {
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(prefixer({
-            browsers: ['last 5 versions'],
+            browsers: ['last 10 versions'],
             cascade: false
         })) //Добавим вендорные префиксы
         .pipe(cssmin()) //Сожмем

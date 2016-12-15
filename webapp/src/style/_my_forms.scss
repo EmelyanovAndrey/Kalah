@@ -99,13 +99,14 @@ label {
   .count {
     display: inline-block;
     float: right;
-    margin-left: 10px;
+    margin: auto 10px;
     background-color: $primary-color;
     border-radius: 20px;
     width: 23px;
     height: 23px;
 
     text-align: center;
+    vertical-align: middle;
     color: white;
   }
 

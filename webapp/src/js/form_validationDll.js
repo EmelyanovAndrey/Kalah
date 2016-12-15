@@ -72,29 +72,29 @@ $(document).ready(function() {
 
     $('input').attr({"autocomplete": "off"});
 
-    // $('#loginin').find('#login').click(function() {
-    //
-    //     if (loginValid()) {
-    //      console.log('login: true');
-    //     }
-    //     else console.log('login: false')
-    // });
-    //
-    // $('#registration').find('#signup').click(function() {
-    //
-    //     if (registrValid()) {
-    //         console.log('regist: true');
-    //     } else {
-    //         console.log('regist: false');
-    //     }
-    // });
-    //
-    // $('#profile').find('#change').click(function() {
-    //
-    //     if (changeProfileValid()) {
-    //         console.log('change: true');
-    //     } else {
-    //         console.log('change: false');
-    //     }
-    // });
+    $('#loginin').find('#login').click(function() {
+
+        if (loginValid()) {
+         console.log('login: true');
+        }
+        else console.log('login: false')
+    });
+
+    $('#registration').find('#signup').click(function() {
+
+        if (registrValid()) {
+            console.log('regist: true');
+        } else {
+            console.log('regist: false');
+        }
+    });
+
+    $('#profile').find('#change').click(function() {
+
+        if (changeProfileValid()) {
+            console.log('change: true');
+        } else {
+            console.log('change: false');
+        }
+    });
 });
