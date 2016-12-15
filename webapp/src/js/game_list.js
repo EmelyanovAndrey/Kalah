@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $('#game_list').find('tr').dblclick(function () {
+  $('#game_list').find('tbody tr').dblclick(function () {
 
     console.log('blclick');
 
