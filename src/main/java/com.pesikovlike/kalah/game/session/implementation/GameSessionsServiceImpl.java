@@ -15,13 +15,15 @@ import javax.ejb.Singleton;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by Igor on 07.11.2016.
  */
 @Singleton
 public class GameSessionsServiceImpl implements GameSessionService {
-
+    private static final Logger LOGGER = Logger.getLogger("gameWS Servlet");
     @EJB
     private UserService userService;
 
@@ -72,7 +74,8 @@ public class GameSessionsServiceImpl implements GameSessionService {
         gameSession.setGameState(gameState);
 
         gameSessions.put(bid.getCreatorLogin(), gameSession);
-
+        LOGGER.log(Level.SEVERE, "GameSessionServiceAdd: " + gameSession.getGameState().getInitialHoleCount());
+        LOGGER.log(Level.SEVERE, "Count of sessins: " + gameSessions.size());
         return gameSession;
     }
 
