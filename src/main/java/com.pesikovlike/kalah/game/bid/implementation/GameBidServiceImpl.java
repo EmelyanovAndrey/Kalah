@@ -46,7 +46,7 @@ public class GameBidServiceImpl implements GameBidService {
 
         return gameBids.get(creatorLogin);
     }
-
+ 
     public Set<GameBid> getAllGameBidsForUser(String friendLogin) {
         Set<GameBid> bids = new HashSet<GameBid>();
         for(Map.Entry<String, GameBid> bid : gameBids.entrySet()) {
