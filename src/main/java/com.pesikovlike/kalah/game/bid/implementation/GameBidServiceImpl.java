@@ -51,7 +51,7 @@ public class GameBidServiceImpl implements GameBidService {
         Set<GameBid> bids = new HashSet<GameBid>();
         for(Map.Entry<String, GameBid> bid : gameBids.entrySet()) {
             GameBid value = bid.getValue();
-            if (value.getFriendLogin() == "" || value.getFriendLogin().equals(friendLogin)) {
+            if (value.getFriendLogin().equals("") || value.getFriendLogin().equals(friendLogin)) {
                 bids.add(value);
             }
         }

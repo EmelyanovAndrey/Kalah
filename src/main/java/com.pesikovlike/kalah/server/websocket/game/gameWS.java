@@ -108,39 +108,41 @@ public class gameWS {
             } else if (conf.equals("yes")) {
                 LOGGER.log(Level.SEVERE, "Start yes");
                 //должна начаться игра (создать сессию)
-                gameSession = gameSessionService.addGameSession(gameBid);
-                gameBidService.deleteBid(gameBid.getCreatorLogin());
-                LOGGER.log(Level.SEVERE, "Start yes");
-                Map<String, String> resultMap;
-                Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                String json;
+                if (gameBid.getSessionOfJoined() != null) {
+                    gameSession = gameSessionService.addGameSession(gameBid);
+                    gameBidService.deleteBid(gameBid.getCreatorLogin());
+                    LOGGER.log(Level.SEVERE, "Start yes");
+                    Map<String, String> resultMap;
+                    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                    String json;
 
-                resultMap = new HashMap<String, String>();
-                resultMap.put("operation", "conf");
-                resultMap.put("conf", "yes");
-                resultMap.put("role", "joined");
-                if (gameSession.getGameState().getPriority() == false) {
-                    resultMap.put("priority", "true");
-                } else {
-                    resultMap.put("priority", "false");
+                    resultMap = new HashMap<String, String>();
+                    resultMap.put("operation", "conf");
+                    resultMap.put("conf", "yes");
+                    resultMap.put("role", "joined");
+                    if (gameSession.getGameState().getPriority() == false) {
+                        resultMap.put("priority", "true");
+                    } else {
+                        resultMap.put("priority", "false");
+                    }
+
+                    json = gson.toJson(resultMap);
+                    LOGGER.log(Level.SEVERE, "conf, to joined: " + json);
+                    gameSession.getSessionOfJoined().getBasicRemote().sendText(json);
+
+                    resultMap = new HashMap<String, String>();
+
+                    resultMap.put("operation", "conf");
+                    resultMap.put("role", "creator");
+                    if (gameSession.getGameState().getPriority() == true) {
+                        resultMap.put("priority", "true");
+                    } else {
+                        resultMap.put("priority", "false");
+                    }
+                    json = gson.toJson(resultMap);
+                    LOGGER.log(Level.SEVERE, "conf, to creator: " + json);
+                    gameSession.getSessionOfCreator().getBasicRemote().sendText(json);
                 }
-
-                json = gson.toJson(resultMap);
-                LOGGER.log(Level.SEVERE, "conf, to joined: " + json);
-                gameSession.getSessionOfJoined().getBasicRemote().sendText(json);
-
-                resultMap = new HashMap<String, String>();
-
-                resultMap.put("operation", "conf");
-                resultMap.put("role", "creator");
-                if (gameSession.getGameState().getPriority() == true) {
-                    resultMap.put("priority", "true");
-                } else {
-                    resultMap.put("priority", "false");
-                }
-                json = gson.toJson(resultMap);
-                LOGGER.log(Level.SEVERE, "conf, to creator: " + json);
-                gameSession.getSessionOfCreator().getBasicRemote().sendText(json);
             }
         }
 
@@ -179,7 +181,6 @@ public class gameWS {
             String json;
 
 
-
             resultMap = new HashMap<String, String>();
             resultMap.put("operation", "getBoard");
             resultMap.put("holeCount", String.valueOf(gameBid.getHoleCount()));
@@ -205,7 +206,7 @@ public class gameWS {
 
             json = gson.toJson(resultMap);
             LOGGER.log(Level.SEVERE, "step: " + json);
-            if (mesg.get("role").getAsString().equals("creator")){
+            if (mesg.get("role").getAsString().equals("creator")) {
 
                 gameSession.getSessionOfJoined().getBasicRemote().sendText(json);
             } else {
@@ -223,7 +224,45 @@ public class gameWS {
     }
 
     @OnClose
-    public void onClose(Session session) {
-        gameSessionService.deleteGameSession(creatorLogin);
+    public void onClose(Session session, CloseReason reason) throws IOException, EncodeException {
+        LOGGER.log(Level.SEVERE, "close: " + reason.getCloseCode());
+        Map<String, String> resultMap;
+        String json;
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        if (gameBid.getSessionOfCreator().equals(session)) {
+            if (gameBid.getSessionOfJoined() != null) {
+                resultMap = new HashMap<String, String>();
+                resultMap.put("operation", "creator closed");
+
+                json = gson.toJson(resultMap);
+                gameBid.getSessionOfJoined().getBasicRemote().sendText(json);
+            }
+            gameBidService.deleteBid(creatorLogin);
+        } else if (gameBid.getSessionOfJoined().equals(session)) {
+            gameBid.setSessionOfJoined(null);
+            resultMap = new HashMap<String, String>();
+            resultMap.put("operation", "joined closed");
+
+            json = gson.toJson(resultMap);
+            gameBid.getSessionOfCreator().getBasicRemote().sendText(json);
+            gameBid.setBlock(false);
+        } else {
+            if (gameSession.getSessionOfCreator().equals(session)) {
+                resultMap = new HashMap<String, String>();
+                resultMap.put("operation", "creator closed in game");
+
+                json = gson.toJson(resultMap);
+                gameBid.getSessionOfJoined().getBasicRemote().sendText(json);
+            } else if (gameSession.getSessionOfJoined().equals(session)) {
+                resultMap = new HashMap<String, String>();
+                resultMap.put("operation", "joined closed in game");
+
+                json = gson.toJson(resultMap);
+                gameBid.getSessionOfJoined().getBasicRemote().sendText(json);
+            }
+            //TODO тут надо сохранить игру
+            gameSessionService.deleteGameSession(creatorLogin);
+        }
     }
 }

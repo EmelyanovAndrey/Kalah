@@ -81,6 +81,21 @@ WS.onmessage = function (evt) {
             enableLunks();
         }
     }
+    if (response.operation == "creator closed") {
+        alert("Противник отсоединился.");
+        location.href = '/kalah-1.0/game-list.html';
+    }
+    if (response.operation == "joined closed") {
+        alert("Противник отсоединился.");
+    }
+    if (response.operation == "creator closed in game") {
+        alert("Противник отсоединился.");
+        location.href = '/kalah-1.0/game-list.html';
+    }
+    if (response.operation == "joined closed in game") {
+        alert("Противник отсоединился.");
+        location.href = '/kalah-1.0/game-list.html';
+    }
 };
 function sendMessage(json) {
     console.log("sending message to websocket: " + json);
