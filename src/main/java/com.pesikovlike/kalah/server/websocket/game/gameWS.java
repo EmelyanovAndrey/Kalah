@@ -8,8 +8,11 @@ import com.pesikovlike.kalah.game.bid.GameBidService;
 import com.pesikovlike.kalah.game.session.GameSession;
 import com.pesikovlike.kalah.game.session.GameSessionFactory;
 import com.pesikovlike.kalah.game.session.GameSessionService;
+import com.pesikovlike.kalah.model.dao.AvatarDAO;
 import com.pesikovlike.kalah.model.dao.UserDAO;
+import com.pesikovlike.kalah.model.entity.Avatar;
 import com.pesikovlike.kalah.model.entity.GameState;
+import com.pesikovlike.kalah.model.entity.User;
 import com.pesikovlike.kalah.user.UserService;
 
 import javax.ejb.EJB;
@@ -63,6 +66,10 @@ public class gameWS {
     @Named("userDAO")
     private UserDAO userDAO;
 
+    @Inject
+    @Named("avatarDAO")
+    private AvatarDAO avatarDAO;
+
     private GameSession gameSession;
     private String creatorLogin;
     private GameBid gameBid;
@@ -83,6 +90,9 @@ public class gameWS {
             gameBid.setSessionOfCreator(session);
             Map<String, String> resultMap = new HashMap<String, String>();
             resultMap.put("operation", "create");
+            User user = userDAO.getUserByLogin(creatorLogin);
+            Avatar avatar = avatarDAO.getAvatarById(user.getAvatar().getAvatarId());
+            resultMap.put("avatar", avatar.getFilePath());
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String json = gson.toJson(resultMap);
             session.getBasicRemote().sendText(json);
@@ -157,10 +167,14 @@ public class gameWS {
             String json;
 
 
+            User user = userDAO.getUserByLogin(mesg.get("login").getAsString());
+            Avatar avatar = avatarDAO.getAvatarById(user.getAvatar().getAvatarId());
+
             resultMap = new HashMap<String, String>();
             resultMap.put("operation", "join");
             resultMap.put("joinedLogin", mesg.get("login").getAsString());
             resultMap.put("role", "creator");
+            resultMap.put("enemyAvatar", avatar.getFilePath());
             json = gson.toJson(resultMap);
             LOGGER.log(Level.SEVERE, "join, to creator: " + json);
             gameBid.getSessionOfCreator().getBasicRemote().sendText(json);
@@ -168,6 +182,12 @@ public class gameWS {
             resultMap = new HashMap<String, String>();
             resultMap.put("operation", "join");
             resultMap.put("role", "joined");
+            resultMap.put("yourAvatar", avatar.getFilePath());
+
+            user = userDAO.getUserByLogin(creatorLogin);
+            avatar = avatarDAO.getAvatarById(user.getAvatar().getAvatarId());
+            resultMap.put("enemyLogin", creatorLogin);
+            resultMap.put("enemyAvatar", avatar.getFilePath());
             json = gson.toJson(resultMap);
             LOGGER.log(Level.SEVERE, "join, to joined: " + json);
             session.getBasicRemote().sendText(json);

@@ -103,7 +103,7 @@ public class User {
     }
 
     @ManyToOne
-    @JoinColumn(name = "avatar_id", referencedColumnName = "avatar_id", insertable = false)
+    @JoinColumn(name = "avatar_id", referencedColumnName = "avatar_id")
     public Avatar getAvatar() {
         return avatar;
     }

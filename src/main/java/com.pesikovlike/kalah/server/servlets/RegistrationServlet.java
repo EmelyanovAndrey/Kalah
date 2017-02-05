@@ -59,12 +59,14 @@ public class RegistrationServlet extends HttpServlet {
         if (br != null) {
             jsonStr = br.readLine();
         }
+        LOGGER.log(Level.SEVERE, jsonStr);
         JsonObject requestJson = Json.createReader(new StringReader(jsonStr)).readObject();
 
         String login = requestJson.getString("login");
         String password = requestJson.getString("password");
         String email = requestJson.getString("email");
-        int avatar = -1;
+        int avatar = Integer.parseInt(requestJson.getString("avatar"));
+        LOGGER.log(Level.SEVERE, "Avatar id: " + avatar);
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

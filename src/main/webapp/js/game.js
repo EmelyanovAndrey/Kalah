@@ -16,6 +16,8 @@ WS.onmessage = function (evt) {
     var response = JSON.parse(evt.data);
     if (response.operation == "create") {
         // alert("Сессия вебсокета успешно добавлена к заявке.")
+        var user = $("<img src='"+response.avatar+"'><div class='nick'>"+login+"</div>");
+        $(".player").append(user);
         var message = {operation: "getBoard"};
         sendMessage(JSON.stringify(message));
     }
@@ -24,6 +26,10 @@ WS.onmessage = function (evt) {
             var message = {operation: "getBoard"};
             sendMessage(JSON.stringify(message));
             //   alert("Сессия вебсокета успешно добавлена к заявке. Ожидайте пока ее одобрят.");
+            var user = $("<img src='"+response.yourAvatar+"'><div class='nick'>"+login+"</div>");
+            $(".player").append(user);
+            user = $("<img src='"+response.enemyAvatar+"'><div class='nick'>"+response.enemyLogin+"</div>");
+            $(".apponent").append(user);
         }
         if (response.role == "creator") {
             //    alert("Поступила заявка на подтверждение.")
@@ -32,6 +38,8 @@ WS.onmessage = function (evt) {
             message.login = login;
             var answer = confirm("К вам хочет присоединится " + response.joinedLogin);
             if (answer == true) {
+                var user = $("<img src='"+response.enemyAvatar+"'><div class='nick'>"+response.joinedLogin+"</div>");
+                $(".apponent").append(user);
                 message.conf = "yes";
             } else {
                 message.conf = "no";
@@ -53,7 +61,6 @@ WS.onmessage = function (evt) {
             } else if (conf == "no") {
                 alert("Вас послали!");
                 location.href = '/kalah-1.0/game-list.html';
-                //TODO: надо удалить вебсокет, но он вроде сам удаляатся, когда мы покидаем страницу
             }
         }
         if (response.role == "creator") {

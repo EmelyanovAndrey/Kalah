@@ -9,6 +9,7 @@ import com.pesikovlike.kalah.user.UserService;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -16,7 +17,6 @@ import java.util.logging.Logger;
  */
 @Stateless
 public class UserServiceImpl implements UserService {
-    private static final Logger LOGGER = Logger.getLogger( "MyLogger" );
     @Inject
     @Named("userDAO")
     private UserDAO userDAO;
@@ -24,6 +24,8 @@ public class UserServiceImpl implements UserService {
     @Inject
     @Named("avatarDAO")
     private AvatarDAO avatarDAO;
+
+    private static final Logger LOGGER = Logger.getLogger("User Service");
 
     public boolean userExist(String login) {
         User user = userDAO.getUserByLogin(login);
@@ -35,6 +37,7 @@ public class UserServiceImpl implements UserService {
             return 1; //пользователь уже существует
         }
         Avatar avatar = avatarDAO.getAvatarById(avatarId);
+        LOGGER.log(Level.SEVERE, avatar.getAvatarName());
         User user = new User();
         user.setLogin(login);
         user.setPassword(password);

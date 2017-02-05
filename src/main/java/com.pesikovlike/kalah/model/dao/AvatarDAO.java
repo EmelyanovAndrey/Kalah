@@ -3,6 +3,7 @@ package com.pesikovlike.kalah.model.dao;
 import com.pesikovlike.kalah.model.entity.Avatar;
 
 import javax.ejb.Local;
+import java.util.List;
 
 /**
  * Created by Igor on 31.10.2016.
@@ -15,4 +16,6 @@ public interface AvatarDAO {
     public void deleteAvatar(Avatar avatar);
 
     public Avatar getAvatarById(long id);
+
+    public List<Avatar> getAvatars();
 }
