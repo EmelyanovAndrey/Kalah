@@ -60,4 +60,18 @@ public class UserServiceImpl implements UserService {
         //код авторизации
         return 0;
     }
+
+    public int change(String oldLogin, String login, String password, String email) {
+        if (userExist(login) && !oldLogin.equals(login)) {
+            return 1; //пользователь уже существует
+        }
+
+        User user = userDAO.getUserByLogin(oldLogin);
+        user.setLogin(login);
+        user.setPassword(password);
+        user.setEmail(email);
+        userDAO.updateUser(user);
+
+        return 0;
+    }
 }

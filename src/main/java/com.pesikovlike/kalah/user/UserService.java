@@ -12,4 +12,6 @@ public interface UserService {
     public int register(String login, String password, String email, int avatarId);
 
     public int authorize(String login, String password);
+
+    public int change(String oldLogin, String login, String password, String email);
 }
