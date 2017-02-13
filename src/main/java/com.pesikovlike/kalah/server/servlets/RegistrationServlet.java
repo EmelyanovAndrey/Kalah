@@ -6,6 +6,9 @@ import com.google.gson.GsonBuilder;
 import com.pesikovlike.kalah.game.bid.GameBidService;
 import com.pesikovlike.kalah.model.dao.UserDAO;
 import com.pesikovlike.kalah.user.UserService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 
 
 import javax.ejb.EJB;
@@ -74,7 +77,9 @@ public class RegistrationServlet extends HttpServlet {
         if (userService.register(login, password, email, avatar) == 0) {
             session.setAttribute("login", login);
             LOGGER.log(Level.SEVERE, "Success registration for user: " + login);
-
+            Subject currentUser = SecurityUtils.getSubject();
+            UsernamePasswordToken token = new UsernamePasswordToken(login, password);
+            currentUser.login(token);
             Map<String, String> resultMap = new HashMap<String, String>();
             resultMap.put("result", "success");
             Gson gson = new GsonBuilder().setPrettyPrinting().create();

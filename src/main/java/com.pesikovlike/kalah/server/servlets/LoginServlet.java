@@ -4,6 +4,9 @@ package com.pesikovlike.kalah.server.servlets;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pesikovlike.kalah.user.UserService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 
 import javax.ejb.EJB;
 import javax.json.Json;
@@ -32,7 +35,8 @@ public class LoginServlet extends HttpServlet {
     @EJB
     UserService userService;
 
-    private static final Logger LOGGER = Logger.getLogger( "Login Servlet" );
+    private static final Logger LOGGER = Logger.getLogger("Login Servlet");
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -54,6 +58,9 @@ public class LoginServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setHeader("Cache-Control", "no-cache");
         if (userService.authorize(login, password) == 0) {
+            Subject currentUser = SecurityUtils.getSubject();
+            UsernamePasswordToken token = new UsernamePasswordToken(login, password);
+            currentUser.login(token);
 
             session.setAttribute("login", login);
 

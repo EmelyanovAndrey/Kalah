@@ -2,10 +2,15 @@ var wsUri = "ws://localhost:8080/kalah-1.0/game";
 var WS = new WebSocket(wsUri);
 var login = "";
 var role = "";
+var exit = 0;
+var blockGetStone = 1;
 
 var board = [];
 var length;
 var sum;
+
+var mes;
+var res;
 
 WS.onerror = function (evt) {
     alert('ERROR: ' + evt.data);
@@ -16,7 +21,7 @@ WS.onmessage = function (evt) {
     var response = JSON.parse(evt.data);
     if (response.operation == "create") {
         // alert("Сессия вебсокета успешно добавлена к заявке.")
-        var user = $("<img src='"+response.avatar+"'><div class='nick'>"+login+"</div>");
+        var user = $("<img src='" + response.avatar + "'><div class='nick'>" + login + "</div>");
         $(".player").append(user);
         var message = {operation: "getBoard"};
         sendMessage(JSON.stringify(message));
@@ -26,9 +31,9 @@ WS.onmessage = function (evt) {
             var message = {operation: "getBoard"};
             sendMessage(JSON.stringify(message));
             //   alert("Сессия вебсокета успешно добавлена к заявке. Ожидайте пока ее одобрят.");
-            var user = $("<img src='"+response.yourAvatar+"'><div class='nick'>"+login+"</div>");
+            var user = $("<img src='" + response.yourAvatar + "'><div class='nick'>" + login + "</div>");
             $(".player").append(user);
-            user = $("<img src='"+response.enemyAvatar+"'><div class='nick'>"+response.enemyLogin+"</div>");
+            user = $("<img src='" + response.enemyAvatar + "'><div class='nick'>" + response.enemyLogin + "</div>");
             $(".apponent").append(user);
         }
         if (response.role == "creator") {
@@ -36,16 +41,10 @@ WS.onmessage = function (evt) {
             var message = {};
             message.operation = "conf";
             message.login = login;
-            var answer = confirm("К вам хочет присоединится " + response.joinedLogin);
-            if (answer == true) {
-                var user = $("<img src='"+response.enemyAvatar+"'><div class='nick'>"+response.joinedLogin+"</div>");
-                $(".apponent").append(user);
-                message.conf = "yes";
-            } else {
-                message.conf = "no";
-            }
-
-            sendMessage(JSON.stringify(message));
+            res = response;
+            mes = message;
+            $("#join-name").text(response.joinedLogin);
+            $('#messege').modal('open');
         }
     }
     if (response.operation == "conf") {
@@ -53,24 +52,29 @@ WS.onmessage = function (evt) {
             var conf = response.conf;
             if (conf == "yes") {
                 if (response.priority == "true") {
-                    alert("Ваше присоединение одобрено, и вы ходите первым.");
+                    $("#inform-message").text("Ваше присоединение одобрено, и вы ходите первым.");
+                    $('#inform').modal('open');
                     enableLunks();
                 } else if (response.priority == "false") {
-                    alert("Ваше присоединение одобрено, но вы ходите вторым.");
+                    $("#inform-message").text("Ваше присоединение одобрено, но вы ходите вторым.");
+                    $('#inform').modal('open');
                 }
             } else if (conf == "no") {
-                alert("Вас послали!");
+                $("#inform-message").text("Вас послали!");
+                $('#inform').modal('open');
                 location.href = '/kalah-1.0/game-list.html';
             }
         }
         if (response.role == "creator") {
 
             if (response.priority == "true") {
-                alert("Вы ходите первым.");
+                $("#inform-message").text("Вы ходите первым.");
+                $('#inform').modal('open');
                 enableLunks();
 
             } else if (response.priority == "false") {
-                alert("Вы ходите вторым.");
+                $("#inform-message").text("Вы ходите вторым.");
+                $('#inform').modal('open');
             }
         }
     }
@@ -81,27 +85,32 @@ WS.onmessage = function (evt) {
 
         var num = response.num;
 
-        console.log("пришли данные о ходе " + response.toString());
         var clickedLunk = $("#" + num);
         clickLunk(num, clickedLunk, 1);
-        if (!isYourLunksEmpty()) {
-            enableLunks();
-        }
     }
     if (response.operation == "creator closed") {
-        alert("Противник отсоединился.");
-        location.href = '/kalah-1.0/game-list.html';
+        disableLunks();
+        $("#inform-message").text("Противник отсоединился.");
+        $('#inform').modal('open');
+        exit = 1;
     }
     if (response.operation == "joined closed") {
-        alert("Противник отсоединился.");
+        disableLunks();
+        $("#inform-message").text("Противник отсоединился.");
+        $('#inform').modal('open');
+        exit = 1;
     }
     if (response.operation == "creator closed in game") {
-        alert("Противник отсоединился.");
-        location.href = '/kalah-1.0/game-list.html';
+        disableLunks();
+        $("#inform-message").text("Противник отсоединился.");
+        $('#inform').modal('open');
+        exit = 1;
     }
     if (response.operation == "joined closed in game") {
-        alert("Противник отсоединился.");
-        location.href = '/kalah-1.0/game-list.html';
+        disableLunks();
+        $("#inform-message").text("Противник отсоединился.");
+        $('#inform').modal('open');
+        exit = 1;
     }
 };
 function sendMessage(json) {
@@ -116,7 +125,6 @@ function createWSconnect() {
         async: true,
         contentType: "application/json",
         success: function (res) {
-            console.log(res);
             if (res.result == "success") {
                 login = res.login;
                 role = res.role;
@@ -133,7 +141,8 @@ function createWSconnect() {
                     sendMessage(JSON.stringify(message));
                 }
             } else {
-                alert("Каким-то хреном вы добрались сюда неавторизованным ;(");
+                $("#inform-message").text("Каким-то хреном вы добрались сюда неавторизованным ;(");
+                $('#inform').modal('open');
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -146,15 +155,18 @@ function createWSconnect() {
 
 function enableLunks() {
     $(".your-lunk").each(function (i, el) {
-        $(el).removeClass("enemy-obj");
+        $(el).removeClass("enemy-obj enemy");
+        if($(el).text() != 0) {
+            $(el).addClass("active");
+        }
 
     });
     $(".board").on("click", ".your-lunk", onLunkClick);
 }
 function disableLunks() {
     $(".your-lunk").each(function (i, el) {
-        $(el).addClass("enemy-obj");
-
+        $(el).addClass("enemy-obj enemy");
+        $(el).removeClass("active");
     });
     $(".board").off("click", ".your-lunk", onLunkClick);
 
@@ -164,16 +176,15 @@ function createBoard(holeCount, stoneCount) {
     // alert("Щас сгенерится таблица.");
     length = holeCount * 2 + 2;
     sum = holeCount * 2 * stoneCount;
-    console.log("длина массива" + length);
     if (role == "creator") {
-        var tr1 = $("<tr></tr>").append('<td rowspan="2" id="' + (length - 1) + '" class="kalah enemy-kalah enemy-obj">0</td>');
+        var tr1 = $("<tr></tr>").append('<td rowspan="2" id="' + (length - 1) + '" class="kalah enemy-kalah enemy-obj enemy">0</td>');
         var tr2 = $("<tr></tr>");
         for (var i = length - 2; i > length / 2 - 1; i--) {
-            tr1.append('<td id="' + i + '" class="lunka enemy-lunk enemy-obj">' + stoneCount + '</td>');
+            tr1.append('<td id="' + i + '" class="lunka enemy-lunk enemy-obj enemy">' + stoneCount + '</td>');
         }
-        tr1.append('<td id="' + (length / 2 - 1) + '" rowspan="2" class="kalah your-kalah enemy-obj">0</td>');
+        tr1.append('<td id="' + (length / 2 - 1) + '" rowspan="2" class="kalah your-kalah enemy-obj enemy">0</td>');
         for (var i = 0; i < length / 2 - 1; i++) {
-            tr2.append('<td id="' + i + '" class="your-lunk lunka enemy-obj">' + stoneCount + '</td>');
+            tr2.append('<td id="' + i + '" class="your-lunk lunka enemy-obj enemy">' + stoneCount + '</td>');
         }
         $('.board').append(tr1).append(tr2);
 
@@ -185,15 +196,14 @@ function createBoard(holeCount, stoneCount) {
             }
         }
     } else {
-        console.log("создается таблица для присоединившегося");
-        var tr1 = $("<tr></tr>").append('<td rowspan="2" id="' + (length / 2 - 1) + '" class="kalah enemy-kalah enemy-obj">0</td>');
+        var tr1 = $("<tr></tr>").append('<td rowspan="2" id="' + (length / 2 - 1) + '" class="kalah enemy-kalah enemy-obj ">0</td>');
         var tr2 = $("<tr></tr>");
         for (var i = length / 2 - 2; i >= 0; i--) {
-            tr1.append('<td id="' + i + '" class="lunka enemy-lunk enemy-obj">' + stoneCount + '</td>');
+            tr1.append('<td id="' + i + '" class="lunka enemy-lunk enemy-obj enemy">' + stoneCount + '</td>');
         }
-        tr1.append('<td id="' + (length - 1) + '" rowspan="2" class="kalah your-kalah enemy-obj">0</td>');
+        tr1.append('<td id="' + (length - 1) + '" rowspan="2" class="kalah your-kalah enemy-obj enemy">0</td>');
         for (var i = length / 2; i < length - 1; i++) {
-            tr2.append('<td id="' + i + '" class="your-lunk lunka enemy-obj">' + stoneCount + '</td>');
+            tr2.append('<td id="' + i + '" class="your-lunk lunka enemy-obj enemy">' + stoneCount + '</td>');
         }
         $('.board').append(tr1).append(tr2);
 
@@ -205,9 +215,40 @@ function createBoard(holeCount, stoneCount) {
             }
         }
     }
-    console.log(board);
 }
 
+function isEnemyLunksEmpty() {
+    var isEmpty = true;
+    if (role == "joined") {
+        for (var i = 0; i < length / 2 - 1; i++) {
+            if (+$("#" + i).text() != 0) {
+                isEmpty = false;
+            }
+        }
+    } else {
+        for (var i = length / 2; i < length - 1; i++) {
+            if (+$("#" + i).text() != 0) {
+                isEmpty = false;
+            }
+        }
+    }
+    if (isEmpty) {
+        var yourKalah = $(".your-kalah");
+        if (role == "joined") {
+            for (var i = length - 2; i > length / 2 - 1; i--) {
+                yourKalah.text(+yourKalah.text() + +$("#" + i).text());
+                $("#" + i).text(0);
+            }
+        } else {
+            for (var i = length / 2 - 2; i >= 0; i--) {
+                yourKalah.text(+yourKalah.text() + +$("#" + i).text());
+                $("#" + i).text(0);
+            }
+        }
+
+    }
+    return isEmpty;
+}
 
 function isYourLunksEmpty() {
     var isEmpty = true;
@@ -237,7 +278,6 @@ function isYourLunksEmpty() {
                 $("#" + i).text(0);
             }
         }
-        alert("Вы проиграли!");
     }
     return isEmpty;
 }
@@ -245,15 +285,38 @@ function isYourLunksEmpty() {
 function isWinnerExist() {
     var yourKalah = $(".your-kalah");
     var enemyKalah = $(".enemy-kalah");
-    if (+yourKalah.text() > sum / 2) {
-        alert("Вы выиграли!");
+    if (+yourKalah.text() > sum / 2 || isEnemyLunksEmpty()) {
+        $('#inform').modal('open');
+        $("#inform-message").text("Вы выиграли!");
+        disableLunks();
     }
     if (+enemyKalah.text() > sum / 2) {
-        alert("Вы проиграли!");
+        $('#inform').modal('open');
+        $("#inform-message").text("Вы проиграли!");
+        disableLunks();
     }
 }
 
 $(document).ready(function () {
+
+    $("#inform").on("click", "#ok", function () {
+        if (exit == 1)
+            location.href = '/kalah-1.0/game-list.html';
+    });
+
+    $('.modal').modal();
+
+    $("#messege").on("click", "#deny", function () {
+        mes.conf = "no";
+        sendMessage(JSON.stringify(mes));
+    })
+        .on("click", "#gran", function () {
+            var user = $("<img src='" + res.enemyAvatar + "'><div class='nick'>" + res.joinedLogin + "</div>");
+            $(".apponent").append(user);
+            mes.conf = "yes";
+            sendMessage(JSON.stringify(mes));
+        });
+
     setTimeout(createWSconnect, 500);
 });
 
@@ -268,10 +331,9 @@ var onLunkClick = function onLunkClickListener() {
         message.num = num;
         message.role = role;
         sendMessage(JSON.stringify(message));
-        console.log("вы кликнули на лунку номер " + num);
         clickLunk(num, clickedLunk, 0);
     }
-}
+};
 
 function clickLunk(num, clickedLunk, par) {
     var localRole = role;
@@ -282,7 +344,6 @@ function clickLunk(num, clickedLunk, par) {
             localRole = "creator";
         }
     }
-    console.log("ход: " + num + " " + par + " " + localRole);
     var basket = +clickedLunk.text();
     var fullCycle = false;
     if (basket > 0) {
@@ -295,7 +356,6 @@ function clickLunk(num, clickedLunk, par) {
 
 function putStone(i, basket, localRole, board, fullCycle, par) {
     if (basket > 0) {
-        console.log("     Ход: " + i + ":" + basket);
         if (localRole == "creator" && i == length - 1) {
             i = 0;
             fullCycle = true;
@@ -319,35 +379,33 @@ function putStone(i, basket, localRole, board, fullCycle, par) {
 
         }, 500);
     } else {
-        console.log("i after put stone: " + i);
         i--;
-        console.log(board);
-        console.log("остановились " + i);
-        console.log("par: " + par);
         if (par == 0) {
-            console.log("par: " + par + ", full " + fullCycle);
             if (fullCycle && $("#" + i).hasClass("your-lunk") && +$("#" + i).text() != 1) {
-                console.log("par: dceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
                 clickLunk(i, $("#" + i), 0);
+            } else {
+                blockGetStone = 0;
             }
         } else {
-            console.log("par: " + par + ", full " + fullCycle);
             if (fullCycle && $("#" + i).hasClass("enemy-lunk") && +$("#" + i).text() != 1) {
-                console.log("par: dceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
                 clickLunk(i, $("#" + i), 1);
             }
+            else {
+                blockGetStone = 0;
+            }
         }
-        getStone(i, par);
+        if (blockGetStone == 0) {
+            getStone(i, par);
+            blockGetStone = 1;
+        }
 
     }
 
 }
 
 function getStone(i, par) {
-    console.log("getStoneFirst: " + i);
     var lunk = $("#" + i);
     var count = +lunk.text();
-    console.log("Count: " + count);
 
     var hasClass = false;
     if (par == 0) {
@@ -355,27 +413,21 @@ function getStone(i, par) {
     } else {
         hasClass = lunk.hasClass("your-lunk");
     }
-    console.log("Has class enemy: " + hasClass);
     if (i >= 0 && hasClass && ( count == 2 || count == 3)) {
-        console.log("get stone " + i);
         lunk.text(0);
         if (par == 0) {
             if (role == "creator") {
-                console.log("par: " + par + ", role: " + role);
                 board[length / 2 - 1] = board[length / 2 - 1] + count;
                 $("#" + (length / 2 - 1)).text(board[length / 2 - 1]);
             } else if (role == "joined") {
-                console.log("par: " + par + ", role: " + role);
                 board[length - 1] = board[length - 1] + count;
                 $("#" + (length - 1)).text(board[length - 1]);
             }
         } else {
             if (role == "joined") {
-                console.log("par: " + par + ", role: " + role);
                 board[length / 2 - 1] = board[length / 2 - 1] + count;
                 $("#" + (length / 2 - 1)).text(board[length / 2 - 1]);
             } else if (role == "creator") {
-                console.log("par: " + par + ", role: " + role);
                 board[length - 1] = board[length - 1] + count;
                 $("#" + (length - 1)).text(board[length - 1]);
             }
@@ -388,7 +440,16 @@ function getStone(i, par) {
             getStone(i, par);
         }, 500);
     } else {
-        console.log("i after get stone: " + i);
-        isWinnerExist();
+        var end = 1;
+        if (par == 1 && isYourLunksEmpty()) {
+            $('#inform').modal('open');
+            $("#inform-message").text("Вы проиграли!");
+            end = 0;
+        } else if (par == 1 && !isYourLunksEmpty()) {
+            enableLunks();
+        }
+        if (end == 1) {
+            isWinnerExist();
+        }
     }
 }

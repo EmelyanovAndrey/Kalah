@@ -99,5 +99,8 @@
     <orderEntry type="library" name="Maven: org.apache.maven.shared:maven-filtering:3.1.1" level="project" />
     <orderEntry type="library" name="Maven: org.sonatype.plexus:plexus-build-api:0.0.7" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven.shared:maven-mapping:3.0.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="GlassFish 4.0.0 - CDI: Contexts and Dependency Injection" level="application_server_libraries" />
+    <orderEntry type="library" scope="PROVIDED" name="GlassFish 4.0.0 - EJB" level="application_server_libraries" />
+    <orderEntry type="library" scope="PROVIDED" name="GlassFish 4.0.0 - WebSocket" level="application_server_libraries" />
   </component>
 </module>

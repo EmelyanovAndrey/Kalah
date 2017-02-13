@@ -5,7 +5,7 @@ CREATE TABLE avatar
     file_path VARCHAR NOT NULL
 );
 
-CREATE TABLE "user"
+CREATE TABLE user
 (
     user_id BIGINT PRIMARY KEY NOT NULL,
     login VARCHAR NOT NULL,
