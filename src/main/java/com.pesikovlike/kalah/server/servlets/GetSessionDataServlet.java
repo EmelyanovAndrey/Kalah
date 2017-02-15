@@ -44,26 +44,47 @@ public class GetSessionDataServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String login = session.getAttribute("login").toString();
         String role = session.getAttribute("role").toString();
-        String creatorLogin = "";
-        if (session.getAttribute("creatorLogin") != null) {
-            creatorLogin = session.getAttribute("creatorLogin").toString();
-            LOGGER.log(Level.SEVERE, "Creator login: " + creatorLogin);
+
+        if (session.getAttribute("vs") != null && session.getAttribute("vs").toString().equals("ai")) {
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.setHeader("Cache-Control", "no-cache");
+
+            Map<String, String> resultMap = new HashMap<String, String>();
+            resultMap.put("result", "success");
+            resultMap.put("login", login);
+            resultMap.put("role", role);
+            resultMap.put("vs", "ai");
+            resultMap.put("level", session.getAttribute("level").toString());
+            resultMap.put("holeCount", session.getAttribute("holeCount").toString());
+            resultMap.put("stoneCount", session.getAttribute("stoneCount").toString());
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String json = gson.toJson(resultMap);
+            LOGGER.log(Level.SEVERE, "Return data: " + json);
+            response.getWriter().write(json);
+        } else if (session.getAttribute("vs").toString().equals("human")) {
+            String creatorLogin = "";
+            if (session.getAttribute("creatorLogin") != null) {
+                creatorLogin = session.getAttribute("creatorLogin").toString();
+                LOGGER.log(Level.SEVERE, "Creator login: " + creatorLogin);
+            }
+
+            LOGGER.log(Level.SEVERE, "User login: " + login);
+
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.setHeader("Cache-Control", "no-cache");
+
+            Map<String, String> resultMap = new HashMap<String, String>();
+            resultMap.put("result", "success");
+            resultMap.put("login", login);
+            resultMap.put("role", role);
+            resultMap.put("vs", "human");
+            resultMap.put("creatorLogin", creatorLogin);
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String json = gson.toJson(resultMap);
+            LOGGER.log(Level.SEVERE, "Return data: " + json);
+            response.getWriter().write(json);
         }
-
-        LOGGER.log(Level.SEVERE, "User login: " + login);
-
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        response.setHeader("Cache-Control", "no-cache");
-
-        Map<String, String> resultMap = new HashMap<String, String>();
-        resultMap.put("result", "success");
-        resultMap.put("login", login);
-        resultMap.put("role", role);
-        resultMap.put("creatorLogin", creatorLogin);
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(resultMap);
-        LOGGER.log(Level.SEVERE, "Return data: " + json);
-        response.getWriter().write(json);
     }
 }

@@ -34,19 +34,6 @@ import java.util.logging.Logger;
  * Created by Igor on 12.11.2016.
  */
 
-/*
- * input message format
-   {
-        operation: join;
-        creatorLogin: ;
-        joinedLogin: ;
-   }
-   {
-        operation: conf;
-        creatorLogin: ;
-        conf: yes, no;
-   }
- */
 @ServerEndpoint(value = "/game")
 public class gameWS {
 
@@ -83,6 +70,29 @@ public class gameWS {
         com.google.gson.JsonObject mesg = parser.parse(message).getAsJsonObject();
         String operation = mesg.get("operation").getAsString();
         LOGGER.log(Level.SEVERE, "Message: " + message);
+
+        if (operation.equals("createAI")) {
+            String level = mesg.get("level").getAsString();
+            String holeCount = mesg.get("holeCount").getAsString();
+            String stoneCount = mesg.get("stoneCount").getAsString();
+            //TODO создать AI
+            boolean isFirst = true;
+            Map<String, String> resultMap = new HashMap<String, String>();
+            resultMap.put("operation", "createAI");
+            Avatar avatar = avatarDAO.getAvatarById(100);
+            Avatar avatarAI = avatarDAO.getAvatarById(0);
+            resultMap.put("avatar", avatar.getFilePath());
+            resultMap.put("avatarAI", avatarAI.getFilePath());
+            resultMap.put("holeCount", holeCount);
+            resultMap.put("stoneCount", stoneCount);
+            resultMap.put("level", level);
+            resultMap.put("prior", String.valueOf(isFirst));
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String json = gson.toJson(resultMap);
+            session.getBasicRemote().sendText(json);
+
+        }
+
         //для создавшего
         if (operation.equals("create")) { //создаем заявку (на самом деле она уже создана, но мы добавляем в нее сессию вебсокета)
             creatorLogin = mesg.get("login").getAsString();
@@ -234,6 +244,25 @@ public class gameWS {
                 gameSession.getSessionOfCreator().getBasicRemote().sendText(json);
             }
 
+        }
+
+        if (operation.equals("stepAI")) {
+
+
+            Map<String, String> resultMap;
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String json;
+            int num = mesg.get("num").getAsInt();
+            //TODO ответ компа
+            int respNum = 0;
+            resultMap = new HashMap<String, String>();
+            resultMap.put("operation", "stepAI");
+            resultMap.put("num", String.valueOf(respNum));
+
+            json = gson.toJson(resultMap);
+            LOGGER.log(Level.SEVERE, "stepAI: " + json);
+
+            session.getBasicRemote().sendText(json);
         }
     }
 

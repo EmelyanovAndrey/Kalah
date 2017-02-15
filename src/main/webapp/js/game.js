@@ -2,6 +2,8 @@ var wsUri = "ws://localhost:8080/kalah-1.0/game";
 var WS = new WebSocket(wsUri);
 var login = "";
 var role = "";
+var vs = "";
+
 var exit = 0;
 var blockGetStone = 1;
 
@@ -19,6 +21,17 @@ WS.onerror = function (evt) {
 WS.onmessage = function (evt) {
     console.log("received: " + evt.data);
     var response = JSON.parse(evt.data);
+    if (response.operation == "createAI") {
+        var user = $("<img src='" + response.avatar + "'><div class='nick'>" + login + "</div>");
+        $(".player").append(user);
+        user = $("<img src='" + response.avatarAI + "'><div class='nick'>AI</div>");
+        $(".apponent").append(user);
+        //TODO уровень сложности
+        createBoard(response.holeCount, response.stoneCount);
+        if(response.prior) {
+            enableLunks();
+        }
+    }
     if (response.operation == "create") {
         // alert("Сессия вебсокета успешно добавлена к заявке.")
         var user = $("<img src='" + response.avatar + "'><div class='nick'>" + login + "</div>");
@@ -88,6 +101,13 @@ WS.onmessage = function (evt) {
         var clickedLunk = $("#" + num);
         clickLunk(num, clickedLunk, 1);
     }
+    if (response.operation == "stepAI") {
+
+        var num = response.num;
+
+        var clickedLunk = $("#" + num);
+        clickLunk(num, clickedLunk, 1);
+    }
     if (response.operation == "creator closed") {
         disableLunks();
         $("#inform-message").text("Противник отсоединился.");
@@ -128,11 +148,23 @@ function createWSconnect() {
             if (res.result == "success") {
                 login = res.login;
                 role = res.role;
+                vs = res.vs;
+
                 if (role == "creator") {
-                    var message = {};
-                    message.operation = "create";
-                    message.login = login;
-                    sendMessage(JSON.stringify(message));
+                    if (vs == "ai") {
+                        var message = {};
+                        message.operation = "createAI";
+                        message.level = res.level;
+                        message.holeCount = res.holeCount;
+                        message.stoneCount = res.stoneCount;
+                        message.login = login;
+                        sendMessage(JSON.stringify(message));
+                    } else {
+                        var message = {};
+                        message.operation = "create";
+                        message.login = login;
+                        sendMessage(JSON.stringify(message));
+                    }
                 } else if (role == "joined") {
                     var message = {};
                     message.operation = "join";
@@ -327,9 +359,14 @@ var onLunkClick = function onLunkClickListener() {
 
         var num = +clickedLunk.attr("id");
         var message = {};
-        message.operation = "step";
-        message.num = num;
-        message.role = role;
+        if (vs == "ai") {
+            message.operation = "stepAI";
+            message.num = num;
+        } else {
+            message.operation = "step";
+            message.num = num;
+            message.role = role;
+        }
         sendMessage(JSON.stringify(message));
         clickLunk(num, clickedLunk, 0);
     }
