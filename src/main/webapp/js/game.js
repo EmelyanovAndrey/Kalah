@@ -4,6 +4,10 @@ var login = "";
 var role = "";
 var vs = "";
 
+var stepAI;
+var makeStepAI = false;
+
+var theEnd = 0;
 var exit = 0;
 var blockGetStone = 1;
 
@@ -24,11 +28,10 @@ WS.onmessage = function (evt) {
     if (response.operation == "createAI") {
         var user = $("<img src='" + response.avatar + "'><div class='nick'>" + login + "</div>");
         $(".player").append(user);
-        user = $("<img src='" + response.avatarAI + "'><div class='nick'>AI</div>");
+        user = $("<img src='" + response.avatarAI + "'><div class='nick'>AI(" + response.level + ")</div>");
         $(".apponent").append(user);
-        //TODO уровень сложности
         createBoard(response.holeCount, response.stoneCount);
-        if(response.prior) {
+        if (response.prior) {
             enableLunks();
         }
     }
@@ -73,7 +76,7 @@ WS.onmessage = function (evt) {
                     $('#inform').modal('open');
                 }
             } else if (conf == "no") {
-                $("#inform-message").text("Вас послали!");
+                $("#inform-message").text("С вами не захотели играть!");
                 $('#inform').modal('open');
                 location.href = '/kalah-1.0/game-list.html';
             }
@@ -102,35 +105,40 @@ WS.onmessage = function (evt) {
         clickLunk(num, clickedLunk, 1);
     }
     if (response.operation == "stepAI") {
-
-        var num = response.num;
-
-        var clickedLunk = $("#" + num);
-        clickLunk(num, clickedLunk, 1);
+        stepAI = response.num;
+        makeStepAI = false;
     }
     if (response.operation == "creator closed") {
         disableLunks();
-        $("#inform-message").text("Противник отсоединился.");
-        $('#inform').modal('open');
-        exit = 1;
+        if (theEnd == 0) {
+            $("#inform-message").text("Противник отсоединился.");
+            $('#inform').modal('open');
+            exit = 1;
+        }
     }
     if (response.operation == "joined closed") {
         disableLunks();
-        $("#inform-message").text("Противник отсоединился.");
-        $('#inform').modal('open');
-        exit = 1;
+        if (theEnd == 0) {
+            $("#inform-message").text("Противник отсоединился.");
+            $('#inform').modal('open');
+            exit = 1;
+        }
     }
     if (response.operation == "creator closed in game") {
         disableLunks();
-        $("#inform-message").text("Противник отсоединился.");
-        $('#inform').modal('open');
-        exit = 1;
+        if (theEnd == 0) {
+            $("#inform-message").text("Противник отсоединился.");
+            $('#inform').modal('open');
+            exit = 1;
+        }
     }
     if (response.operation == "joined closed in game") {
         disableLunks();
-        $("#inform-message").text("Противник отсоединился.");
-        $('#inform').modal('open');
-        exit = 1;
+        if (theEnd == 0) {
+            $("#inform-message").text("Противник отсоединился.");
+            $('#inform').modal('open');
+            exit = 1;
+        }
     }
 };
 function sendMessage(json) {
@@ -188,7 +196,7 @@ function createWSconnect() {
 function enableLunks() {
     $(".your-lunk").each(function (i, el) {
         $(el).removeClass("enemy-obj enemy");
-        if($(el).text() != 0) {
+        if ($(el).text() != 0) {
             $(el).addClass("active");
         }
 
@@ -264,7 +272,7 @@ function isEnemyLunksEmpty() {
             }
         }
     }
-    if (isEmpty) {
+ /*   if (isEmpty) {
         var yourKalah = $(".your-kalah");
         if (role == "joined") {
             for (var i = length - 2; i > length / 2 - 1; i--) {
@@ -278,7 +286,7 @@ function isEnemyLunksEmpty() {
             }
         }
 
-    }
+    */
     return isEmpty;
 }
 
@@ -297,7 +305,7 @@ function isYourLunksEmpty() {
             }
         }
     }
-    if (isEmpty) {
+   /* if (isEmpty) {
         var enemyKalah = $(".enemy-kalah");
         if (role == "creator") {
             for (var i = length - 2; i > length / 2 - 1; i--) {
@@ -310,7 +318,7 @@ function isYourLunksEmpty() {
                 $("#" + i).text(0);
             }
         }
-    }
+    }*/
     return isEmpty;
 }
 
@@ -321,11 +329,13 @@ function isWinnerExist() {
         $('#inform').modal('open');
         $("#inform-message").text("Вы выиграли!");
         disableLunks();
+        theEnd = 1;
     }
     if (+enemyKalah.text() > sum / 2) {
         $('#inform').modal('open');
         $("#inform-message").text("Вы проиграли!");
         disableLunks();
+        theEnd = 1;
     }
 }
 
@@ -469,6 +479,7 @@ function getStone(i, par) {
                 $("#" + (length - 1)).text(board[length - 1]);
             }
         }
+        board[i] = 0;
         lunk.css("background-color", "#a5a5a5").css("color", "#37474f");
         setTimeout(function () {
 
@@ -477,16 +488,21 @@ function getStone(i, par) {
             getStone(i, par);
         }, 500);
     } else {
-        var end = 1;
         if (par == 1 && isYourLunksEmpty()) {
             $('#inform').modal('open');
             $("#inform-message").text("Вы проиграли!");
-            end = 0;
+            theEnd = 1;
+            return;
         } else if (par == 1 && !isYourLunksEmpty()) {
             enableLunks();
         }
-        if (end == 1) {
-            isWinnerExist();
+
+        isWinnerExist();
+
+        if (vs == "ai" && !makeStepAI) {
+            var clickedLunk = $("#" + stepAI);
+            clickLunk(stepAI, clickedLunk, 1);
+            makeStepAI = true;
         }
     }
 }

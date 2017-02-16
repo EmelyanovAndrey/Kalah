@@ -2,6 +2,7 @@ package com.pesikovlike.kalah.server.websocket.game;
 
 
 import com.google.gson.*;
+import com.pesikovlike.kalah.ai.AI;
 import com.pesikovlike.kalah.game.bid.GameBid;
 import com.pesikovlike.kalah.game.bid.GameBidFactory;
 import com.pesikovlike.kalah.game.bid.GameBidService;
@@ -60,6 +61,7 @@ public class gameWS {
     private GameSession gameSession;
     private String creatorLogin;
     private GameBid gameBid;
+    private AI ai;
 
     private static final Logger LOGGER = Logger.getLogger("gameWS Servlet");
 
@@ -75,8 +77,9 @@ public class gameWS {
             String level = mesg.get("level").getAsString();
             String holeCount = mesg.get("holeCount").getAsString();
             String stoneCount = mesg.get("stoneCount").getAsString();
-            //TODO создать AI
             boolean isFirst = true;
+            ai = new AI(Integer.parseInt(holeCount), Integer.parseInt(stoneCount), Integer.parseInt(level), isFirst);
+
             Map<String, String> resultMap = new HashMap<String, String>();
             resultMap.put("operation", "createAI");
             Avatar avatar = avatarDAO.getAvatarById(100);
@@ -247,20 +250,19 @@ public class gameWS {
         }
 
         if (operation.equals("stepAI")) {
-
+            LOGGER.log(Level.SEVERE, "Start step AI");
 
             Map<String, String> resultMap;
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String json;
             int num = mesg.get("num").getAsInt();
-            //TODO ответ компа
-            int respNum = 0;
+            ai.playerStep(num);
+            int respNum = ai.AIStep();
             resultMap = new HashMap<String, String>();
             resultMap.put("operation", "stepAI");
             resultMap.put("num", String.valueOf(respNum));
 
             json = gson.toJson(resultMap);
-            LOGGER.log(Level.SEVERE, "stepAI: " + json);
 
             session.getBasicRemote().sendText(json);
         }

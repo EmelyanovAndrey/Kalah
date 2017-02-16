@@ -82,6 +82,7 @@ public class ChooseBidServlet extends HttpServlet {
             gson = (new GsonBuilder()).setPrettyPrinting().create();
             json = gson.toJson(resultMap);
             session.setAttribute("role", "joined");
+            session.setAttribute("vs", "human");
             response.getWriter().write(json);
         } else {
             LOGGER.log(Level.SEVERE, "Error bid for creator: " + creatorLogin + ", joined: " + joinedLogin);
