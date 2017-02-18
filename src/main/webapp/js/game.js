@@ -57,6 +57,7 @@ WS.onmessage = function (evt) {
             var message = {};
             message.operation = "conf";
             message.login = login;
+            message.joinedLogin = response.joinedLogin;
             res = response;
             mes = message;
             $("#join-name").text(response.joinedLogin);
@@ -325,7 +326,7 @@ function isYourLunksEmpty() {
 function isWinnerExist() {
     var yourKalah = $(".your-kalah");
     var enemyKalah = $(".enemy-kalah");
-    if (+yourKalah.text() > sum / 2 || isEnemyLunksEmpty()) {
+    if (+yourKalah.text() > sum / 2) {
         $('#inform').modal('open');
         $("#inform-message").text("Вы выиграли!");
         disableLunks();
@@ -340,6 +341,31 @@ function isWinnerExist() {
 }
 
 $(document).ready(function () {
+
+    $("body").on("click", "#save-game", function () {
+        var data = {};
+
+        $.ajax({
+            type: "GET",
+            url: "/kalah-1.0/saveGame",
+            async: true,
+            contentType: "application/json",
+            success: function (res) {
+                if (res.result == "success") {
+                    $("#inform-message").text("Игра сохранина.");
+                    $('#inform').modal('open');
+
+                } else {
+                    $("#inform-message").text("Не удалось сохранить игру.");
+                    $('#inform').modal('open');
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert("Error status code: " + xhr.status);
+                alert("Error details: " + thrownError);
+            }
+        });
+    });
 
     $("#inform").on("click", "#ok", function () {
         if (exit == 1)
@@ -488,16 +514,24 @@ function getStone(i, par) {
             getStone(i, par);
         }, 500);
     } else {
+        var end = 0;
         if (par == 1 && isYourLunksEmpty()) {
             $('#inform').modal('open');
             $("#inform-message").text("Вы проиграли!");
+            end = 1;
             theEnd = 1;
             return;
         } else if (par == 1 && !isYourLunksEmpty()) {
             enableLunks();
+        } else if (par == 0 && isEnemyLunksEmpty()) {
+            $('#inform').modal('open');
+            $("#inform-message").text("Вы выиграли!");
+            end = 1;
+            theEnd = 1;
+            return;
         }
-
-        isWinnerExist();
+        if(end == 0)
+            isWinnerExist(par);
 
         if (vs == "ai" && !makeStepAI) {
             var clickedLunk = $("#" + stepAI);

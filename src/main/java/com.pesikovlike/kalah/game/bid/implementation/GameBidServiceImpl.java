@@ -16,13 +16,15 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by Igor on 29.11.2016.
  */
 @Singleton
 public class GameBidServiceImpl implements GameBidService {
-
+    private static final Logger LOGGER = Logger.getLogger("GameBidService");
     @EJB
     private UserService userService;
 
@@ -39,7 +41,14 @@ public class GameBidServiceImpl implements GameBidService {
 
     public int deleteBid(String creatorLogin) {
         gameBids.remove(creatorLogin);
+        LOGGER.log(Level.SEVERE, getBids());
         return 0;
+    }
+
+    public String getBids() {
+        String res = "bids: ";
+        res += gameBids.values().size();
+        return res;
     }
 
     public GameBid getBid(String creatorLogin) {

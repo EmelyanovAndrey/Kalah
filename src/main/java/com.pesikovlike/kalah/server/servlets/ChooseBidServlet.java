@@ -63,7 +63,7 @@ public class ChooseBidServlet extends HttpServlet {
         String creatorLogin = requestJson.get("creatorLogin").getAsString();
         HttpSession session = request.getSession();
         String joinedLogin = session.getAttribute("login").toString();
-        GameBid gameBid = this.gameBidService.getBid(creatorLogin);
+        GameBid gameBid = gameBidService.getBid(creatorLogin);
         LOGGER.log(Level.SEVERE, "GameBid: " + gameBid);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

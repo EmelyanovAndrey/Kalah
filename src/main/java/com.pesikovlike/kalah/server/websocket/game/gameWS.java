@@ -132,7 +132,9 @@ public class gameWS {
                 LOGGER.log(Level.SEVERE, "Start yes");
                 //должна начаться игра (создать сессию)
                 if (gameBid.getSessionOfJoined() != null) {
+                    String joinedLogin = mesg.get("joinedLogin").getAsString();
                     gameSession = gameSessionService.addGameSession(gameBid);
+                    gameSession.getGameState().setUser2(userDAO.getUserByLogin(joinedLogin));
                     gameBidService.deleteBid(gameBid.getCreatorLogin());
                     LOGGER.log(Level.SEVERE, "Start yes");
                     Map<String, String> resultMap;
@@ -237,6 +239,9 @@ public class gameWS {
             resultMap.put("operation", "step");
             resultMap.put("num", mesg.get("num").getAsString());
 
+            gameSessionService.makeStep(creatorLogin, mesg.get("num").getAsInt());
+            GameSession ses = gameSessionService.getGameSession(creatorLogin);
+            LOGGER.log(Level.SEVERE, ses.getInfo());
             json = gson.toJson(resultMap);
             LOGGER.log(Level.SEVERE, "step: " + json);
             if (mesg.get("role").getAsString().equals("creator")) {

@@ -14,6 +14,6 @@ public interface GameBidService {
     public int deleteBid(String creatorLogin);
 
     public GameBid getBid(String creatorLogin);
-
+    public String getBids();
     public Set<GameBid> getAllGameBidsForUser(String friendLogin);
 }

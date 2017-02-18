@@ -3,6 +3,7 @@ package com.pesikovlike.kalah.model.entity;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -11,6 +12,8 @@ import java.util.Set;
 @Entity
 @Table(name = "game_state", schema = "kalah", catalog = "kalah")
 public class GameState {
+    private static long nextId = 1;
+
     private long gameStateId;
     private Date lastSaveDate;
     private int stoneCountOfUser1;
@@ -20,9 +23,9 @@ public class GameState {
     private boolean priority;
     private User user1;
     private User user2;
-    private Set<Hole> holes;
+    private Set<Hole> holes = new LinkedHashSet<Hole>();
 
-    public GameState(){gameStateId = System.currentTimeMillis();}
+    public GameState(){gameStateId = nextId++;}
 
 
     @Id

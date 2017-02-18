@@ -8,12 +8,14 @@ import javax.persistence.*;
 @Entity
 @Table(name = "hole", schema = "kalah", catalog = "kalah")
 public class Hole {
+    private static long nextId = 1;
+
     private long holeId;
     private int number;
     private int stoneCount;
     private GameState gameState;
 
-    public Hole(){holeId = System.currentTimeMillis();}
+    public Hole(){holeId = nextId++;}
 
 
     @Id

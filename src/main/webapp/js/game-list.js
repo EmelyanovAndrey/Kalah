@@ -49,7 +49,8 @@ $(document).ready(function () {
                             $("#inform-message").text("Игры, к которой вы хотите присоединится, не существует, или она удалена.");
                             $('#inform').modal('open');
                         } else if (res.type == "block") {
-                            $("#inform").text("К игре пытается присоединится кто-то другой.");
+                            $("#inform-message").text("К игре пытается присоединится кто-то другой.");
+                            $('#inform').modal('open');
                         }
                     }
                 },

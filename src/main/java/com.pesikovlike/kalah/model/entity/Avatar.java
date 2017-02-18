@@ -1,6 +1,7 @@
 package com.pesikovlike.kalah.model.entity;
 
 import javax.persistence.*;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -12,11 +13,9 @@ public class Avatar {
     private long avatarId;
     private String avatarName;
     private String filePath;
-    private Set<User> usersByAvatarId;
+    private Set<User> usersByAvatarId = new LinkedHashSet<User>();
 
-    public Avatar(){avatarId = System.currentTimeMillis();}
-
-
+    public Avatar(){}
 
     @Id
     @Column(name = "avatar_id", nullable = false)

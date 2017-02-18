@@ -1,5 +1,6 @@
 package com.pesikovlike.kalah.model.dao.postgres.hibernate;
 
+import com.pesikovlike.kalah.game.bid.GameBid;
 import com.pesikovlike.kalah.model.dao.GameStateDAO;
 import com.pesikovlike.kalah.model.entity.GameState;
 import com.pesikovlike.kalah.model.entity.User;
@@ -41,16 +42,18 @@ public class PostgresHibernateGameStateDAO implements GameStateDAO {
     public GameState getGameStateById(long id) {
         Session s = PostgresHibernateSessionFactory.getSessionFactory().openSession();
         Transaction t = s.beginTransaction();
-        GameState gs = s.byId(GameState.class).load(id);
+        Query query = s.createQuery("select gs from GameState gs where gs.id = :ID").setParameter("ID", id);
+        List<GameState> gs = query.list();
         t.commit();
         s.close();
-        return gs;
+        return gs.isEmpty() ? null : gs.get(0);
+
     }
 
     public List<GameState> getGameStatesByUser(User user) {
         Session s = PostgresHibernateSessionFactory.getSessionFactory().openSession();
         Transaction t = s.beginTransaction();
-        Query query = s.createQuery("select gs from GameState gs where gs.user1 = :userId or gs.user2 = :userId").setParameter("userId", user.getUserId());
+        Query query = s.createQuery("select gs from GameState gs where gs.user1 = :userId or gs.user2 = :userId").setParameter("userId", user);
         List<GameState> gameStates = query.list();
         t.commit();
         s.close();

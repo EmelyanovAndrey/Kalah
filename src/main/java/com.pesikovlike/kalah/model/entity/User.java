@@ -1,6 +1,7 @@
 package com.pesikovlike.kalah.model.entity;
 
 import javax.persistence.*;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -9,15 +10,17 @@ import java.util.Set;
 @Entity
 @Table(name = "user", schema = "kalah", catalog = "kalah")
 public class User {
+    private static long nextId = 1;
+
     private long userId;
     private String login;
     private String password;
     private String email;
-    private Set<GameState> gameStatesOfUser1;
-    private Set<GameState> gameStatesOfUser2;
+    private Set<GameState> gameStatesOfUser1 = new LinkedHashSet<GameState>();
+    private Set<GameState> gameStatesOfUser2 = new LinkedHashSet<GameState>();
     private Avatar avatar;
 
-    public User(){userId = System.currentTimeMillis();}
+    public User(){ userId = nextId++;}
 
 
     @Id

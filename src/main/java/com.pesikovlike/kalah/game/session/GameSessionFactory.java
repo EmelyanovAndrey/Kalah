@@ -14,6 +14,7 @@ public class GameSessionFactory {
     private GameSession gameSession;
 
     public enum GameSessionImpl {IMPL}
+
     private static GameSessionImpl impl;
 
     public static void init(GameSessionImpl impl) {
@@ -22,11 +23,10 @@ public class GameSessionFactory {
 
 
     public GameSession getGameSession() {
-        if (gameSession == null)
-            switch (impl) {
-                case IMPL:
-                    gameSession = new com.pesikovlike.kalah.game.session.implementation.GameSessionImpl();
-            }
+        switch (impl) {
+            case IMPL:
+                gameSession = new com.pesikovlike.kalah.game.session.implementation.GameSessionImpl();
+        }
         return gameSession;
     }
 }

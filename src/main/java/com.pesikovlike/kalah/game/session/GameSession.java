@@ -1,6 +1,7 @@
 package com.pesikovlike.kalah.game.session;
 
 import com.pesikovlike.kalah.model.entity.GameState;
+import com.pesikovlike.kalah.model.entity.Hole;
 
 import javax.websocket.Session;
 
@@ -19,4 +20,8 @@ public interface GameSession {
     public GameState getGameState();
 
     public void setGameState(GameState gameState);
+
+    public String getInfo();
+
+    public Hole[] getHolesArray();
 }

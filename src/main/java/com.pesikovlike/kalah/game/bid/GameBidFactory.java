@@ -14,6 +14,7 @@ public class GameBidFactory {
     private GameBid gameBid;
 
     public enum GameBidImpl {IMPL}
+
     private static GameBidImpl impl;
 
     public static void init(GameBidImpl impl) {
@@ -21,11 +22,10 @@ public class GameBidFactory {
     }
 
     public GameBid getGameBid() {
-        if (gameBid == null)
-            switch (impl) {
-                case IMPL:
-                    gameBid = new com.pesikovlike.kalah.game.bid.implementation.GameBidImpl();
-            }
+        switch (impl) {
+            case IMPL:
+                gameBid = new com.pesikovlike.kalah.game.bid.implementation.GameBidImpl();
+        }
         return gameBid;
     }
 }
