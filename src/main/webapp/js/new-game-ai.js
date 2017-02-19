@@ -13,7 +13,7 @@ $(document).ready(function () {
             data: JSON.stringify(data),
             contentType: "application/json",
             success: function (res) {
-                location.href = '/kalah-1.0/game-ai.html';
+                location.href = '/kalah-1.0/game-ai.jsp';
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert("Error status code: " + xhr.status);

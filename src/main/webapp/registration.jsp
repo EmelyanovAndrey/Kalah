@@ -1,7 +1,8 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <title>Kalah | Войти</title>
+    <title>Kalah | Регистрация</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -14,59 +15,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Scripts-->
     <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="js/registration.js"></script>
   </head>
   <body>
-    <header>
-      <div class="navbar">
-        <ul id="slide-out" class="side-nav">
-          <li>
-            <div class="userView">
-              <h1>Kalah</h1>
-            </div>
-          </li>
-          <li><a href="index.html" class="grey-text text-lighten-3">Главная<i class="material-icons">view_stream</i></a></li>
-          <li><a href="about.html" class="grey-text text-lighten-3">Об игре<i class="material-icons">info</i></a></li>
-          <li><a href="game.html" class="grey-text text-lighten-3">Играть с человеком<i class="material-icons">perm_identity</i></a></li>
-          <li><a href="game.html" class="grey-text text-lighten-3">Играть с компьютером<i class="material-icons">android</i></a></li>
-          <li><a href="profile.html" class="grey-text text-lighten-3">Профиль<i class="material-icons">account_circle</i></a></li>
-        </ul>
-        <nav>
-          <div class="nav-wrapper container">
-            <div class="large-nav-bar"><a href="" target="_blank" class="brand-logo">Kalah</a>
-              <ul class="right">
-                <li><a href="index.html" target="_blank" class="grey-text text-lighten-3">Главная</a></li>
-                <li><a href="about.html" target="_blank" class="grey-text text-lighten-3">Об игре</a></li>
-                <li><a href="game.html" target="_blank" class="grey-text text-lighten-3">Играть с человеком</a></li>
-                <li><a href="game.html" target="_blank" class="grey-text text-lighten-3">Играть с компьютером</a></li>
-                <li><a href="profile.html" target="_blank" class="grey-text text-lighten-3">Профиль</a></li>
-              </ul>
-            </div>
-            <div class="mini-nav-bar"><a href="#!" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a><a href="" data-activates="slide-out" class="brand-logo">Kalah</a></div>
-          </div>
-        </nav>
-      </div>
-    </header>
+  <jsp:include page="head.jsp" />
     <main>
-      <div class="login">
+      <div class="registration">
         <div class="container">
           <div class="row">
-            <h1>Войти</h1>
+            <h1>Регистрация</h1>
           </div>
           <div class="row">
-            <form id="loginin">
+            <form id="registration">
               <div class="input-field col s12"><i class="material-icons prefix">perm_identity</i>
                 <input id="name" type="text" minlength="4" maxlength="16" data-error="Слишком длинное имя" class="validate">
-                <!--form 4 to 16-->
                 <label for="name">Имя</label>
               </div>
               <div class="input-field col s12"><i class="material-icons prefix">vpn_key</i>
                 <input id="password" type="password" minlength="6" maxlength="20" class="validate">
-                <!--form 6 to 20-->
                 <label for="password">Пароль</label>
               </div>
-              <div class="col s12"><a id="login" type="submit" name="action" class="btn waves-effect waves-light large">Войти<i class="material-icons right">lock</i></a></div>
-              <div class="col s12"><a href="registration.html" type="submit" name="action" class="btn waves-effect waves-light">Зарегистрироваться</a></div>
+              <div class="input-field col s12"><i class="material-icons prefix">vpn_key</i>
+                <input id="re-password" type="password" minlength="6" maxlength="20" data-error="Пароли не совпадают" data-success="Пароли совпадают" class="validate">
+                <label for="re-password">Повторите пароль</label>
+              </div>
+              <div class="input-field col s12"><i class="material-icons prefix">email</i>
+                <input id="email" type="email" minlength="5" maxlength="40" data-error="Неверный адрес email" class="validate">
+                <label for="email">Email</label>
+              </div>
+              <div class="input-field col s12"><i class="material-icons prefix">account_circle</i>
+                <select id="icons" class="icons">
+                  <option disabled selected>Выберите аватар</option>
+                  <option value="1" data-icon="img/avatars/mario.jpg" class="left circle">Mario</option>
+                  <option value="2" data-icon="img/avatars/panda.jpg" class="left circle">Panda</option>
+                  <option value="3" data-icon="img/avatars/clock.jpg" class="left circle">Clock</option>
+                </select>
+                <label for="icons">Аватар</label>
+              </div>
+              <div class="col s12"><a id="signup" type="submit" name="action" class="btn waves-effect waves-light">Зарегистрироваться<i class="material-icons right">send</i></a></div>
             </form>
           </div>
         </div>

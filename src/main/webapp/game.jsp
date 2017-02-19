@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -17,36 +18,7 @@
   <script type="text/javascript" src="js/game.js"></script>
 </head>
 <body>
-<header>
-  <div class="navbar">
-    <ul id="slide-out" class="side-nav">
-      <li>
-        <div class="userView">
-          <h1>Kalah</h1>
-        </div>
-      </li>
-      <li><a href="index.html" class="grey-text text-lighten-3">Главная<i class="material-icons">view_stream</i></a></li>
-      <li><a href="about.html" class="grey-text text-lighten-3">Об игре<i class="material-icons">info</i></a></li>
-      <li><a href="game.html" class="grey-text text-lighten-3">Играть с человеком<i class="material-icons">perm_identity</i></a></li>
-      <li><a href="game.html" class="grey-text text-lighten-3">Играть с компьютером<i class="material-icons">android</i></a></li>
-      <li><a href="profile.html" class="grey-text text-lighten-3">Профиль<i class="material-icons">account_circle</i></a></li>
-    </ul>
-    <nav>
-      <div class="nav-wrapper container">
-        <div class="large-nav-bar"><a href="" target="_blank" class="brand-logo">Kalah</a>
-          <ul class="right">
-            <li><a href="index.html" target="_blank" class="grey-text text-lighten-3">Главная</a></li>
-            <li><a href="about.html" target="_blank" class="grey-text text-lighten-3">Об игре</a></li>
-            <li><a href="game.html" target="_blank" class="grey-text text-lighten-3">Играть с человеком</a></li>
-            <li><a href="game.html" target="_blank" class="grey-text text-lighten-3">Играть с компьютером</a></li>
-            <li><a href="profile.html" target="_blank" class="grey-text text-lighten-3">Профиль</a></li>
-          </ul>
-        </div>
-        <div class="mini-nav-bar"><a href="#!" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a><a href="" data-activates="slide-out" class="brand-logo">Kalah</a></div>
-      </div>
-    </nav>
-  </div>
-</header>
+<jsp:include page="head.jsp" />
 <main>
   <div class="game">
     <div class="container">

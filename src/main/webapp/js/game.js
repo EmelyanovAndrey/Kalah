@@ -122,7 +122,7 @@ WS.onmessage = function (evt) {
             } else if (conf == "no") {
                 $("#inform-message").text("С вами не захотели играть!");
                 $('#inform').modal('open');
-                location.href = '/kalah-1.0/game-list.html';
+                location.href = '/kalah-1.0/game-list.jsp';
             }
         }
         if (response.role == "creator") {
@@ -440,7 +440,7 @@ $(document).ready(function () {
 
     $("#inform").on("click", "#ok", function () {
         if (exit == 1)
-            location.href = '/kalah-1.0/game-list.html';
+            location.href = '/kalah-1.0/game-list.jsp';
     });
 
     $('.modal').modal();

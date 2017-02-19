@@ -15,7 +15,7 @@ $(document).ready(function() {
                 contentType: "application/json",
                 success: function (res) {
                     if (res.result == "success") {
-                        location.href = '/kalah-1.0/game-list.html';
+                        location.href = '/kalah-1.0/game-list.jsp';
                     } else {
                         $("#inform-message").text("Неверные данные аутентификации.");
                         $('#inform').modal('open');

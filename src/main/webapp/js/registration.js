@@ -46,7 +46,7 @@ $(document).ready(function() {
                 success: function (res) {
                     console.log(res);
                     if (res.result == "success") {
-                        location.href = '/kalah-1.0/profile.html';
+                        location.href = '/kalah-1.0/profile.jsp';
                     } else {
                         $("#inform-message").text("Пользователь с таким именем уже существует.");
                         $('#inform').modal('open');

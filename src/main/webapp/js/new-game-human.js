@@ -13,7 +13,7 @@ $(document).ready(function() {
             contentType: "application/json",
             success: function (res) {
                 if (res.result == "success") {
-                    location.href = '/kalah-1.0/game.html';
+                    location.href = '/kalah-1.0/game.jsp';
                 } else {
                     alert("Вы указали имя несуществующего друга.");
                 }
