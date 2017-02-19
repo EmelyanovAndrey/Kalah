@@ -14,6 +14,7 @@ import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.websocket.Session;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -51,7 +52,7 @@ public class GameSessionsServiceImpl implements GameSessionService {
         for (int i = 0; i < (holeCount + 1) * 2; i++) {
             Hole hole = new Hole();
             hole.setNumber(i);
-            if(i == holeCount || i == holeCount * 2 + 1) {
+            if (i == holeCount || i == holeCount * 2 + 1) {
                 hole.setStoneCount(0);
             } else {
                 hole.setStoneCount(stoneCount);
@@ -83,9 +84,35 @@ public class GameSessionsServiceImpl implements GameSessionService {
         LOGGER.log(Level.SEVERE, "Count of sessins: " + gameSessions.size());
         return gameSession;
     }
+    public GameSession addGameSession(GameState gameState, Session creatorSession, Session joinedSession) {
+
+        GameSession gameSession = gameSessionFactory.getGameSession();
+        gameSession.setSessionOfCreator(creatorSession);
+        gameSession.setSessionOfJoined(joinedSession);
+        gameSession.setGameState(gameState);
+
+        gameSessions.put(gameState.getUser1().getLogin(), gameSession);
+        LOGGER.log(Level.SEVERE, "GameSessionServiceAdd: " + gameSession.getGameState().getGameStateId());
+        LOGGER.log(Level.SEVERE, "Count of sessins: " + gameSessions.size());
+        return gameSession;
+    }
 
     public GameSession getGameSession(String creatorLogin) {
         return gameSessions.get(creatorLogin);
+    }
+
+    public GameSession getGameSessionForLoad(long id) {
+        GameSession[] sessions = new GameSession[gameSessions.size()];
+        sessions = gameSessions.values().toArray(sessions);
+        GameSession gs = null;
+        for (int i = 0; i < sessions.length; i++) {
+            LOGGER.log(Level.SEVERE, i + " : " + sessions[i].getGameState().getGameStateId());
+            if (sessions[i].getGameState().getGameStateId() == id) {
+                gs = sessions[i];
+                break;
+            }
+        }
+        return gs;
     }
 
     public Map<String, GameSession> getAllGameSessions() {
@@ -94,6 +121,20 @@ public class GameSessionsServiceImpl implements GameSessionService {
 
     public int deleteGameSession(String creatorLogin) {
         gameSessions.remove(creatorLogin);
+        return 0;
+    }
+
+    public int deleteGameSession(long id) {
+        GameSession[] sessions = new GameSession[gameSessions.size()];
+        sessions = gameSessions.values().toArray(sessions);
+        GameSession gs = null;
+        for (int i = 0; i < sessions.length; i++) {
+            LOGGER.log(Level.SEVERE, i + " : " + sessions[i].getGameState().getGameStateId());
+            if (sessions[i].getGameState().getGameStateId() == id) {
+                gs = sessions[i];
+                break;
+            }
+        }
         return 0;
     }
 
@@ -192,6 +233,7 @@ public class GameSessionsServiceImpl implements GameSessionService {
         return 1;
     }
 
+
     private void makeChange(GameSession ses, int[] ownSide, int ownKalah, int[] otherSide, int otherKalah) {
         GameState gs = ses.getGameState();
         int numHoles = gs.getInitialHoleCount();
@@ -215,9 +257,4 @@ public class GameSessionsServiceImpl implements GameSessionService {
         gs.setPriority(!gs.getPriority());
     }
 
-    private int findWinner(String creatorLogin) {
-        //TODO: проверить, выиграл ли кто-то
-
-        return 0;
-    }
 }

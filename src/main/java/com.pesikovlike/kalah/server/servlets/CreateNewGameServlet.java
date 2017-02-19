@@ -98,6 +98,7 @@ public class CreateNewGameServlet extends HttpServlet {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String json = gson.toJson(resultMap);
             session.setAttribute("role", "creator");
+            session.setAttribute("load", "false");
             session.setAttribute("vs", "human");
             session.setAttribute("creatorLogin", creatorLogin);
             response.getWriter().write(json);

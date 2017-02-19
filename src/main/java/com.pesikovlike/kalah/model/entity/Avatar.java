@@ -69,7 +69,7 @@ public class Avatar {
         return result;
     }
 
-    @OneToMany(mappedBy = "avatar")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "avatar")
     public Set<User> getUsersByAvatarId() {
         return usersByAvatarId;
     }

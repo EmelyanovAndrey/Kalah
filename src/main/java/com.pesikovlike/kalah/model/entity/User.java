@@ -10,7 +10,6 @@ import java.util.Set;
 @Entity
 @Table(name = "user", schema = "kalah", catalog = "kalah")
 public class User {
-    private static long nextId = 1;
 
     private long userId;
     private String login;
@@ -20,11 +19,12 @@ public class User {
     private Set<GameState> gameStatesOfUser2 = new LinkedHashSet<GameState>();
     private Avatar avatar;
 
-    public User(){ userId = nextId++;}
 
 
     @Id
     @Column(name = "user_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+    @SequenceGenerator(name = "user_seq", sequenceName = "kalah.sequence_user", allocationSize=1)
     public long getUserId() {
         return userId;
     }
@@ -87,7 +87,7 @@ public class User {
         return result;
     }
 
-    @OneToMany(mappedBy = "user1")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user1")
     public Set<GameState> getGameStatesOfUser1() {
         return gameStatesOfUser1;
     }
@@ -96,7 +96,7 @@ public class User {
         this.gameStatesOfUser1 = gameStatesOfUser1;
     }
 
-    @OneToMany(mappedBy = "user2")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user2")
     public Set<GameState> getGameStatesOfUser2() {
         return gameStatesOfUser2;
     }

@@ -1,14 +1,20 @@
 package com.pesikovlike.kalah.user.implementation;
 
 import com.pesikovlike.kalah.model.dao.AvatarDAO;
+import com.pesikovlike.kalah.model.dao.GameStateDAO;
 import com.pesikovlike.kalah.model.dao.UserDAO;
 import com.pesikovlike.kalah.model.entity.Avatar;
+import com.pesikovlike.kalah.model.entity.GameState;
 import com.pesikovlike.kalah.model.entity.User;
 import com.pesikovlike.kalah.user.UserService;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,6 +30,11 @@ public class UserServiceImpl implements UserService {
     @Inject
     @Named("avatarDAO")
     private AvatarDAO avatarDAO;
+
+    @Inject
+    @Named("gameStateDAO")
+    private GameStateDAO gameStateDAO;
+
 
     private static final Logger LOGGER = Logger.getLogger("User Service");
 
@@ -73,5 +84,10 @@ public class UserServiceImpl implements UserService {
         userDAO.updateUser(user);
 
         return 0;
+    }
+
+    public List<GameState> getSavedGamesForUser(String login) {
+        List<GameState> games = gameStateDAO.getGameStatesByUser(userDAO.getUserByLogin(login));
+        return games;
     }
 }

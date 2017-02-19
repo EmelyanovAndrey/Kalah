@@ -3,7 +3,6 @@ package com.pesikovlike.kalah.model.entity;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Collection;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -12,7 +11,6 @@ import java.util.Set;
 @Entity
 @Table(name = "game_state", schema = "kalah", catalog = "kalah")
 public class GameState {
-    private static long nextId = 1;
 
     private long gameStateId;
     private Date lastSaveDate;
@@ -23,13 +21,14 @@ public class GameState {
     private boolean priority;
     private User user1;
     private User user2;
-    private Set<Hole> holes = new LinkedHashSet<Hole>();
+    private Set<Hole> holes;
 
-    public GameState(){gameStateId = nextId++;}
 
 
     @Id
     @Column(name = "game_state_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gs_seq")
+    @SequenceGenerator(name = "gs_seq", sequenceName = "kalah.sequence_gs", allocationSize=1)
     public long getGameStateId() {
         return gameStateId;
     }
@@ -148,7 +147,7 @@ public class GameState {
         this.user2 = user2;
     }
 
-    @OneToMany(mappedBy = "gameState")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "gameState")
     public Set<Hole> getHoles() {
         return holes;
     }

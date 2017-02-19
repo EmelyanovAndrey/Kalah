@@ -82,6 +82,7 @@ public class ChooseBidServlet extends HttpServlet {
             gson = (new GsonBuilder()).setPrettyPrinting().create();
             json = gson.toJson(resultMap);
             session.setAttribute("role", "joined");
+            session.setAttribute("load", "false");
             session.setAttribute("vs", "human");
             response.getWriter().write(json);
         } else {

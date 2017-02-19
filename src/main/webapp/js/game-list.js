@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
     var t = $('#game_list').DataTable();
+    var creatorLogin = "";
 
     $('.modal').modal();
 
@@ -16,8 +17,6 @@ $(document).ready(function () {
                 for (var i = 0; i < bids.length; i++) {
                     var bid = bids[i];
                     t.row.add([i + 1, bid.vs, bid.stones + "/" + bid.holes]).draw();
-                    $("tr td").eq(1).addClass("creator-login");
-                    $(".head-row td").eq(1).removeClass("creator-login");
                 }
             } else {
 
@@ -32,7 +31,7 @@ $(document).ready(function () {
     })
         .on("click", "#yes", function () {
             var data = {};
-            data.creatorLogin = $(".creator-login").text();
+            data.creatorLogin = creatorLogin;
             console.log(data);
 
             $.ajax({
@@ -64,8 +63,9 @@ $(document).ready(function () {
     $('#game_list').on("click", "tr", function () {
 
         console.log('click');
-
-        $('#join').modal('open');
-
+        if (!$(this).hasClass("head")) {
+            creatorLogin = $(this).find("td").eq(1).text();
+            $('#join').modal('open');
+        }
     });
 });

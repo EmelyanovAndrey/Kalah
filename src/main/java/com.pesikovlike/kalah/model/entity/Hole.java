@@ -8,18 +8,17 @@ import javax.persistence.*;
 @Entity
 @Table(name = "hole", schema = "kalah", catalog = "kalah")
 public class Hole {
-    private static long nextId = 1;
 
     private long holeId;
     private int number;
     private int stoneCount;
     private GameState gameState;
 
-    public Hole(){holeId = nextId++;}
-
 
     @Id
     @Column(name = "hole_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hole_seq")
+    @SequenceGenerator(name = "hole_seq", sequenceName = "kalah.sequence_hole", allocationSize=1)
     public long getHoleId() {
         return holeId;
     }

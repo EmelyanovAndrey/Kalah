@@ -5,7 +5,10 @@ import com.google.gson.GsonBuilder;
 import com.pesikovlike.kalah.game.bid.GameBid;
 import com.pesikovlike.kalah.game.bid.GameBidFactory;
 import com.pesikovlike.kalah.game.bid.GameBidService;
+import com.pesikovlike.kalah.game.session.GameSession;
+import com.pesikovlike.kalah.game.session.GameSessionService;
 import com.pesikovlike.kalah.model.dao.UserDAO;
+import com.pesikovlike.kalah.model.entity.GameState;
 import com.pesikovlike.kalah.user.UserService;
 
 import javax.ejb.EJB;
@@ -24,6 +27,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,14 +38,20 @@ import java.util.logging.Logger;
  */
 @WebServlet(name = "getSessionData", urlPatterns = {"/getSessionData"})
 public class GetSessionDataServlet extends HttpServlet {
-
+    @EJB
+    private UserService userService;
+    @Inject
+    @Named("userDAO")
+    private UserDAO userDAO;
+    @Inject
+    private GameSessionService gameSessionService;
 
     private static final Logger LOGGER = Logger.getLogger("GetSessionData Servlet");
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        LOGGER.log(Level.SEVERE, "Start get session data: ");
         HttpSession session = request.getSession();
         String login = session.getAttribute("login").toString();
         String role = session.getAttribute("role").toString();
@@ -55,6 +66,7 @@ public class GetSessionDataServlet extends HttpServlet {
             resultMap.put("login", login);
             resultMap.put("role", role);
             resultMap.put("vs", "ai");
+            resultMap.put("load", "false");
             resultMap.put("level", session.getAttribute("level").toString());
             resultMap.put("holeCount", session.getAttribute("holeCount").toString());
             resultMap.put("stoneCount", session.getAttribute("stoneCount").toString());
@@ -62,7 +74,28 @@ public class GetSessionDataServlet extends HttpServlet {
             String json = gson.toJson(resultMap);
             LOGGER.log(Level.SEVERE, "Return data: " + json);
             response.getWriter().write(json);
-        } else if (session.getAttribute("vs").toString().equals("human")) {
+        } else if (session.getAttribute("load") != null && session.getAttribute("vs").toString().equals("human") && session.getAttribute("load").toString().equals("true")) {
+
+            String creatorLogin = session.getAttribute("creatorLogin").toString();
+
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.setHeader("Cache-Control", "no-cache");
+
+            Map<String, String> resultMap = new HashMap<String, String>();
+            resultMap.put("result", "success");
+            resultMap.put("login", login);
+            resultMap.put("role", role);
+            resultMap.put("vs", "human");
+            resultMap.put("load", "true");
+            resultMap.put("id", session.getAttribute("id").toString());
+            resultMap.put("creatorLogin", creatorLogin);
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String json = gson.toJson(resultMap);
+            LOGGER.log(Level.SEVERE, "Return data: " + json);
+            response.getWriter().write(json);
+        }
+        else if (session.getAttribute("vs").toString().equals("human")) {
             String creatorLogin = "";
             if (session.getAttribute("creatorLogin") != null) {
                 creatorLogin = session.getAttribute("creatorLogin").toString();
@@ -80,6 +113,7 @@ public class GetSessionDataServlet extends HttpServlet {
             resultMap.put("login", login);
             resultMap.put("role", role);
             resultMap.put("vs", "human");
+            resultMap.put("load", "false");
             resultMap.put("creatorLogin", creatorLogin);
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String json = gson.toJson(resultMap);
