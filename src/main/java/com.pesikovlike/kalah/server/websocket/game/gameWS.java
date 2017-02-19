@@ -10,6 +10,8 @@ import com.pesikovlike.kalah.game.session.GameSession;
 import com.pesikovlike.kalah.game.session.GameSessionFactory;
 import com.pesikovlike.kalah.game.session.GameSessionService;
 import com.pesikovlike.kalah.model.dao.AvatarDAO;
+import com.pesikovlike.kalah.model.dao.GameStateDAO;
+import com.pesikovlike.kalah.model.dao.HoleDAO;
 import com.pesikovlike.kalah.model.dao.UserDAO;
 import com.pesikovlike.kalah.model.entity.Avatar;
 import com.pesikovlike.kalah.model.entity.GameState;
@@ -27,10 +29,7 @@ import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -56,7 +55,12 @@ public class gameWS {
     @Inject
     @Named("userDAO")
     private UserDAO userDAO;
-
+    @Inject
+    @Named("gameStateDAO")
+    private GameStateDAO gameStateDAO;
+    @Inject
+    @Named("holeDAO")
+    private HoleDAO holeDAO;
     @Inject
     @Named("avatarDAO")
     private AvatarDAO avatarDAO;
@@ -66,6 +70,8 @@ public class gameWS {
     private String login;
     private GameBid gameBid;
     private AI ai;
+    private boolean fromLoad = false;
+    private String loadRole = "";
 
     private static final Logger LOGGER = Logger.getLogger("gameWS Servlet");
 
@@ -76,15 +82,51 @@ public class gameWS {
         com.google.gson.JsonObject mesg = parser.parse(message).getAsJsonObject();
         String operation = mesg.get("operation").getAsString();
 
+        if (operation.equals("save")) {
+
+            boolean saved = false;
+
+            for (int i = 0; i < gameStateDAO.getGameStatesByUser(userDAO.getUserByLogin(gameSession.getGameState().getUser1().getLogin())).size(); i++) {
+                if (gameStateDAO.getGameStatesByUser(userDAO.getUserByLogin(gameSession.getGameState().getUser1().getLogin())).get(i).getGameStateId() == gameSession.getGameState().getGameStateId()) {
+                    saved = true;
+                    break;
+                }
+            }
+            if (saved) {
+                gameSession.getGameState().setLastSaveDate(new Date());
+                gameStateDAO.updateGameState(gameSession.getGameState());
+                Hole[] holes = gameSession.getHolesArray();
+                for (int i = 0; i < holes.length; i++) {
+                    holeDAO.updateHole(holes[i]);
+                }
+            } else {
+                gameSession.getGameState().setLastSaveDate(new Date());
+                gameStateDAO.insertGameState(gameSession.getGameState());
+                Hole[] holes = gameSession.getHolesArray();
+                for (int i = 0; i < holes.length; i++) {
+                    holeDAO.insertHole(holes[i]);
+                }
+            }
+
+            Map<String, String> resultMap = new HashMap<String, String>();
+            resultMap.put("result", "success");
+            resultMap.put("operation", "save");
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String json = gson.toJson(resultMap);
+            session.getBasicRemote().sendText(json);
+        }
+
         if (operation.equals("load")) {
+            fromLoad = true;
             LOGGER.log(Level.SEVERE, "Start load");
             login = mesg.get("login").getAsString();
             creatorLogin = mesg.get("creatorLogin").getAsString();
             long id = mesg.get("id").getAsLong();
             LOGGER.log(Level.SEVERE, "Id: " + id);
             GameSession ses = gameSessionService.getGameSessionForLoad(id);
-            
+
             if (ses == null) {
+                loadRole = "creator";
                 LOGGER.log(Level.SEVERE, "ses == null");
                 List<GameState> games = userService.getSavedGamesForUser(login);
                 Iterator<GameState> iter = games.iterator();
@@ -95,13 +137,8 @@ public class gameWS {
                         break;
                     }
                 }
-                if (creatorLogin.equals(login)) {
-                    LOGGER.log(Level.SEVERE, "It's creator");
-                    gameSession = gameSessionService.addGameSession(state, session, null);
-                } else {
-                    LOGGER.log(Level.SEVERE, "It's joined");
-                    gameSession = gameSessionService.addGameSession(state, null, session);
-                }
+
+                gameSession = gameSessionService.addGameSession(login, state, session, null);
                 LOGGER.log(Level.SEVERE, "After add");
 
                 Map<String, String> resultMap;
@@ -152,8 +189,9 @@ public class gameWS {
                 LOGGER.log(Level.SEVERE, "response: " + json);
                 session.getBasicRemote().sendText(json);
 
-
+                creatorLogin = login;
             } else {
+                loadRole = "joined";
                 LOGGER.log(Level.SEVERE, "ses != null");
                 List<GameState> games = userService.getSavedGamesForUser(login);
                 Iterator<GameState> iter = games.iterator();
@@ -164,15 +202,13 @@ public class gameWS {
                         break;
                     }
                 }
-                if (creatorLogin.equals(login)) {
-                    LOGGER.log(Level.SEVERE, "It's creator");
-                    gameSession = gameSessionService.getGameSession(creatorLogin);
-                    gameSession.setSessionOfCreator(session);
+                if (state.getUser1().getLogin().equals(login)) {
+                    gameSession = gameSessionService.getGameSession(state.getUser2().getLogin());
                 } else {
-                    LOGGER.log(Level.SEVERE, "It's joined");
-                    gameSession = gameSessionService.getGameSession(creatorLogin);
-                    gameSession.setSessionOfJoined(session);
+                    gameSession = gameSessionService.getGameSession(state.getUser1().getLogin());
                 }
+                gameSession.setSessionOfJoined(session);
+
                 LOGGER.log(Level.SEVERE, "After add");
 
                 Map<String, String> resultMap;
@@ -193,6 +229,7 @@ public class gameWS {
                     resultMap.put(String.valueOf(holes[i].getNumber()), String.valueOf(holes[i].getStoneCount()));
                 }
                 String priority = "";
+
                 if (creatorLogin.equals(login)) {
                     if (gameSession.getGameState().getPriority()) {
                         priority = "true";
@@ -206,17 +243,20 @@ public class gameWS {
                         priority = "true";
                     }
                 }
+
                 resultMap.put("priority", priority);
-                User user = userDAO.getUserByLogin(mesg.get("login").getAsString());
+                User user = userDAO.getUserByLogin(login);
                 Avatar avatar = avatarDAO.getAvatarById(user.getAvatar().getAvatarId());
                 resultMap.put("yourAvatar", avatar.getFilePath());
                 resultMap.put("login", login);
 
                 if (creatorLogin.equals(login)) {
                     user = userDAO.getUserByLogin(gameSession.getGameState().getUser2().getLogin());
+
                 } else {
                     user = userDAO.getUserByLogin(gameSession.getGameState().getUser1().getLogin());
                 }
+                creatorLogin = user.getLogin();
                 avatar = avatarDAO.getAvatarById(user.getAvatar().getAvatarId());
                 resultMap.put("enemyLogin", user.getLogin());
                 resultMap.put("enemyAvatar", avatar.getFilePath());
@@ -232,14 +272,9 @@ public class gameWS {
                 } else {
                     resultMap.put("priority", "true");
                 }
-
                 json = gson.toJson(resultMap);
                 LOGGER.log(Level.SEVERE, "response: " + json);
-                if (creatorLogin.equals(login)) {
-                    gameSession.getSessionOfJoined().getBasicRemote().sendText(json);
-                } else {
-                    gameSession.getSessionOfCreator().getBasicRemote().sendText(json);
-                }
+                gameSession.getSessionOfCreator().getBasicRemote().sendText(json);
 
             }
             return;
@@ -266,6 +301,10 @@ public class gameWS {
             String json = gson.toJson(resultMap);
             session.getBasicRemote().sendText(json);
 
+        }
+
+        if (operation.equals("gs")) {
+            gameSession = gameSessionService.getGameSession(creatorLogin);
         }
 
         //для создавшего
@@ -402,8 +441,6 @@ public class gameWS {
 
         if (operation.equals("step")) {
 
-
-            GameSession gameSession = gameSessionService.getGameSession(creatorLogin);
             Map<String, String> resultMap;
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String json;
@@ -416,15 +453,25 @@ public class gameWS {
             GameSession ses = gameSessionService.getGameSession(creatorLogin);
             LOGGER.log(Level.SEVERE, ses.getInfo());
             json = gson.toJson(resultMap);
-            LOGGER.log(Level.SEVERE, "step: " + json);
-            if (mesg.get("role").getAsString().equals("creator")) {
-
-                gameSession.getSessionOfJoined().getBasicRemote().sendText(json);
+            if (!fromLoad) {
+                LOGGER.log(Level.SEVERE, "step: " + mesg.get("role"));
+                if (mesg.get("role").getAsString().equals("creator")) {
+                    LOGGER.log(Level.SEVERE, "creator");
+                    gameSession.getSessionOfJoined().getBasicRemote().sendText(json);
+                } else {
+                    LOGGER.log(Level.SEVERE, "joined");
+                    gameSession.getSessionOfCreator().getBasicRemote().sendText(json);
+                }
             } else {
-
-                gameSession.getSessionOfCreator().getBasicRemote().sendText(json);
+                LOGGER.log(Level.SEVERE, "from load");
+                if (loadRole.equals("creator")) {
+                    LOGGER.log(Level.SEVERE, "creator");
+                    gameSession.getSessionOfJoined().getBasicRemote().sendText(json);
+                } else {
+                    LOGGER.log(Level.SEVERE, "joined");
+                    gameSession.getSessionOfCreator().getBasicRemote().sendText(json);
+                }
             }
-
         }
 
         if (operation.equals("stepAI")) {
@@ -481,29 +528,32 @@ public class gameWS {
             gameBid = null;
         } else {
             LOGGER.log(Level.SEVERE, "leave game session");
-            if (gameSession.getSessionOfCreator() != null && gameSession.getSessionOfCreator().equals(session)) {
+
+            if (gameSession != null && gameSession.getSessionOfCreator() != null && gameSession.getSessionOfCreator().equals(session)) {
                 LOGGER.log(Level.SEVERE, "creator");
                 resultMap = new HashMap<String, String>();
                 resultMap.put("operation", "creator closed in game");
 
                 json = gson.toJson(resultMap);
-                LOGGER.log(Level.SEVERE, "creator");
-                if (gameSession.getSessionOfJoined() != null) {
-                    LOGGER.log(Level.SEVERE, "creator");
+                if (gameSession != null && gameSession.getSessionOfJoined() != null) {
                     gameSession.getSessionOfJoined().getBasicRemote().sendText(json);
                 }
-            } else if (gameSession.getSessionOfJoined() != null && gameSession.getSessionOfJoined().equals(session)) {
+            } else if (gameSession != null && gameSession.getSessionOfJoined() != null && gameSession.getSessionOfJoined().equals(session)) {
                 LOGGER.log(Level.SEVERE, "joined");
                 resultMap = new HashMap<String, String>();
                 resultMap.put("operation", "joined closed in game");
 
                 json = gson.toJson(resultMap);
-                if (gameSession.getSessionOfCreator() != null)
+                LOGGER.log(Level.SEVERE, "//TODO: " + String.valueOf(gameSession == null));
+                if (gameSession != null && gameSession.getSessionOfCreator() != null) {
+                    LOGGER.log(Level.SEVERE, "//TODO");
                     gameSession.getSessionOfCreator().getBasicRemote().sendText(json);
+                    LOGGER.log(Level.SEVERE, "//TODO");
+                }
             }
             //TODO тут надо сохранить игру
+            LOGGER.log(Level.SEVERE, "//TODO");
             gameSessionService.deleteGameSession(creatorLogin);
-            gameSession = null;
             LOGGER.log(Level.SEVERE, "gs count: " + gameSessionService.getAllGameSessions().size());
         }
     }

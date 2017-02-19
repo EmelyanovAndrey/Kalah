@@ -84,14 +84,14 @@ public class GameSessionsServiceImpl implements GameSessionService {
         LOGGER.log(Level.SEVERE, "Count of sessins: " + gameSessions.size());
         return gameSession;
     }
-    public GameSession addGameSession(GameState gameState, Session creatorSession, Session joinedSession) {
+    public GameSession addGameSession(String creatorLogin, GameState gameState, Session creatorSession, Session joinedSession) {
 
         GameSession gameSession = gameSessionFactory.getGameSession();
         gameSession.setSessionOfCreator(creatorSession);
         gameSession.setSessionOfJoined(joinedSession);
         gameSession.setGameState(gameState);
 
-        gameSessions.put(gameState.getUser1().getLogin(), gameSession);
+        gameSessions.put(creatorLogin, gameSession);
         LOGGER.log(Level.SEVERE, "GameSessionServiceAdd: " + gameSession.getGameState().getGameStateId());
         LOGGER.log(Level.SEVERE, "Count of sessins: " + gameSessions.size());
         return gameSession;
@@ -120,7 +120,12 @@ public class GameSessionsServiceImpl implements GameSessionService {
     }
 
     public int deleteGameSession(String creatorLogin) {
-        gameSessions.remove(creatorLogin);
+        LOGGER.log(Level.SEVERE, "Start remove");
+        if (gameSessions.containsKey(creatorLogin)) {
+            LOGGER.log(Level.SEVERE, "Remove of: " + creatorLogin);
+            gameSessions.remove(creatorLogin);
+        }
+
         return 0;
     }
 

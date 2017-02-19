@@ -3,6 +3,7 @@ var WS = new WebSocket(wsUri);
 var login = "";
 var role = "";
 var vs = "";
+var fromSave = false;
 
 var stepAI;
 var makeStepAI = false;
@@ -25,6 +26,16 @@ WS.onerror = function (evt) {
 WS.onmessage = function (evt) {
     console.log("received: " + evt.data);
     var response = JSON.parse(evt.data);
+    if (response.operation == "save") {
+        if (response.result == "success") {
+            $("#inform-message").text("Игра сохранена.");
+            $('#inform').modal('open');
+
+        } else {
+            $("#inform-message").text("Не удалось сохранить игру.");
+            $('#inform').modal('open');
+        }
+    }
     if (response.operation == "continue") {
         if (response.priority == "true") {
             $("#inform-message").text("Ваш друг зашел, и сейчас ваш ход.");
@@ -36,6 +47,7 @@ WS.onmessage = function (evt) {
         }
     }
     if (response.operation == "load") {
+        fromSave = true;
         if (response.suboperation == "create") {
             var user = $("<img src='" + response.yourAvatar + "'><div class='nick'>" + login + "</div>");
             $(".player").append(user);
@@ -76,6 +88,8 @@ WS.onmessage = function (evt) {
         createBoard(response.holeCount, response.stoneCount);
         if (response.prior) {
             enableLunks();
+        } else {
+
         }
     }
     if (response.operation == "create") {
@@ -111,6 +125,9 @@ WS.onmessage = function (evt) {
         if (response.role == "joined") {
             var conf = response.conf;
             if (conf == "yes") {
+                var dat = {};
+                dat.operation = "gs";
+                sendMessage(JSON.stringify(dat));
                 if (response.priority == "true") {
                     $("#inform-message").text("Ваше присоединение одобрено, и вы ходите первым.");
                     $('#inform').modal('open');
@@ -415,7 +432,9 @@ $(document).ready(function () {
 
     $("body").on("click", "#save-game", function () {
         var data = {};
-
+        data.operation = "save";
+        sendMessage(JSON.stringify(data));
+/*
         $.ajax({
             type: "GET",
             url: "/kalah-1.0/saveGame",
@@ -435,12 +454,17 @@ $(document).ready(function () {
                 alert("Error status code: " + xhr.status);
                 alert("Error details: " + thrownError);
             }
-        });
+        });*/
     });
 
     $("#inform").on("click", "#ok", function () {
-        if (exit == 1)
-            location.href = '/kalah-1.0/game-list.jsp';
+        if (exit == 1) {
+            if (fromSave) {
+                location.href = '/kalah-1.0/profile.jsp';
+            } else {
+                location.href = '/kalah-1.0/game-list.jsp';
+            }
+        }
     });
 
     $('.modal').modal();

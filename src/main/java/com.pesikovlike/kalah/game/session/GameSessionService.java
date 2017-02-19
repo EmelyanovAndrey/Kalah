@@ -23,5 +23,5 @@ public interface GameSessionService {
 
     public GameSession getGameSessionForLoad(long id);
 
-    public GameSession addGameSession(GameState gameState, Session creatorSession, Session joinedSession);
+    public GameSession addGameSession(String creatorLogin, GameState gameState, Session creatorSession, Session joinedSession);
 }
