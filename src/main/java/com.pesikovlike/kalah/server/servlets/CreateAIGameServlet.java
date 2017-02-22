@@ -49,12 +49,18 @@ public class CreateAIGameServlet extends HttpServlet {
         if (session.getAttribute("login") == null) {
             session.setAttribute("login", "Калах-мэн");
         } else {
-            session.setAttribute("login", session.getAttribute("login"));
+            session.setAttribute("login", "Калах-мэн");
         }
+        int prior = Integer.parseInt(requestJson.getJsonString("prior").getString());
         session.setAttribute("holeCount", Integer.parseInt(requestJson.getJsonString("holeCount").getString()));
         session.setAttribute("stoneCount", Integer.parseInt(requestJson.getJsonString("stoneCount").getString()));
         session.setAttribute("level", Integer.parseInt(requestJson.getJsonString("level").getString()));
         session.setAttribute("vs", "ai");
+        if (prior == 1) {
+            session.setAttribute("prior", "true");
+        } else {
+            session.setAttribute("prior", "false");
+        }
         session.setAttribute("role", "creator");
         LOGGER.log(Level.SEVERE, "Create AI Game ");
         response.setContentType("application/json");

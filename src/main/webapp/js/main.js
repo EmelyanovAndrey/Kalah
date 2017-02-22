@@ -9174,14 +9174,31 @@ Vel = jQuery ? jQuery.Velocity : $ ? $.Velocity : Velocity, function (e) {
 }.call(this);
 var characterValid = function (e, t, n) {
     return e.val().length >= t && e.val().length <= n ? e.addClass("valid") : e.val().length < t || e.val().length > e.attr("lenght") || e.val().length > n ? e.addClass("invalid") : void 0
-}, re_passValid = function (e, t) {
-    return e.hasClass("valid") && t.val() === e.val() ? t.addClass("valid") : t.val() !== e.val() ? t.addClass("invalid") : void 0
+}, re_passValid = function(pass, re_pass) {
+    if (pass.hasClass('valid') && re_pass.val() === pass.val()) {
+        return re_pass.addClass('valid');
+    } else {
+
+            return re_pass.addClass('invalid');
+
+    }
 }, loginValid = function () {
     var e = $("#loginin").find("#name"), t = $("#loginin").find("#password");
     return characterValid(e, e.attr("minlength"), e.attr("maxlength")), characterValid(t, t.attr("minlength"), t.attr("maxlength")), !(!e.hasClass("valid") || !t.hasClass("valid"))
 }, registrValid = function () {
-    var e = $("#registration").find("#re-password"), t = $("#registration").find("#password"), n = $("#registration").find("#name"), i = $("#registration").find("#email"), r = $("#registration").find("#icons");
-    return characterValid(n, n.attr("minlength"), n.attr("maxlength")), characterValid(t, t.attr("minlength"), t.attr("maxlength")), characterValid(i, i.attr("minlength"), i.attr("maxlength")), re_passValid(t, e), !!(n.hasClass("valid") && i.hasClass("valid") && t.hasClass("valid") && e.hasClass("valid") && null !== r.val())
+    var e = $("#registration").find("#re-password"),
+        t = $("#registration").find("#password"),
+        n = $("#registration").find("#name"),
+        i = $("#registration").find("#email"),
+        r = $("#registration").find("#icons");
+    return characterValid(n, n.attr("minlength"),
+        n.attr("maxlength")),
+        characterValid(t, t.attr("minlength"),
+            t.attr("maxlength")),
+        characterValid(i, i.attr("minlength"),
+            i.attr("maxlength")),
+        re_passValid(t, e),
+        !!(n.hasClass("valid") && i.hasClass("valid") && t.hasClass("valid") && e.hasClass("valid") && null !== r.val())
 }, changeProfileValid = function () {
     var e = $("#profile").find("#name"), t = $("#profile").find("#password"), n = $("#profile").find("#re-password"), i = $("#profile").find("#email");
     return characterValid(e, e.attr("minlength"), e.attr("maxlength")), characterValid(t, t.attr("minlength"), t.attr("maxlength")), characterValid(i, i.attr("minlength"), i.attr("maxlength")), re_passValid(t, n), !!(e.hasClass("valid") && i.hasClass("valid") && t.hasClass("valid") && n.hasClass("valid"))

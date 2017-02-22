@@ -66,6 +66,7 @@ public class GetSessionDataServlet extends HttpServlet {
             resultMap.put("login", login);
             resultMap.put("role", role);
             resultMap.put("vs", "ai");
+            resultMap.put("prior", session.getAttribute("prior").toString());
             resultMap.put("load", "false");
             resultMap.put("level", session.getAttribute("level").toString());
             resultMap.put("holeCount", session.getAttribute("holeCount").toString());

@@ -1,9 +1,10 @@
-var wsUri = "ws://localhost:8080/kalah-1.0/game";
+var wsUri = "ws://10.0.0.15:8080/kalah-1.0/game";
 var WS = new WebSocket(wsUri);
 var login = "";
 var role = "";
 var vs = "";
 var fromSave = false;
+var currentStep = 0;
 
 var stepAI;
 var makeStepAI = false;
@@ -86,10 +87,16 @@ WS.onmessage = function (evt) {
         user = $("<img src='" + response.avatarAI + "'><div class='nick'>AI(" + response.level + ")</div>");
         $(".apponent").append(user);
         createBoard(response.holeCount, response.stoneCount);
-        if (response.prior) {
+
+        if (response.prior == "true") {
+            console.log(response.prior);
             enableLunks();
         } else {
-
+            console.log(response.prior);
+            var message = {};
+            message.operation = "stepAI";
+            message.num = -1;
+            sendMessage(JSON.stringify(message));
         }
     }
     if (response.operation == "create") {
@@ -159,7 +166,9 @@ WS.onmessage = function (evt) {
         createBoard(response.holeCount, response.stoneCount);
     }
     if (response.operation == "step") {
-
+        currentStep++;
+        $("#currentStep").text(currentStep);
+        $(".apponent .nick").addClass("active");
         var num = response.num;
 
         var clickedLunk = $("#" + num);
@@ -168,6 +177,11 @@ WS.onmessage = function (evt) {
     if (response.operation == "stepAI") {
         stepAI = response.num;
         makeStepAI = false;
+        if (response.first == "true") {
+            var clickedLunk = $("#" + stepAI);
+            clickLunk(stepAI, clickedLunk, 1);
+            makeStepAI = true;
+        }
     }
     if (response.operation == "creator closed") {
         disableLunks();
@@ -182,7 +196,6 @@ WS.onmessage = function (evt) {
         if (theEnd == 0) {
             $("#inform-message").text("Противник отсоединился.");
             $('#inform').modal('open');
-            exit = 1;
         }
     }
     if (response.operation == "creator closed in game") {
@@ -252,6 +265,7 @@ function createWSconnect() {
                             message.holeCount = res.holeCount;
                             message.stoneCount = res.stoneCount;
                             message.login = login;
+                            message.prior = res.prior;
                             sendMessage(JSON.stringify(message));
                         } else {
                             var message = {};
@@ -417,6 +431,9 @@ function isWinnerExist() {
     if (+yourKalah.text() > sum / 2) {
         $('#inform').modal('open');
         $("#inform-message").text("Вы выиграли!");
+        var endMes = {};
+        endMes.operation = "end";
+        sendMessage(JSON.stringify(endMes));
         disableLunks();
         theEnd = 1;
     }
@@ -434,27 +451,27 @@ $(document).ready(function () {
         var data = {};
         data.operation = "save";
         sendMessage(JSON.stringify(data));
-/*
-        $.ajax({
-            type: "GET",
-            url: "/kalah-1.0/saveGame",
-            async: true,
-            contentType: "application/json",
-            success: function (res) {
-                if (res.result == "success") {
-                    $("#inform-message").text("Игра сохранена.");
-                    $('#inform').modal('open');
+        /*
+         $.ajax({
+         type: "GET",
+         url: "/kalah-1.0/saveGame",
+         async: true,
+         contentType: "application/json",
+         success: function (res) {
+         if (res.result == "success") {
+         $("#inform-message").text("Игра сохранена.");
+         $('#inform').modal('open');
 
-                } else {
-                    $("#inform-message").text("Не удалось сохранить игру.");
-                    $('#inform').modal('open');
-                }
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                alert("Error status code: " + xhr.status);
-                alert("Error details: " + thrownError);
-            }
-        });*/
+         } else {
+         $("#inform-message").text("Не удалось сохранить игру.");
+         $('#inform').modal('open');
+         }
+         },
+         error: function (xhr, ajaxOptions, thrownError) {
+         alert("Error status code: " + xhr.status);
+         alert("Error details: " + thrownError);
+         }
+         });*/
     });
 
     $("#inform").on("click", "#ok", function () {
@@ -484,7 +501,11 @@ $(document).ready(function () {
 });
 
 var onLunkClick = function onLunkClickListener() {
+
     var clickedLunk = $(this);
+    $(".player .nick").addClass("active");
+    currentStep++;
+    $("#currentStep").text(currentStep);
     if (clickedLunk.text() != 0) {
         disableLunks();
 
@@ -609,6 +630,7 @@ function getStone(i, par) {
             getStone(i, par);
         }, 500);
     } else {
+        $(".nick").removeClass("active");
         var end = 0;
         if (par == 1 && isYourLunksEmpty()) {
             $('#inform').modal('open');
@@ -621,6 +643,9 @@ function getStone(i, par) {
         } else if (par == 0 && isEnemyLunksEmpty()) {
             $('#inform').modal('open');
             $("#inform-message").text("Вы выиграли!");
+            var endMes = {};
+            endMes.operation = "end";
+            sendMessage(JSON.stringify(endMes));
             end = 1;
             theEnd = 1;
             return;

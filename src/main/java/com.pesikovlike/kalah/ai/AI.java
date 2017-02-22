@@ -13,7 +13,11 @@ public class AI {
         LOGGER.log(Level.SEVERE, "AI was created");
         this.holeCount = holeCount;
         this.stoneCount = stoneCount;
-        board = new Board(prior, holeCount, stoneCount, level * 2);
+        if (level == 1) {
+            board = new Board(prior, holeCount, stoneCount, level);
+        } else {
+            board = new Board(prior, holeCount, stoneCount, (level - 1) * 3);
+        }
         player = board.getCurrentPlayer();
         LOGGER.log(Level.SEVERE, "board start: " + board.getInfo());
     }

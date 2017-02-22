@@ -49,7 +49,7 @@ public class PostgresHibernateUserDAO implements UserDAO {
     public User getUserByLogin(String login) {
         Session s = PostgresHibernateSessionFactory.getSessionFactory().openSession();
         Transaction t = s.beginTransaction();
-        Query query = s.createQuery("select u from User u where lower(u.login) LIKE lower(:LOGIN)").setParameter("LOGIN", login);
+        Query query = s.createQuery("select u from User u where u.login LIKE :LOGIN").setParameter("LOGIN", login);
         List<User> users = query.list();
         t.commit();
         s.close();

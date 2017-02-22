@@ -45,6 +45,13 @@
                   <input id="level" type="range" min="1" max="5">
                 </p>
               </div>
+              <div class="input-field col s12">
+                <select id="prior" class="icons">
+                  <option value="1" class="left circle">Вы</option>
+                  <option value="2" class="left circle">Компьютер</option>
+                </select>
+                <label for="prior">Кто первым ходит?</label>
+              </div>
               <!--.input-field.col.s12
               i.material-icons.prefix perm_identity
               input#friend.validate(type="text", length="10")

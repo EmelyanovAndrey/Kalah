@@ -22,6 +22,12 @@
 <main>
   <div class="game">
     <div class="container">
+      <div class="meta">
+        <p>
+          Ход :
+          &nbsp;<span id="currentStep">0</span>
+        </p>
+      </div>
       <div class="row">
         <div class="apponent">
         </div>

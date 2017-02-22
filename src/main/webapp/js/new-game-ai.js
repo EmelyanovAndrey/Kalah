@@ -5,6 +5,7 @@ $(document).ready(function () {
         data.holeCount = $("#count_lunk").val();
         data.stoneCount = $("#count_stouns").val();
         data.level = $("#level").val();
+        data.prior = $("#prior").val();
         console.log(data);
         $.ajax({
             type: "POST",

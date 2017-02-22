@@ -24,10 +24,10 @@
             <div class="nav-wrapper container">
                 <div class="large-nav-bar"><a href="" target="_blank" class="brand-logo">Kalah</a>
                     <ul class="right">
-                        <li><a href="index.jsp" target="_blank" class="grey-text text-lighten-3">Главная</a></li>
-                        <li><a href="about.jsp" target="_blank" class="grey-text text-lighten-3">Об игре</a></li>
-                        <li><a href="game-list.jsp" target="_blank" class="grey-text text-lighten-3">Играть с человеком</a></li>
-                        <li><a href="new-game-ai.jsp" target="_blank" class="grey-text text-lighten-3">Играть с компьютером</a></li>
+                        <li><a href="index.jsp" class="grey-text text-lighten-3">Главная</a></li>
+                        <li><a href="about.jsp" class="grey-text text-lighten-3">Об игре</a></li>
+                        <li><a href="game-list.jsp" class="grey-text text-lighten-3">Играть с человеком</a></li>
+                        <li><a href="new-game-ai.jsp" class="grey-text text-lighten-3">Играть с компьютером</a></li>
                         <shiro:authenticated>
                             <li><a href="profile.jsp" class="grey-text text-lighten-3">Профиль</a></li>
                             <li><a href="logout" class="grey-text text-lighten-3">Выход</a></li>

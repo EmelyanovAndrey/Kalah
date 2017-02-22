@@ -124,6 +124,9 @@ public class gameWS {
             long id = mesg.get("id").getAsLong();
             LOGGER.log(Level.SEVERE, "Id: " + id);
             GameSession ses = gameSessionService.getGameSessionForLoad(id);
+            if (ses != null && ses.getSessionOfCreator() == null) {
+                gameSessionService.deleteGameSession(creatorLogin);
+            }
 
             if (ses == null) {
                 loadRole = "creator";
@@ -284,9 +287,10 @@ public class gameWS {
             String level = mesg.get("level").getAsString();
             String holeCount = mesg.get("holeCount").getAsString();
             String stoneCount = mesg.get("stoneCount").getAsString();
-            boolean isFirst = true;
-            ai = new AI(Integer.parseInt(holeCount), Integer.parseInt(stoneCount), Integer.parseInt(level), isFirst);
-
+            if (mesg.get("prior").getAsString().equals("true"))
+                ai = new AI(Integer.parseInt(holeCount), Integer.parseInt(stoneCount), Integer.parseInt(level), true);
+            else
+                ai = new AI(Integer.parseInt(holeCount), Integer.parseInt(stoneCount), Integer.parseInt(level), false);
             Map<String, String> resultMap = new HashMap<String, String>();
             resultMap.put("operation", "createAI");
             Avatar avatar = avatarDAO.getAvatarById(100);
@@ -296,7 +300,7 @@ public class gameWS {
             resultMap.put("holeCount", holeCount);
             resultMap.put("stoneCount", stoneCount);
             resultMap.put("level", level);
-            resultMap.put("prior", String.valueOf(isFirst));
+            resultMap.put("prior", mesg.get("prior").getAsString());
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String json = gson.toJson(resultMap);
             session.getBasicRemote().sendText(json);
@@ -305,6 +309,8 @@ public class gameWS {
 
         if (operation.equals("gs")) {
             gameSession = gameSessionService.getGameSession(creatorLogin);
+            gameBid = null;
+            LOGGER.log(Level.SEVERE, "gsssssssss: " + String.valueOf(gameSession == null));
         }
 
         //для создавшего
@@ -480,16 +486,31 @@ public class gameWS {
             Map<String, String> resultMap;
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String json;
-            int num = mesg.get("num").getAsInt();
-            ai.playerStep(num);
-            int respNum = ai.AIStep();
             resultMap = new HashMap<String, String>();
+            int num = mesg.get("num").getAsInt();
+            int respNum = -1;
+            if (num == -1) {
+                resultMap.put("first", "true");
+                respNum = ai.AIStep();
+            } else {
+                ai.playerStep(num);
+                respNum = ai.AIStep();
+            }
+
             resultMap.put("operation", "stepAI");
             resultMap.put("num", String.valueOf(respNum));
 
             json = gson.toJson(resultMap);
 
             session.getBasicRemote().sendText(json);
+        }
+
+        if (operation.equals("end")) {
+            Hole[] holes = gameSession.getHolesArray();
+            for (int i = 0; i < gameSession.getGameState().getHoles().size(); i++) {
+                holeDAO.deleteHole(holes[i]);
+            }
+            gameStateDAO.deleteGameState(gameSession.getGameState());
         }
 
     }
@@ -528,7 +549,6 @@ public class gameWS {
             gameBid = null;
         } else {
             LOGGER.log(Level.SEVERE, "leave game session");
-
             if (gameSession != null && gameSession.getSessionOfCreator() != null && gameSession.getSessionOfCreator().equals(session)) {
                 LOGGER.log(Level.SEVERE, "creator");
                 resultMap = new HashMap<String, String>();
